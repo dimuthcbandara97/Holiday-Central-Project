@@ -1,0 +1,14 @@
+GET http://localhost:4000/subscribers
+
+###
+
+GET http://localhost:4000/subscribers/15
+
+###
+POST http://localhost:4000/subscribers/
+Content-Type: application/json
+
+{
+    "name":"Student 01",
+    "subscriberToChanel": "Yes For Hotels"
+}
