@@ -1,19 +1,36 @@
-require('dotenv').config()
+const express = require('express')
+const dotenv = require('dotenv')
+const morgan = require('morgan')
+const bodyParser = require('body-parser')
+const path = require('path')
 
-const express = require('express');
-const app = express();
-const mongoose = require('mongoose');
 
-mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser:true})
-const db = mongoose.connection
-db.on('error',(error) => console.error(error))
-db.once('open',() =>console.log('Connected to Database'))
+const connectDB = require('./server/database/connection')
 
-app.use(express.json())
+const app1 = express()
+app1.disable("x-powered-by");
 
-// For the subsribers
-const subscribeRouter = require('./routes/subscribers')
-app.use('/subscribers', subscribeRouter)
+// helmet security configuration
+let helmet = require("helmet");
+let app2 = express(); // Compliant
+app2.use(helmet.hidePoweredBy());
 
-app.listen(4000,()=> console.log('Server Started'))
+dotenv.config({path:'config.env'})
+const PORT = process.env.PORT || 3000
 
+// log request
+app2.use(morgan('tiny'));
+
+//mongodb connection
+connectDB()
+
+// parse request to body parser
+app2.use(bodyParser.urlencoded({ extended: true }))
+
+
+// loaed routers
+app2.use('/',require('./server/routes/router'))
+
+app2.listen(PORT, () => {
+    console.log("Server is running on port ")
+})
