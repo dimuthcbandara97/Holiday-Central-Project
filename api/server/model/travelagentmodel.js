@@ -20,9 +20,9 @@ var schema = new mongoose.Schema({
     imageurl: String,
 });
 
-const HolidayAdmindb = mongoose.model('holidayadmin',schema)
+const TravelAgentDb = mongoose.model('travelagent',schema)
 
-module.exports= HolidayAdmindb;
+module.exports= TravelAgentDb;
 
 
 

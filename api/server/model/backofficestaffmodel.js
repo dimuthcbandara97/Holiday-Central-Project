@@ -20,9 +20,6 @@ var schema = new mongoose.Schema({
     imageurl: String,
 });
 
-const HolidayAdmindb = mongoose.model('holidayadmin',schema)
+const BackOfficeStaffdb = mongoose.model('backofficestaff',schema)
 
-module.exports= HolidayAdmindb;
-
-
-
+module.exports= BackOfficeStaffdb;
