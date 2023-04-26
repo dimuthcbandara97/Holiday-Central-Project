@@ -3,42 +3,120 @@ let FlightReservationDb = require('../model/flightreservationmodel')
 
 // create and save new user
 
+// exports.create = (req, res) => {
+//     // validate the request
+//     if(!req.body){
+//         res.status(400).send({
+//             message: "Content can not be empty!"
+//         })
+//         return 
+//     }
+
+//     // new user
+//     const user = new FlightReservationDb({
+//         departure_destination: req.body.departure_destination,
+//         arrival_destination: req.body.arrival_destination,
+//         departure_date: req.body.departure_date,
+//         arrival_date: req.body.arrival_date,
+//         cabin_class: req.body.cabin_class,
+//         duration: req.body.duration,
+//         meal_preferences: req.body.meal_preferences,
+//         seat_selection: req.body.seat_selection,
+//         price: req.body.price,
+//         airline: req.body.airline,
+//     })
+
+//     // save user in the database
+//     user.save(user)
+//       .then(data => {
+//             // res.send(data)
+//             res.send(data + "Added successfully")
+//         })
+//       .catch(err => {
+//             res.status(500).send({
+//                 message: err.message || "Some error occurred while creating the user."
+//             })
+//         })
+// }
 exports.create = (req, res) => {
     // validate the request
-    if(!req.body){
-        res.status(400).send({
-            message: "Content can not be empty!"
-        })
-        return 
+    if (!req.body) {
+      res.status(400).send({
+        message: "Content can not be empty!",
+      });
+      return;
     }
-
+  
+    // check for required fields
+    const requiredFields = [
+      "departure_destination",
+      "arrival_destination",
+      "departure_date",
+      "arrival_date",
+      "cabin_class",
+      "duration",
+      "price",
+      "airline",
+    ];
+    const missingFields = requiredFields.filter((field) => !req.body[field]);
+    if (missingFields.length) {
+      res.status(400).send({
+        message: `Missing required fields: ${missingFields.join(", ")}`,
+      });
+      return;
+    }
+  
+    // validate data types
+    const validDatePattern = /^\d{4}-\d{2}-\d{2}$/;
+    if (
+      !validDatePattern.test(req.body.departure_date) ||
+      !validDatePattern.test(req.body.arrival_date)
+    ) {
+      res.status(400).send({
+        message: "Invalid date format. Use YYYY-MM-DD.",
+      });
+      return;
+    }
+  
+    // validate field values
+    const allowedCabinClasses = ["Economy", "Business", "First"];
+    if (!allowedCabinClasses.includes(req.body.cabin_class)) {
+      res.status(400).send({
+        message: `Invalid cabin class. Allowed values: ${allowedCabinClasses.join(
+          ", "
+        )}`,
+      });
+      return;
+    }
+  
     // new user
     const user = new FlightReservationDb({
-        departure_destination: req.body.departure_destination,
-        arrival_destination: req.body.arrival_destination,
-        departure_date: req.body.departure_date,
-        arrival_date: req.body.arrival_date,
-        cabin_class: req.body.cabin_class,
-        duration: req.body.duration,
-        meal_preferences: req.body.meal_preferences,
-        seat_selection: req.body.seat_selection,
-        price: req.body.price,
-        airline: req.body.airline,
-    })
-
+      departure_destination: req.body.departure_destination,
+      arrival_destination: req.body.arrival_destination,
+      departure_date: req.body.departure_date,
+      arrival_date: req.body.arrival_date,
+      cabin_class: req.body.cabin_class,
+      duration: req.body.duration,
+      meal_preferences: req.body.meal_preferences,
+      seat_selection: req.body.seat_selection,
+      price: req.body.price,
+      airline: req.body.airline,
+    });
+  
     // save user in the database
     user.save(user)
-      .then(data => {
-            // res.send(data)
-            res.redirect('/add-user')
-        })
-      .catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while creating the user."
-            })
-        })
-}
-
+      .then((data) => {
+        res.send(`${data} added successfully`);
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message:
+            err.message ||
+            "Some error occurred while creating the flight reservation.",
+        });
+      });
+  };
+  
 // retreive and return all users
 exports.find = (req, res) => {
         if(req.query.id){

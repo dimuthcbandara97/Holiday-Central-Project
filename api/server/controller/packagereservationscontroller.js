@@ -3,38 +3,197 @@ let PackageReservationsDB = require('../model/packagereservationsmodel')
 
 // create and save new user
 
+// exports.create = (req, res) => {
+//     // validate the request
+//     if(!req.body){
+//         res.status(400).send({
+//             message: "Content can not be empty!"
+//         })
+//         return 
+//     }
+
+//     // new user
+//     const user = new PackageReservationsDB({
+//         destination: req.body.destination,
+//         speciality: req.body.speciality,
+//         duration: req.body.duration,
+//         number_of_travellers: req.body.number_of_travellers,
+//         price: req.body.price,
+//         package_rating: req.body.package_rating,
+//     })
+
+//     // save user in the database
+//     user.save(user)
+//       .then(data => {
+//             // res.send(data)
+//             res.send(data + "Added successfully")
+//         })
+//       .catch(err => {
+//             res.status(500).send({
+//                 message: err.message || "Some error occurred while creating the user."
+//             })
+//         })
+// }
+
 exports.create = (req, res) => {
     // validate the request
-    if(!req.body){
-        res.status(400).send({
-            message: "Content can not be empty!"
-        })
-        return 
+    if (!req.body) {
+      res.status(400).send({
+        message: "Content can not be empty!",
+      })
+      return
     }
-
+  
+    // validate required fields
+    const requiredFields = [
+      "destination",
+      "speciality",
+      "duration",
+      "number_of_travellers",
+      "price",
+    ]
+    const missingFields = requiredFields.filter(field => !(field in req.body))
+    if (missingFields.length) {
+      res.status(400).send({
+        message: `Missing required fields: ${missingFields.join(", ")}`,
+      })
+      return
+    }
+  
+    // validate duration and number_of_travellers
+    const duration = req.body.duration
+    const number_of_travellers = req.body.number_of_travellers
+    if (duration <= 0 || isNaN(duration)) {
+      res.status(400).send({
+        message: "Invalid duration.",
+      })
+      return
+    }
+    if (number_of_travellers <= 0 || !Number.isInteger(number_of_travellers)) {
+      res.status(400).send({
+        message: "Number of travellers must be a positive integer.",
+      })
+      return
+    }
+  
+    // validate price and package_rating
+    const price = req.body.price
+    const package_rating = req.body.package_rating
+    if (price <= 0 || isNaN(price)) {
+      res.status(400).send({
+        message: "Invalid price.",
+      })
+      return
+    }
+    if (package_rating !== undefined && (package_rating < 1 || package_rating > 5)) {
+      res.status(400).send({
+        message: "Package rating must be between 1 and 5.",
+      })
+      return
+    }
+  
     // new user
     const user = new PackageReservationsDB({
-        destination: req.body.destination,
-        speciality: req.body.speciality,
-        duration: req.body.duration,
-        number_of_travellers: req.body.number_of_travellers,
-        price: req.body.price,
-        package_rating: req.body.package_rating,
+      destination: req.body.destination,
+      speciality: req.body.speciality,
+      duration: duration,
+      number_of_travellers: number_of_travellers,
+      price: price,
+      package_rating: package_rating,
     })
-
+  
     // save user in the database
     user.save(user)
       .then(data => {
-            // res.send(data)
-            res.redirect('/add-user')
-        })
+        res.send(`${data} added successfully`)
+      })
       .catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while creating the user."
-            })
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while creating the package reservation.",
         })
-}
-
+      })
+  }
+  exports.create = (req, res) => {
+    // validate the request
+    if (!req.body) {
+      res.status(400).send({
+        message: "Content can not be empty!",
+      })
+      return
+    }
+  
+    // validate required fields
+    const requiredFields = [
+      "destination",
+      "speciality",
+      "duration",
+      "number_of_travellers",
+      "price",
+    ]
+    const missingFields = requiredFields.filter(field => !(field in req.body))
+    if (missingFields.length) {
+      res.status(400).send({
+        message: `Missing required fields: ${missingFields.join(", ")}`,
+      })
+      return
+    }
+  
+    // validate duration and number_of_travellers
+    const duration = req.body.duration
+    const number_of_travellers = req.body.number_of_travellers
+    if (duration <= 0 || isNaN(duration)) {
+      res.status(400).send({
+        message: "Invalid duration.",
+      })
+      return
+    }
+    if (number_of_travellers <= 0 || !Number.isInteger(number_of_travellers)) {
+      res.status(400).send({
+        message: "Number of travellers must be a positive integer.",
+      })
+      return
+    }
+  
+    // validate price and package_rating
+    const price = req.body.price
+    const package_rating = req.body.package_rating
+    if (price <= 0 || isNaN(price)) {
+      res.status(400).send({
+        message: "Invalid price.",
+      })
+      return
+    }
+    if (package_rating !== undefined && (package_rating < 1 || package_rating > 5)) {
+      res.status(400).send({
+        message: "Package rating must be between 1 and 5.",
+      })
+      return
+    }
+  
+    // new user
+    const user = new PackageReservationsDB({
+      destination: req.body.destination,
+      speciality: req.body.speciality,
+      duration: duration,
+      number_of_travellers: number_of_travellers,
+      price: price,
+      package_rating: package_rating,
+    })
+  
+    // save user in the database
+    user.save(user)
+      .then(data => {
+        res.send(`${data} added successfully`)
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while creating the package reservation.",
+        })
+      })
+  }
+    
 // retreive and return all users
 exports.find = (req, res) => {
         if(req.query.id){

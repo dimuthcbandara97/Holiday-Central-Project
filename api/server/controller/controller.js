@@ -2,16 +2,86 @@ let Userdb = require('../model/model')
 
 // create and save new user
 
+// exports.create = (req, res) => {
+//     // validate the request
+//     if(!req.body){
+//         res.status(400).send({
+//             message: "Content can not be empty!"
+//         })
+//         return 
+//     }
+
+//     // new user
+//     const user = new Userdb({
+//         name: req.body.name,
+//         password: req.body.password,
+//         email: req.body.email,
+//         gender: req.body.gender,
+//         status: req.body.status,
+//         imageurl: req.body.imageurl,
+//     })
+
+//     // save user in the database
+//     user.save(user)
+//       .then(data => {
+//             // res.send(data)
+//             res.send(data + "Added successfully")
+//         })
+//       .catch(err => {
+//             res.status(500).send({
+//                 message: err.message || "Some error occurred while creating the user."
+//             })
+//         })
+// }
 exports.create = (req, res) => {
-    // validate the request
+    // Validate the request
     if(!req.body){
-        res.status(400).send({
+        return res.status(400).send({
             message: "Content can not be empty!"
         })
-        return 
     }
 
-    // new user
+    // Validate the required fields
+    if(!req.body.name || !req.body.password || !req.body.email){
+        return res.status(400).send({
+            message: "Name, password, and email are required fields."
+        })
+    }
+
+    // Validate the email format
+    const emailRegex = /^\S+@\S+\.\S+$/;
+    if(!emailRegex.test(req.body.email)){
+        return res.status(400).send({
+            message: "Invalid email address."
+        })
+    }
+
+    // Validate the password strength
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if(!passwordRegex.test(req.body.password)){
+        return res.status(400).send({
+            message: "Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one number, and one special character."
+        })
+    }
+
+    // Validate the gender value
+    if(req.body.gender && req.body.gender !== "male" && req.body.gender !== "female"){
+        return res.status(400).send({
+            message: "Invalid gender value."
+        })
+    }
+
+    // Validate the image URL format
+    if(req.body.imageurl){
+        const urlRegex = /^https?:\/\/\S+\.\S+$/;
+        if(!urlRegex.test(req.body.imageurl)){
+            return res.status(400).send({
+                message: "Invalid image URL."
+            })
+        }
+    }
+
+    // Create a new user
     const user = new Userdb({
         name: req.body.name,
         password: req.body.password,
@@ -21,11 +91,10 @@ exports.create = (req, res) => {
         imageurl: req.body.imageurl,
     })
 
-    // save user in the database
-    user.save(user)
+    // Save the user in the database
+    user.save()
       .then(data => {
-            // res.send(data)
-            res.redirect('/add-user')
+            res.send(data + "Added successfully")
         })
       .catch(err => {
             res.status(500).send({
@@ -33,6 +102,7 @@ exports.create = (req, res) => {
             })
         })
 }
+
 
 // retreive and return all users
 exports.find = (req, res) => {
