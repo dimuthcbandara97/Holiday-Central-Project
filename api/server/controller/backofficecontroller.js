@@ -1,76 +1,7 @@
 // let Userdb = require('../model/model')
 let BackOfficeStaffdb = require('../model/backofficestaffmodel')
+const bcrypt = require('bcryptjs');
 
-
-// exports.create = (req, res) => {
-//     // Validate the request
-//     if(!req.body){
-//         return res.status(400).send({
-//             message: "Content can not be empty!"
-//         })
-//     }
-
-//     // Validate the required fields
-//     if(!req.body.name || !req.body.password || !req.body.email){
-//         return res.status(400).send({
-//             message: "Name, password, and email are required fields."
-//         })
-//     }
-
-//     // Validate the email format
-//     const emailRegex = /^\S+@\S+\.\S+$/;
-//     if(!emailRegex.test(req.body.email)){
-//         return res.status(400).send({
-//             message: "Invalid email address."
-//         })
-//     }
-
-//     // Validate the password strength
-//     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-//     if(!passwordRegex.test(req.body.password)){
-//         return res.status(400).send({
-//             message: "Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one number, and one special character."
-//         })
-//     }
-
-//     // Validate the gender value
-//     if(req.body.gender && req.body.gender !== "male" && req.body.gender !== "female"){
-//         return res.status(400).send({
-//             message: "Invalid gender value."
-//         })
-//     }
-
-//     // Validate the image URL format
-//     if(req.body.imageurl){
-//         const urlRegex = /^https?:\/\/\S+\.\S+$/;
-//         if(!urlRegex.test(req.body.imageurl)){
-//             return res.status(400).send({
-//                 message: "Invalid image URL."
-//             })
-//         }
-//     }
-
-//     // Create a new user
-//     const user = new BackOfficeStaffdb({
-//         name: req.body.name,
-//         password: req.body.password,
-//         email: req.body.email,
-//         gender: req.body.gender,
-//         status: req.body.status,
-//         imageurl: req.body.imageurl,
-//     })
-
-//     // Save the user in the database
-//     user.save()
-//       .then(data => {
-//             res.send(data + "Added successfully")
-//         })
-//       .catch(err => {
-//             res.status(500).send({
-//                 message: err.message || "Some error occurred while creating the user."
-//             })
-//         })
-// }
 
 exports.validateCreateRequest = (req, res, next) => {
     if (!req.body) {
@@ -114,6 +45,7 @@ exports.validateCreateRequest = (req, res, next) => {
       }
     }
   
+    
     next();
   };
   
@@ -137,33 +69,102 @@ exports.validateCreateRequest = (req, res, next) => {
         });
       });
   };
+  // exports.create = (req, res) => {
+  //   const saltRounds = 10;
+  //   bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
+  //     if (err) {
+  //       return res.status(500).send({
+  //         message: "Error occurred while hashing password."
+  //       });
+  //     }
+      
+  //     const user = new BackOfficeStaffdb({
+  //       name: req.body.name,
+  //       password: hash,
+  //       email: req.body.email,
+  //       gender: req.body.gender,
+  //       status: req.body.status,
+  //       imageurl: req.body.imageurl,
+  //     });
+    
+  //     user.save()
+  //       .then(data => {
+  //         res.send(data + "Added successfully");
+  //       })
+  //       .catch(err => {
+  //         res.status(500).send({
+  //           message: err.message || "Some error occurred while creating the user."
+  //         });
+  //       });
+  //   });
+  // };
   
-// retreive and return all users
-exports.find = (req, res) => {
-        if(req.query.id){
-            const id = req.query.id
-            BackOfficeStaffdb.findById(id)
-            .then(user => {
-                res.send(user)
-              })
-            .catch(err => {
-                  res.status(500).send({
-                      message: err.message || "Some error occurred while retrieving the required user."
-                  })
-              })
-        }else{
-            BackOfficeStaffdb.find()
-        .then(user => {
-            res.send(user)
-          })
-        .catch(err => {
-              res.status(500).send({
-                  message: err.message || "Some error occurred while retrieving users."
-              })
-          })
-        }
+exports.find = async (req, res) => {
+  if(req.query.id){
+      const id = req.query.id
+      BackOfficeStaffdb.findById(id)
+      .then(user => {
+          res.send(user)
+        })
+      .catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving the required user."
+            })
+        })
+
+  }else{
+      BackOfficeStaffdb.find()
+  .then(user => {
+      res.send(user)
+    })
+  .catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving users."
+        })
+    })
+  }
 
 }
+
+// exports.find = (req, res) => {
+//   if(req.query.id){
+//       const id = req.query.id
+//       BackOfficeStaffdb.findById(id)
+//       .then(user => {
+//           res.send(user)
+//         })
+//       .catch(err => {
+//             res.status(500).send({
+//                 message: err.message || "Some error occurred while retrieving the required user."
+//             })
+//         })
+//   }else{
+//       BackOfficeStaffdb.find()
+//       .then(users => {
+//           const userList = []
+//           users.forEach(user => {
+//               const { name, email, password, gender, status, imageurl } = user
+//               const hashedPassword = password
+//               userList.push({
+//                   name,
+//                   email,
+//                   password: hashedPassword,
+//                   gender,
+//                   status,
+//                   imageurl,
+//                   isPasswordMatch: bcrypt.compareSync(req.body.password, hashedPassword)
+//               })
+//           })
+//           res.send(userList)
+//       })
+//       .catch(err => {
+//             res.status(500).send({
+//                 message: err.message || "Some error occurred while retrieving users."
+//             })
+//         })
+//   }
+// }
+
 // Modify above code to suit a login form
 
 // update a new identifed user by user id

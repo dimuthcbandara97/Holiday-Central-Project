@@ -88,3 +88,25 @@ exports.travelRoutes = (req,res) => {
 
     })  
 }
+
+exports.loginRoutes = (req,res) => {
+    // Make a get request top /api/users
+    axios.get('http://localhost:4000/api/login')
+    .then(function (response) {
+        
+        res.render('index',{users: response.data});
+    }).catch(err=>{
+
+    })  
+}
+
+exports.registerRoutes = (req,res) => {
+    // Make a get request top /api/users
+    axios.get('http://localhost:4000/api/register')
+    .then(function (response) {
+        
+        res.render('index',{users: response.data});
+    }).catch(err=>{
+
+    })  
+}

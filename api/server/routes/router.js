@@ -9,6 +9,7 @@ const backoffice = require('../controller/backofficecontroller')
 const flight = require('../controller/flightreservationcontroller')
 const hotel = require('../controller/hotelreservationscontroller')
 const packagecontroller = require('../controller/packagereservationscontroller')
+const logincontroller = require('../controller/logincontroller')
 const travel = require('../controller/travelagentcontroller')
 
 /***
@@ -58,6 +59,10 @@ route.post('/api/travel',travel.create)
 route.get('/api/travel',travel.find)
 route.put('/api/travel/:id',travel.update)
 route.delete('/api/travel/:id',travel.delete)
+
+// API routes for login and register
+route.post('/api/login',logincontroller.create)
+route.get('/api/login',logincontroller.find)
 
 module.exports = route
 
