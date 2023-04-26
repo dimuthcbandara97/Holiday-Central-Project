@@ -1,38 +1,37 @@
 const mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-    Destination: {
+    destination: {
         type: String,
         required: true
     },
-    CheckInDate: {
+    check_in_date: {
         type: Date,
         required: true
     },
-    CheckOutDate: {
+    check_out_date: {
         type: Date,
         required: true
     },
-    StarRating: {
+    star_rating: {
         type: Number,
         required: true
     },
-    Pricing: {
+    pricing: {
         type: Number,
         required: true
     },
-    RoomSelection: {
+    room_selection: {
         type: String,
         required: true
     },
-    BoardBasis: {
+    board_basis: {
         type: String,
         required: true
     },
-    Facilities: {
+    facilities: {
         type: String,
         required: true,
-        unique: true
     },
 });
 

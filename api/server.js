@@ -16,7 +16,7 @@ let app2 = express(); // Compliant
 app2.use(helmet.hidePoweredBy());
 
 dotenv.config({path:'config.env'})
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 4000
 
 // log request
 app2.use(morgan('tiny'));

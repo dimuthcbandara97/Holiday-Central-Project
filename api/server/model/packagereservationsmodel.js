@@ -13,7 +13,7 @@ var schema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    numberOfTravellers: {
+    number_of_travellers: {
         type: Number,
         required: true
     },
@@ -21,7 +21,7 @@ var schema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    packageRating: {
+    package_rating: {
         type: Number,
         required: true
     }
