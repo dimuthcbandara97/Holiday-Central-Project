@@ -85,51 +85,54 @@ exports.create = (req, res) => {
     });
 };
 
+
 exports.find = async (req, res) => {
     if (req.query.name && req.query.password) {
-        const name = req.query.name;
-        const password = req.query.password;
-
-        // Find the user based on their name
-        BackOfficeStaffdb.findOne({ name: name })
-            .then(user => {
-                if (!user) {
-                    // If the user is not found, send an error response
-                    return res.status(404).send({ message: 'User not found' });
-                }
-
-                // Compare the password with the hashed password in the database
-                bcrypt.compare(password, user.password, (err, result) => {
-                    if (err) {
-                        // If there is an error, send an error response
-                        return res.status(500).send({ message: 'Error comparing passwords' });
-                    }
-
-                    if (result) {
-                        const token = jwt.sign({ userId: user._id }, 'your-secret-key');
-                        return res.send({ user, token });
-                    } else {
-                        // If the passwords do not match, send an error response
-                        return res.status(401).send({ message: 'Invalid credentials' });
-                    }
-                });
-            })
-            .catch(err => {
-                res.status(500).send({
-                    message: err.message || 'Some error occurred while retrieving the user'
-                });
-            });
+      const name = req.query.name;
+      const password = req.query.password;
+  
+      // Find the user based on their name
+      BackOfficeStaffdb.findOne({ name: name })
+        .then(user => {
+          if (!user) {
+            // If the user is not found, send an error response
+            return res.status(404).send({ message: 'User not found' });
+          }
+  
+          // Compare the password with the hashed password in the database
+          bcrypt.compare(password, user.password, (err, result) => {
+            if (err) {
+              // If there is an error, send an error response
+              return res.status(500).send({ message: 'Error comparing passwords' });
+            }
+  
+            if (result) {
+              const token = jwt.sign({ userId: user._id }, 'your-secret-key');
+              // Set the token as a cookie
+              res.cookie('jwt', token);
+              return res.send({ user, token });
+            } else {
+              // If the passwords do not match, send an error response
+              return res.status(401).send({ message: 'Invalid credentials' });
+            }
+          });
+        })
+        .catch(err => {
+          res.status(500).send({
+            message: err.message || 'Some error occurred while retrieving the user'
+          });
+        });
     } else {
-        // If the name and password are not provided, retrieve all users
-        BackOfficeStaffdb.find()
-            .then(users => {
-                res.send(users);
-            })
-            .catch(err => {
-                res.status(500).send({
-                    message: err.message || 'Some error occurred while retrieving users'
-                });
-            });
+      // If the name and password are not provided, retrieve all users
+      BackOfficeStaffdb.find()
+        .then(users => {
+          res.send(users);
+        })
+        .catch(err => {
+          res.status(500).send({
+            message: err.message || 'Some error occurred while retrieving users'
+          });
+        });
     }
-};
-
+  };
+  
