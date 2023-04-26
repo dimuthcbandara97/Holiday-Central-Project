@@ -17,7 +17,9 @@ const travel = require('../controller/travelagentcontroller')
  * @method GET
  */
 
-route.get('/',services.homeRoutes)
+ route.get('/',flight.find)
+
+// route.get('/',)
 
 
 // API routes for users

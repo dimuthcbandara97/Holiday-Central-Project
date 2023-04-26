@@ -1,4 +1,4 @@
-let Userdb = require('../model/model')
+let Userdb = require('../model/model');
 
 // create and save new user
 
@@ -33,6 +33,7 @@ let Userdb = require('../model/model')
 //             })
 //         })
 // }
+
 exports.create = (req, res) => {
     // Validate the request
     if(!req.body){

@@ -1,7 +1,19 @@
 
 const axios = require('axios');
 
-
+exports.homePage = (req, res) => {
+    // Make a get request to /api/users
+    axios.get('http://localhost:4000/')
+      .then(function (response) {
+        // Pass the response data to the template
+        res.render('home', { users: response.data });
+      })
+      .catch(function (error) {
+        // Handle the error
+        console.error(error);
+        res.render('error', { error: error });
+      });
+  };
 
 // Home Route
 exports.homeRoutes = (req,res) => {

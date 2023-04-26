@@ -2,76 +2,142 @@
 let BackOfficeStaffdb = require('../model/backofficestaffmodel')
 
 
-exports.create = (req, res) => {
-    // Validate the request
-    if(!req.body){
-        return res.status(400).send({
-            message: "Content can not be empty!"
-        })
-    }
+// exports.create = (req, res) => {
+//     // Validate the request
+//     if(!req.body){
+//         return res.status(400).send({
+//             message: "Content can not be empty!"
+//         })
+//     }
 
-    // Validate the required fields
-    if(!req.body.name || !req.body.password || !req.body.email){
-        return res.status(400).send({
-            message: "Name, password, and email are required fields."
-        })
-    }
+//     // Validate the required fields
+//     if(!req.body.name || !req.body.password || !req.body.email){
+//         return res.status(400).send({
+//             message: "Name, password, and email are required fields."
+//         })
+//     }
 
-    // Validate the email format
+//     // Validate the email format
+//     const emailRegex = /^\S+@\S+\.\S+$/;
+//     if(!emailRegex.test(req.body.email)){
+//         return res.status(400).send({
+//             message: "Invalid email address."
+//         })
+//     }
+
+//     // Validate the password strength
+//     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+//     if(!passwordRegex.test(req.body.password)){
+//         return res.status(400).send({
+//             message: "Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one number, and one special character."
+//         })
+//     }
+
+//     // Validate the gender value
+//     if(req.body.gender && req.body.gender !== "male" && req.body.gender !== "female"){
+//         return res.status(400).send({
+//             message: "Invalid gender value."
+//         })
+//     }
+
+//     // Validate the image URL format
+//     if(req.body.imageurl){
+//         const urlRegex = /^https?:\/\/\S+\.\S+$/;
+//         if(!urlRegex.test(req.body.imageurl)){
+//             return res.status(400).send({
+//                 message: "Invalid image URL."
+//             })
+//         }
+//     }
+
+//     // Create a new user
+//     const user = new BackOfficeStaffdb({
+//         name: req.body.name,
+//         password: req.body.password,
+//         email: req.body.email,
+//         gender: req.body.gender,
+//         status: req.body.status,
+//         imageurl: req.body.imageurl,
+//     })
+
+//     // Save the user in the database
+//     user.save()
+//       .then(data => {
+//             res.send(data + "Added successfully")
+//         })
+//       .catch(err => {
+//             res.status(500).send({
+//                 message: err.message || "Some error occurred while creating the user."
+//             })
+//         })
+// }
+
+exports.validateCreateRequest = (req, res, next) => {
+    if (!req.body) {
+      return res.status(400).send({
+        message: "Content can not be empty!"
+      });
+    }
+  
+    if (!req.body.name || !req.body.password || !req.body.email) {
+      return res.status(400).send({
+        message: "Name, password, and email are required fields."
+      });
+    }
+  
     const emailRegex = /^\S+@\S+\.\S+$/;
-    if(!emailRegex.test(req.body.email)){
-        return res.status(400).send({
-            message: "Invalid email address."
-        })
+    if (!emailRegex.test(req.body.email)) {
+      return res.status(400).send({
+        message: "Invalid email address."
+      });
     }
-
-    // Validate the password strength
+  
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if(!passwordRegex.test(req.body.password)){
+    if (!passwordRegex.test(req.body.password)) {
+      return res.status(400).send({
+        message: "Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one number, and one special character."
+      });
+    }
+  
+    if (req.body.gender && req.body.gender !== "male" && req.body.gender !== "female") {
+      return res.status(400).send({
+        message: "Invalid gender value."
+      });
+    }
+  
+    if (req.body.imageurl) {
+      const urlRegex = /^https?:\/\/\S+\.\S+$/;
+      if (!urlRegex.test(req.body.imageurl)) {
         return res.status(400).send({
-            message: "Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one number, and one special character."
-        })
+          message: "Invalid image URL."
+        });
+      }
     }
-
-    // Validate the gender value
-    if(req.body.gender && req.body.gender !== "male" && req.body.gender !== "female"){
-        return res.status(400).send({
-            message: "Invalid gender value."
-        })
-    }
-
-    // Validate the image URL format
-    if(req.body.imageurl){
-        const urlRegex = /^https?:\/\/\S+\.\S+$/;
-        if(!urlRegex.test(req.body.imageurl)){
-            return res.status(400).send({
-                message: "Invalid image URL."
-            })
-        }
-    }
-
-    // Create a new user
+  
+    next();
+  };
+  
+  exports.create = (req, res) => {
     const user = new BackOfficeStaffdb({
-        name: req.body.name,
-        password: req.body.password,
-        email: req.body.email,
-        gender: req.body.gender,
-        status: req.body.status,
-        imageurl: req.body.imageurl,
-    })
-
-    // Save the user in the database
+      name: req.body.name,
+      password: req.body.password,
+      email: req.body.email,
+      gender: req.body.gender,
+      status: req.body.status,
+      imageurl: req.body.imageurl,
+    });
+  
     user.save()
       .then(data => {
-            res.send(data + "Added successfully")
-        })
+        res.send(data + "Added successfully");
+      })
       .catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while creating the user."
-            })
-        })
-}
-
+        res.status(500).send({
+          message: err.message || "Some error occurred while creating the user."
+        });
+      });
+  };
+  
 // retreive and return all users
 exports.find = (req, res) => {
         if(req.query.id){
