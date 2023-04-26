@@ -12,6 +12,7 @@ app1.disable("x-powered-by");
 
 // helmet security configuration
 let helmet = require("helmet");
+// const cookieParser = require('cookie-parser')
 let app2 = express(); // Compliant
 app2.use(helmet.hidePoweredBy());
 
@@ -25,6 +26,7 @@ app2.use(morgan('tiny'));
 connectDB()
 
 // parse request to body parser
+// app2.use(cookieParser) 
 app2.use(bodyParser.urlencoded({ extended: true }))
 
 
