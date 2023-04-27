@@ -3,38 +3,6 @@ let PackageReservationsDB = require('../model/packagereservationsmodel')
 
 // create and save new user
 
-// exports.create = (req, res) => {
-//     // validate the request
-//     if(!req.body){
-//         res.status(400).send({
-//             message: "Content can not be empty!"
-//         })
-//         return 
-//     }
-
-//     // new user
-//     const user = new PackageReservationsDB({
-//         destination: req.body.destination,
-//         speciality: req.body.speciality,
-//         duration: req.body.duration,
-//         number_of_travellers: req.body.number_of_travellers,
-//         price: req.body.price,
-//         package_rating: req.body.package_rating,
-//     })
-
-//     // save user in the database
-//     user.save(user)
-//       .then(data => {
-//             // res.send(data)
-//             res.send(data + "Added successfully")
-//         })
-//       .catch(err => {
-//             res.status(500).send({
-//                 message: err.message || "Some error occurred while creating the user."
-//             })
-//         })
-// }
-
 exports.create = (req, res) => {
     // validate the request
     if (!req.body) {
