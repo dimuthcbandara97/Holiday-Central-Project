@@ -42,6 +42,8 @@ route.post('/api/flight',flight.create)
 route.get('/api/flight',flight.find)
 route.put('/api/flight/:id',flight.update)
 route.delete('/api/flight/:id',flight.delete)
+route.get('/api/flight/count',flight.countBy)
+route.get('/api/flight/filter',flight.findBy)
 
 // API routes for hotel reservation
 route.post('/api/hotel',hotel.create)
@@ -64,6 +66,8 @@ route.delete('/api/travel/:id',travel.delete)
 // API routes for login and register
 route.post('/api/login',logincontroller.create)
 route.get('/api/login',logincontroller.find)
+
+
 
 
 

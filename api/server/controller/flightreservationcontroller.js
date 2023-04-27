@@ -1,43 +1,7 @@
 // let Userdb = require('../model/model')
 let FlightReservationDb = require('../model/flightreservationmodel')
 
-// create and save new user
 
-// exports.create = (req, res) => {
-//     // validate the request
-//     if(!req.body){
-//         res.status(400).send({
-//             message: "Content can not be empty!"
-//         })
-//         return 
-//     }
-
-//     // new user
-//     const user = new FlightReservationDb({
-//         departure_destination: req.body.departure_destination,
-//         arrival_destination: req.body.arrival_destination,
-//         departure_date: req.body.departure_date,
-//         arrival_date: req.body.arrival_date,
-//         cabin_class: req.body.cabin_class,
-//         duration: req.body.duration,
-//         meal_preferences: req.body.meal_preferences,
-//         seat_selection: req.body.seat_selection,
-//         price: req.body.price,
-//         airline: req.body.airline,
-//     })
-
-//     // save user in the database
-//     user.save(user)
-//       .then(data => {
-//             // res.send(data)
-//             res.send(data + "Added successfully")
-//         })
-//       .catch(err => {
-//             res.status(500).send({
-//                 message: err.message || "Some error occurred while creating the user."
-//             })
-//         })
-// }
 exports.create = (req, res) => {
     // validate the request
     if (!req.body) {
@@ -190,3 +154,65 @@ exports.delete = (req, res) => {
         })
     })
 }
+
+// count by all credentials
+exports.countBy = (req, res) => {
+  const { price, duration, airline } = req.query;
+  const query = {};
+  
+  if (price) {
+    query.price = price;
+  }
+  if (duration) {
+    query.duration = duration;
+  }
+  if (airline) {
+    query.airline = airline;
+  }
+  
+  FlightReservationDb.countDocuments(query)
+    .then(count => {
+      res.send({ count: count });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message ||
+          "Some error occurred while retrieving the count of flight reservations."
+      });
+    });
+};
+
+
+// Find by credentials
+exports.findBy = (req, res) => {
+  const { price, duration, airline } = req.query;
+  const query = {};
+
+  if (price) {
+    query.price = price;
+  }
+  if (duration) {
+    query.duration = duration;
+  }
+  if (airline) {
+    query.airline = airline;
+  }
+
+  FlightReservationDb.find(query)
+    .then(flightReservations => {
+      if (flightReservations.length === 0) {
+        return res.status(404).send({
+          message: "No flight reservations matching the given criteria found."
+        });
+      }
+      res.send(flightReservations);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving flight reservations."
+      });
+    });
+};
+
