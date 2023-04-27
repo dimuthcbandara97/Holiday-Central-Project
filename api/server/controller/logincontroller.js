@@ -4,11 +4,6 @@ const jwt = require('jsonwebtoken');
 const cookieparser = require('cookie-parser');
 
 
-
-// import jwt from "jsonwebtoken";
-
-// const bcrypt = require('bcryptjs');
-
 exports.validateCreateRequest = (req, res, next) => {
   if (!req.body) {
     return res.status(400).send({

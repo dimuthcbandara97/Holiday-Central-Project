@@ -69,35 +69,6 @@ exports.validateCreateRequest = (req, res, next) => {
         });
       });
   };
-  // exports.create = (req, res) => {
-  //   const saltRounds = 10;
-  //   bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
-  //     if (err) {
-  //       return res.status(500).send({
-  //         message: "Error occurred while hashing password."
-  //       });
-  //     }
-      
-  //     const user = new BackOfficeStaffdb({
-  //       name: req.body.name,
-  //       password: hash,
-  //       email: req.body.email,
-  //       gender: req.body.gender,
-  //       status: req.body.status,
-  //       imageurl: req.body.imageurl,
-  //     });
-    
-  //     user.save()
-  //       .then(data => {
-  //         res.send(data + "Added successfully");
-  //       })
-  //       .catch(err => {
-  //         res.status(500).send({
-  //           message: err.message || "Some error occurred while creating the user."
-  //         });
-  //       });
-  //   });
-  // };
   
 exports.find = async (req, res) => {
   if(req.query.id){
@@ -126,46 +97,6 @@ exports.find = async (req, res) => {
 
 }
 
-// exports.find = (req, res) => {
-//   if(req.query.id){
-//       const id = req.query.id
-//       BackOfficeStaffdb.findById(id)
-//       .then(user => {
-//           res.send(user)
-//         })
-//       .catch(err => {
-//             res.status(500).send({
-//                 message: err.message || "Some error occurred while retrieving the required user."
-//             })
-//         })
-//   }else{
-//       BackOfficeStaffdb.find()
-//       .then(users => {
-//           const userList = []
-//           users.forEach(user => {
-//               const { name, email, password, gender, status, imageurl } = user
-//               const hashedPassword = password
-//               userList.push({
-//                   name,
-//                   email,
-//                   password: hashedPassword,
-//                   gender,
-//                   status,
-//                   imageurl,
-//                   isPasswordMatch: bcrypt.compareSync(req.body.password, hashedPassword)
-//               })
-//           })
-//           res.send(userList)
-//       })
-//       .catch(err => {
-//             res.status(500).send({
-//                 message: err.message || "Some error occurred while retrieving users."
-//             })
-//         })
-//   }
-// }
-
-// Modify above code to suit a login form
 
 // update a new identifed user by user id
 exports.update = (req, res) => {

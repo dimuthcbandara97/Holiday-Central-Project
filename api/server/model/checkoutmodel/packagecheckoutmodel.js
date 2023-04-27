@@ -1,0 +1,53 @@
+const mongoose = require('mongoose');
+
+var schema = new mongoose.Schema({
+    agent_name: {
+        type: String,
+        required: true
+    },
+    user_name: {
+        type: String,
+        required: true
+    },
+    user_email: {
+        type: String,
+        required: true ,
+        unique: true
+    },
+    checkout_date: {
+        type: Date,
+        required: true
+    },
+    aditional_note: {
+        type: String,
+        required: true
+    },
+    destination: {
+        type: String,
+        required: true
+    },
+    speciality: {
+        type: String,
+        required: true
+    },
+    duration: {
+        type: Number,
+        required: true
+    },
+    number_of_travellers: {
+        type: Number,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    package_rating: {
+        type: Number,
+        required: true
+    }
+});
+
+const PackageCheckoutDb = mongoose.model('packagecheckout', schema)
+
+module.exports = PackageCheckoutDb;
