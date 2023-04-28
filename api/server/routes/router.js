@@ -73,11 +73,15 @@ route.delete('/api/travel/:id',travel.delete)
 route.post('/api/login',logincontroller.create)
 route.get('/api/login',logincontroller.find)
 
-// API routes for 
+// API routes for checkout
 route.post('/api/checkout/flight',flightcheckout.create)
 route.post('/api/checkout/hotel',hotelcheckout.create)
 route.post('/api/checkout/package',packagecheckout.create)
 
+// API routes for checkout display
+route.get('/api/checkout/flight',flightcheckout.find)
+route.get('/api/checkout/hotel',hotelcheckout.find)
+route.get('/api/checkout/package',packagecheckout.find)
 
 module.exports = route
 

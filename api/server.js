@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
+const cors = require('cors');
 
 const connectDB = require('./server/database/connection');
 
@@ -25,8 +26,10 @@ app.use(morgan('tiny'));
 connectDB();
 
 // parse request to body parser
+app.use(cors());
 app.use(cookieParser()); // Call the "cookieParser" function with parentheses
 app.use(bodyParser.urlencoded({ extended: true }));
+
 
 // load routers
 app.use('/', require('./server/routes/router'));
