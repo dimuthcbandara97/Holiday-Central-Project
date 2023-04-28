@@ -1,41 +1,6 @@
 // let Userdb = require('../model/model')
 let HotelReservationsDb = require('../model/hotelreservationsmodel')
 
-// create and save new user
-
-// exports.create = (req, res) => {
-//     // validate the request
-//     if(!req.body){
-//         res.status(400).send({
-//             message: "Content can not be empty!"
-//         })
-//         return 
-//     }
-
-//     // new user
-//     const user = new HotelReservationsDb({
-//         destination: req.body.destination,
-//         check_in_date: req.body.check_in_date,
-//         check_out_date: req.body.check_out_date,
-//         star_rating: req.body.star_rating,
-//         pricing: req.body.pricing,
-//         room_selection: req.body.room_selection,
-//         board_basis: req.body.board_basis,
-//         facilities: req.body.facilities,
-//     })
-
-//     // save user in the database
-//     user.save(user)
-//       .then(data => {
-//             // res.send(data)
-//             res.send(data + "Added successfully")
-//         })
-//       .catch(err => {
-//             res.status(500).send({
-//                 message: err.message || "Some error occurred while creating the user."
-//             })
-//         })
-// }
 exports.create = (req, res) => {
     // validate the request
     if (!req.body) {
@@ -141,7 +106,63 @@ exports.find = (req, res) => {
 
 }
 // Modify above code to suit a login form
+exports.findBy = (req, res) => {
+  const { price, star_rating, facilities } = req.query;
+  const query = {};
 
+  if (price) {
+    query.pricing = pricing;
+  }
+  if (star_rating) {
+    query.star_rating = star_rating;
+  }
+  if (facilities) {
+    query.facilities = facilities;
+  }
+
+  HotelReservationsDb.find(query)
+    .then(hotelReservations =>{
+      if (hotelReservations.length === 0) {
+        return res.status(404).send({
+          message: "No flight reservations matching the given criteria found."
+        });
+      }
+      res.send(hotelReservations);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving flight reservations."
+      });
+    });
+};
+
+exports.countBy = (req, res) => {
+  const { price, star_rating, facilities } = req.query;
+  const query = {};
+
+  if (price) {
+    query.pricing = pricing;
+  }
+  if (star_rating) {
+    query.star_rating = star_rating;
+  }
+  if (facilities) {
+    query.facilities = facilities;
+  }
+
+  HotelReservationsDb.countDocuments(query)
+    .then(count => {
+      res.send({ count: count });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message ||
+          "Some error occurred while retrieving the count of flight reservations."
+      });
+    });
+};
 // update a new identifed user by user id
 exports.update = (req, res) => {
     if(!req.body){

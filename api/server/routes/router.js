@@ -25,8 +25,6 @@ const packagecheckout = require('../controller/checkoutcontroller/packagecheckou
 
  route.get('/',flight.find)
 
-// route.get('/',)
-
 
 // API routes for users
 route.post('/api/users',controller.create)
@@ -54,12 +52,16 @@ route.post('/api/hotel',hotel.create)
 route.get('/api/hotel',hotel.find)
 route.put('/api/hotel/:id',hotel.update)
 route.delete('/api/hotel/:id',hotel.delete)
+route.get('/api/hotel/count',hotel.countBy)
+route.get('/api/hotel/filter',hotel.findBy)
 
 // API routes for package reservation
 route.post('/api/package',packagecontroller.create)
 route.get('/api/package',packagecontroller.find)
 route.put('/api/package/:id',packagecontroller.update)
 route.delete('/api/package/:id',packagecontroller.delete)
+route.get('/api/package/count',packagecontroller.countBy)
+route.get('/api/package/filter',packagecontroller.findBy)
 
 // API routes for Traveling controller
 route.post('/api/travel',travel.create)

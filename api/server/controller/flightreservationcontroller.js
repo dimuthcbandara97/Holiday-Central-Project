@@ -190,27 +190,6 @@ exports.findBy = (req, res) => {
 };
 
 
-// update a new identifed user by user id
-exports.update = (req, res) => {
-  if (!req.body) {
-    return res.status(404).send({ message: "Data to update can not be empty." });
-  }
-
-  const id = req.params.id
-  FlightReservationDb.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-    .then(data => {
-      if (!data) {
-        res.status(404).send({ message: "can not find user" })
-      } else {
-        res.send(data)
-      }
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: err.message || "Some error occurred while updating the user."
-      })
-    })
-}
 exports.countBy = (req, res) => {
   const { price, duration, airline } = req.query;
   const query = {};
@@ -237,6 +216,27 @@ exports.countBy = (req, res) => {
       });
     });
 };
+// update a new identifed user by user id
+exports.update = (req, res) => {
+  if (!req.body) {
+    return res.status(404).send({ message: "Data to update can not be empty." });
+  }
+
+  const id = req.params.id
+  FlightReservationDb.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    .then(data => {
+      if (!data) {
+        res.status(404).send({ message: "can not find user" })
+      } else {
+        res.send(data)
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while updating the user."
+      })
+    })
+}
 
 // delete a user by user id
 exports.delete = (req, res) => {

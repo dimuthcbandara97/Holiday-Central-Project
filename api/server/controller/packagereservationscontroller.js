@@ -189,7 +189,64 @@ exports.find = (req, res) => {
 
 }
 // Modify above code to suit a login form
+exports.findBy = (req, res) => {
+  const { price, duration, package_rating } = req.query;
+  const query = {};
 
+  if (price) {
+    query.price = price;
+  }
+  if (duration) {
+    query.duration = duration;
+  }
+  if (package_rating) {
+    query.package_rating = package_rating;
+  }
+
+  PackageReservationsDB.find(query)
+    .then(packageReservations => {
+      if (packageReservations.length === 0) {
+        return res.status(404).send({
+          message: "No flight reservations matching the given criteria found."
+        });
+      }
+      res.send(packageReservations);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving flight reservations."
+      });
+    });
+};
+
+
+exports.countBy = (req, res) => {
+  const { price, duration, package_rating} = req.query;
+  const query = {};
+
+  if (price) {
+    query.price = price;
+  }
+  if (duration) {
+    query.duration = duration;
+  }
+  if (package_rating) {
+    query.package_rating = package_rating;
+  }
+
+  PackageReservationsDB.countDocuments(query)
+    .then(count => {
+      res.send({ count: count });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message ||
+          "Some error occurred while retrieving the count of flight reservations."
+      });
+    });
+};
 // update a new identifed user by user id
 exports.update = (req, res) => {
     if(!req.body){
