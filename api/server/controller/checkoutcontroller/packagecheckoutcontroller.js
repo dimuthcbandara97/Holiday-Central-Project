@@ -114,19 +114,13 @@ exports.create = (req, res) => {
   
     // validate duration and number_of_travellers
     const duration = req.body.duration
-    const number_of_travellers = req.body.number_of_travellers
     if (duration <= 0 || isNaN(duration)) {
       res.status(400).send({
         message: "Invalid duration.",
       })
       return
     }
-    if (number_of_travellers <= 0 || !Number.isInteger(number_of_travellers)) {
-      res.status(400).send({
-        message: "Number of travellers must be a positive integer.",
-      })
-      return
-    }
+  
   
     // validate price and package_rating
     const price = req.body.price
@@ -147,9 +141,14 @@ exports.create = (req, res) => {
     // new user
     const user = new PackageCheckoutDb({
       destination: req.body.destination,
-      speciality: req.body.speciality,
+      speciality: {
+        honeymoon: req.body.honeymoon,
+        beach_holiday: req.body.beach_holiday,
+        wildlife_excursion: req.body.wildlife_excursion,
+        family_holiday: req.body.family_holiday
+      },
       duration: duration,
-      number_of_travellers: number_of_travellers,
+      number_of_travellers: req.body.number_of_travellers,
       price: price,
       package_rating: package_rating,
       agent_name: req.body.agent_name,

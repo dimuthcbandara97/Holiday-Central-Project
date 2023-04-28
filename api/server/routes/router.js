@@ -12,6 +12,10 @@ const packagecontroller = require('../controller/packagereservationscontroller')
 const logincontroller = require('../controller/logincontroller')
 const travel = require('../controller/travelagentcontroller');
 
+// checkout controllers
+const flightcheckout = require('../controller/checkoutcontroller/flightcheckoutcontroller');
+const hotelcheckout = require('../controller/checkoutcontroller/hotelcheckoutcontroller');
+const packagecheckout = require('../controller/checkoutcontroller/packagecheckoutcontroller');
 
 /***
  * 
@@ -67,8 +71,10 @@ route.delete('/api/travel/:id',travel.delete)
 route.post('/api/login',logincontroller.create)
 route.get('/api/login',logincontroller.find)
 
-
-
+// API routes for 
+route.post('/api/checkout/flight',flightcheckout.create)
+route.post('/api/checkout/hotel',hotelcheckout.create)
+route.post('/api/checkout/package',packagecheckout.create)
 
 
 module.exports = route

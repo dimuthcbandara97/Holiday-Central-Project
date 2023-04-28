@@ -43,16 +43,46 @@ var schema = new mongoose.Schema({
         required: true
     },
     room_selection: {
-        type: String,
-        required: true
+        deluxe:{
+            type:Boolean,
+            required:true
+        },
+        super_deluxe:{
+            type:Boolean,
+            required:true
+        },
+        suite:{
+            type:Boolean,
+            required:true
+        },
     },
     board_basis: {
-        type: String,
-        required: true
+        full_board:{
+            type:Boolean,
+            required:true
+        },
+        bread:{
+            type:Boolean,
+            required:true
+        },
+        breakfast:{
+            type:Boolean,
+            required:true
+        },
     },
     facilities: {
-        type: String,
-        required: true,
+        pool:{
+            type:Boolean,
+            required:true
+        },
+        kids_play_area: {
+            type:Boolean,
+            required:true
+        },
+        beach_access:{
+            type:Boolean,
+            required:true
+        }
     },
 });
 

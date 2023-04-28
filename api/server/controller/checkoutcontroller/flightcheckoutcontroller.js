@@ -23,7 +23,7 @@ exports.create = (req, res) => {
     "user_name",
     "user_email",
     "checkout_date",
-    "aditional_note"
+    "additional_note",
   ];
   const missingFields = requiredFields.filter((field) => !req.body[field]);
   if (missingFields.length) {
@@ -85,45 +85,35 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Validate field values for seat_selection
-  const allowedSeatSelection = ["Basic Widow", "Isle", "Middle Seat"];
-  if (!allowedSeatSelection.includes(req.body.seat_selection)) {
-    res.status(400).send({
-      message: `Invalid Seat Selection. Allowed values: ${allowedSeatSelection.join(
-        ", "
-      )}`,
-    });
-    return;
-  }
-
-  // Validate field values for meal_preferences
-  const allowedMeals = ["Sri Lankan", "Indian", "Italian"];
-  if (!allowedMeals.includes(req.body.meal_preferences)) {
-    res.status(400).send({
-      message: `Invalid Meal. Allowed values: ${allowedMeals.join(
-        ", "
-      )}`,
-    });
-    return;
-  }
 
   // new user
   const user = new FlightCheckoutDb({
     departure_destination: req.body.departure_destination,
     arrival_destination: req.body.arrival_destination,
     departure_date: req.body.departure_date,
+    airline:req.body.airline,
     arrival_date: req.body.arrival_date,
     cabin_class: req.body.cabin_class,
     duration: req.body.duration,
-    meal_preferences: req.body.meal_preferences,
-    seat_selection: req.body.seat_selection,
+    meal_preferences: {
+      indian: req.body.indian,
+      sri_lankan: req.body.sri_lankan,
+      italian: req.body.italian,
+    },
+    seat_selection: {
+      basic: req.body.basic,
+      widow: req.body.widow,
+      isle: req.body.isle,
+      middle: req.body.middle
+    },
     price: req.body.price,
     agent_name: req.body.agent_name,
     user_email: req.body.user_email,
     checkout_date: req.body.checkout_date,
-    aditional_note: req.body.aditional_note,
+    additional_note: req.body.additional_note,
     user_name: req.body.user_name,
   });
+  
   // save user in the database
   user.save(user)
     .then((data) => {

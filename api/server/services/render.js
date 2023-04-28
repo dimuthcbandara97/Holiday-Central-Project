@@ -110,3 +110,4 @@ exports.registerRoutes = (req,res) => {
 
     })  
 }
+

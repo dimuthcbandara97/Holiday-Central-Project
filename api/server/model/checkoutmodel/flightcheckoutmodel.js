@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
@@ -11,14 +12,14 @@ var schema = new mongoose.Schema({
     },
     user_email: {
         type: String,
-        required: true ,
+        required: true,
         unique: true
     },
     checkout_date: {
         type: Date,
         required: true
     },
-    aditional_note: {
+    additional_note: {
         type: String,
         required: true
     },
@@ -51,16 +52,40 @@ var schema = new mongoose.Schema({
         required: true
     },
     meal_preferences: {
-        type: String,
-        required: true
+        indian: {
+            type: Number,
+            required: true
+        },
+        sri_lankan: {
+            type: Number,
+            required:true
+        },
+        italian:{
+            type: Number,
+            required:true
+        }
     },
     seat_selection: {
-        type: String,
-        required: true
+        basic: {
+            type: Number,
+            required: true
+        },
+        widow: {
+            type: Number,
+            required: true
+        },
+        isle: {
+            type: Number,
+            required: true
+        },
+        middle: {
+            type: Number,
+            required: true
+        }
     },
     airline: {
         type: String,
-        required: true,
+        required: true
     }
 });
 

@@ -211,32 +211,6 @@ exports.update = (req, res) => {
       })
     })
 }
-
-// delete a user by user id
-exports.delete = (req, res) => {
-
-  if (!req.body) {
-    return res.status(404).send({ message: "Data to update can not be empty." });
-  }
-
-  const id = req.params.id
-  FlightReservationDb.findByIdAndDelete(id)
-    .then(data => {
-      if (!data) {
-        res.status(404).send({ message: "can not find user" })
-      } else {
-        res.send(data)
-        // can use messge if required
-      }
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: err.message || "Some error occurred while deleting the user."
-      })
-    })
-}
-
-// count by all credentials
 exports.countBy = (req, res) => {
   const { price, duration, airline } = req.query;
   const query = {};
@@ -263,6 +237,33 @@ exports.countBy = (req, res) => {
       });
     });
 };
+
+// delete a user by user id
+exports.delete = (req, res) => {
+
+  if (!req.body) {
+    return res.status(404).send({ message: "Data to update can not be empty." });
+  }
+
+  const id = req.params.id
+  FlightReservationDb.findByIdAndDelete(id)
+    .then(data => {
+      if (!data) {
+        res.status(404).send({ message: "can not find user" })
+      } else {
+        res.send(data)
+        // can use messge if required
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while deleting the user."
+      })
+    })
+}
+
+// count by all credentials
+
 
 
 

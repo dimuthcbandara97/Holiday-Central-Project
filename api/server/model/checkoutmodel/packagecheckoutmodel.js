@@ -27,8 +27,22 @@ var schema = new mongoose.Schema({
         required: true
     },
     speciality: {
-        type: String,
-        required: true
+        honeymoon: {
+            type:Boolean,
+            required:true
+        },
+        beach_holiday: {
+            type:Boolean,
+            required:true
+        },
+        wildlife_excursion: {
+            type:Boolean,
+            required:true
+        },
+        family_holiday: {
+            type:Boolean,
+            required:true
+        },
     },
     duration: {
         type: Number,

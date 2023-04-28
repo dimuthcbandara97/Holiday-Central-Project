@@ -12,7 +12,7 @@ exports.create = (req, res) => {
     }
   
     // validate required fields
-    const requiredFields = ["destination", "check_in_date", "check_out_date"]
+    const requiredFields = ["destination", "check_in_date", "check_out_date","agent_name","user_name","user_email","checkout_date","aditional_note","star_rating","pricing"]
     const missingFields = requiredFields.filter(field => !(field in req.body))
     if (missingFields.length) {
       res.status(400).send({
@@ -62,14 +62,28 @@ exports.create = (req, res) => {
       check_out_date: checkOutDate,
       star_rating: starRating,
       pricing: pricing,
-      room_selection: req.body.room_selection,
-      board_basis: req.body.board_basis,
+      room_selection: {
+        deluxe: req.body.deluxe,
+        super_deluxe: req.body.super_deluxe,
+        suite: req.body.suite
+      },
+      board_basis: {
+        full_board: req.body.full_board,
+        bread: req.body.bread,
+        breakfast: req.body.breakfast
+      },
       facilities: req.body.facilities,
       agent_name: req.body.agent_name,
       user_email: req.body.user_email,
       checkout_date: req.body.checkout_date,
       aditional_note: req.body.aditional_note,
       user_name: req.body.user_name,
+      // Facilities
+      facilities: {
+      pool: req.body.pool,
+      kids_play_area: req.body.kids_play_area,
+      beach_access: req.body.beach_access
+      }
     })
   
     // save user in the database
