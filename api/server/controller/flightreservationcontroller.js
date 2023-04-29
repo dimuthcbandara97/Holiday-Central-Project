@@ -131,7 +131,7 @@ exports.create = (req, res) => {
     });
 };
 
-// retreive and return all users
+// Display the flight reservation
 exports.find = (req, res) => {
   if (req.query.id) {
     const id = req.query.id
@@ -145,7 +145,7 @@ exports.find = (req, res) => {
         })
       })
   } else {
-    FlightReservationDb.find()
+    FlightReservationDb.find().limit(3)
       .then(user => {
         res.send(user)
       })
@@ -155,15 +155,46 @@ exports.find = (req, res) => {
         })
       })
   }
-
 }
+
 // Find by credentials
+// exports.findBy = (req, res) => {
+//   const { price, duration, airline } = req.query;
+//   const query = {};
+
+//   if (price) {
+//     query.price = price;
+//   }
+//   if (duration) {
+//     query.duration = duration;
+//   }
+//   if (airline) {
+//     query.airline = airline;
+//   }
+
+//   FlightReservationDb.find(query)
+//     .then(flightReservations => {
+//       if (flightReservations.length === 0) {
+//         return res.status(404).send({
+//           message: "No flight reservations matching the given criteria found."
+//         });
+//       }
+//       res.send(flightReservations);
+//     })
+//     .catch(err => {
+//       res.status(500).send({
+//         message:
+//           err.message || "Some error occurred while retrieving flight reservations."
+//       });
+//     });
+// };
+
 exports.findBy = (req, res) => {
-  const { price, duration, airline } = req.query;
+  const { priceMin, priceMax, duration, airline } = req.query;
   const query = {};
 
-  if (price) {
-    query.price = price;
+  if (priceMin && priceMax) {
+    query.price = { $gte: priceMin, $lte: priceMax };
   }
   if (duration) {
     query.duration = duration;
@@ -175,7 +206,7 @@ exports.findBy = (req, res) => {
   FlightReservationDb.find(query)
     .then(flightReservations => {
       if (flightReservations.length === 0) {
-        return res.status(404).send({
+        return res.send({
           message: "No flight reservations matching the given criteria found."
         });
       }
@@ -188,6 +219,7 @@ exports.findBy = (req, res) => {
       });
     });
 };
+
 
 
 exports.countBy = (req, res) => {

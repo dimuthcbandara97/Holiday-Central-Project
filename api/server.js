@@ -11,8 +11,8 @@ const connectDB = require('./server/database/connection');
 const app = express(); // Change the variable name to "app" instead of "app1" and "app2" to avoid confusion
 app.disable("x-powered-by");
 
-// helmet security configuration
-const helmet = require("helmet"); // Use "const" instead of "let" to declare the "helmet" variable since it's not reassigned
+// helmet security configuration and cookie
+const helmet = require("helmet"); 
 const cookieParser = require('cookie-parser');
 app.use(helmet.hidePoweredBy());
 
@@ -25,9 +25,9 @@ app.use(morgan('tiny'));
 //mongodb connection
 connectDB();
 
-// parse request to body parser
+// parse request to body parser and other middleware
 app.use(cors());
-app.use(cookieParser()); // Call the "cookieParser" function with parentheses
+app.use(cookieParser()); 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
