@@ -3,65 +3,40 @@ let BackOfficeStaffdb = require('../model/backofficestaffmodel')
 const bcrypt = require('bcryptjs');
 
 
-exports.validateCreateRequest = (req, res, next) => {
-    if (!req.body) {
-      return res.status(400).send({
-        message: "Content can not be empty!"
-      });
-    }
   
-    if (!req.body.name || !req.body.password || !req.body.email) {
-      return res.status(400).send({
-        message: "Name, password, and email are required fields."
-      });
-    }
+  // exports.create = (req, res) => {
+  //   const user = new BackOfficeStaffdb({
+  //     name: req.body.name,
+  //     password: req.body.password,
+  //     email: req.body.email,
+  //     gender: req.body.gender,
+  //     status: req.body.status,
+  //     imageurl: req.body.imageurl,
+  //   });
   
-    const emailRegex = /^\S+@\S+\.\S+$/;
-    if (!emailRegex.test(req.body.email)) {
-      return res.status(400).send({
-        message: "Invalid email address."
-      });
-    }
-  
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!passwordRegex.test(req.body.password)) {
-      return res.status(400).send({
-        message: "Password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one number, and one special character."
-      });
-    }
-  
-    if (req.body.gender && req.body.gender !== "male" && req.body.gender !== "female") {
-      return res.status(400).send({
-        message: "Invalid gender value."
-      });
-    }
-  
-    if (req.body.imageurl) {
-      const urlRegex = /^https?:\/\/\S+\.\S+$/;
-      if (!urlRegex.test(req.body.imageurl)) {
-        return res.status(400).send({
-          message: "Invalid image URL."
-        });
-      }
-    }
-  
-    
-    next();
-  };
-  
+  //   user.save()
+  //     .then(data => {
+  //       res.send(data + "Added successfully");
+  //     })
+  //     .catch(err => {
+  //       res.status(500).send({
+  //         message: err.message || "Some error occurred while creating the user."
+  //       });
+  //     });
+  // };
   exports.create = (req, res) => {
     const user = new BackOfficeStaffdb({
       name: req.body.name,
-      password: req.body.password,
       email: req.body.email,
       gender: req.body.gender,
       status: req.body.status,
       imageurl: req.body.imageurl,
+      password: req.body.password
     });
   
     user.save()
       .then(data => {
-        res.send(data + "Added successfully");
+        res.status(200).send(data);
       })
       .catch(err => {
         res.status(500).send({
@@ -69,6 +44,7 @@ exports.validateCreateRequest = (req, res, next) => {
         });
       });
   };
+  
   
 exports.find = async (req, res) => {
   if(req.query.id){
