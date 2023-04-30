@@ -22,3 +22,6 @@ Provides Flight Ticket Booking, Hotel Bookings, and holiday packages
 # Individual Tasks
 ![image](https://user-images.githubusercontent.com/107378946/233921240-9ac9956f-7f6c-4afc-9aa3-3d36aab820e9.png)
 
+# Front End Development 
+https://github.com/hgm98/HolidayCentral-FrontEnd
+
