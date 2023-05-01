@@ -2,28 +2,6 @@
 let BackOfficeStaffdb = require('../model/backofficestaffmodel')
 const bcrypt = require('bcryptjs');
 
-
-  
-  // exports.create = (req, res) => {
-  //   const user = new BackOfficeStaffdb({
-  //     name: req.body.name,
-  //     password: req.body.password,
-  //     email: req.body.email,
-  //     gender: req.body.gender,
-  //     status: req.body.status,
-  //     imageurl: req.body.imageurl,
-  //   });
-  
-  //   user.save()
-  //     .then(data => {
-  //       res.send(data + "Added successfully");
-  //     })
-  //     .catch(err => {
-  //       res.status(500).send({
-  //         message: err.message || "Some error occurred while creating the user."
-  //       });
-  //     });
-  // };
   exports.create = (req, res) => {
     const user = new BackOfficeStaffdb({
       name: req.body.name,
