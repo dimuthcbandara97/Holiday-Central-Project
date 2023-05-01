@@ -5,33 +5,33 @@ import request from 'superagent';
 // This method will insert data into the backoffice
 function PackageAddToCart() {
   // destination
-  const [destination, setName] = useState('');
+  const [destination, setDestination] = useState('');
   // speciality
-  const [speciality, setName] = useState('');
+  const [speciality, setSpeciality] = useState('');
   // duration
-  const [duration, setName] = useState('');
+  const [duration, setDurattion] = useState('');
   // number_of_travellers
-  const [number_of_travellers, setName] = useState('');
+  const [number_of_travellers, setNumberOfTravellers] = useState('');
   // price
-  const [price, setName] = useState('');
+  const [price, setPrice] = useState('');
   // package_rating
-  const [package_rating, setName] = useState('');
+  const [package_rating, setPackageRating] = useState('');
   // agent_name
-  const [agent_name, setName] = useState('');
+  const [agent_name, setAgentName] = useState('');
   // user_email
-  const [user_email, setName] = useState('');
+  const [user_email, setUserEmail] = useState('');
   // checkout_date
-  const [checkout_date, setName] = useState('');
+  const [checkout_date, setCheckoutDate] = useState('');
   // aditional_note
-  const [name, setName] = useState('');
+  const [aditional_note, setAdditionalNotice] = useState('');
   // family_holiday
-  const [name, setName] = useState('');
+  const [family_holiday, setFamilyHoliday] = useState('');
   // wildlife_excursion
-  const [name, setName] = useState('');
+  const [wildlife_excursion, setWildlifeExcursion] = useState('');
   // beach_holiday
-  const [name, setName] = useState('');
+  const [beach_holiday, setBeachHoliday] = useState('');
   // honeymoon
-  const [name, setName] = useState('');
+  const [honeymoon, setHoneymoon] = useState('');
 
   const sendDataToAPI = () => {
     const data = new URLSearchParams();

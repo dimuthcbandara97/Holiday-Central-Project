@@ -6,47 +6,47 @@ import request from 'superagent';
 function HotelAddToCart() {
   // destination
   const [destination, setDestination] = useState('');
-// check_in_date
-const [check_in_date, setCheckInDate] = useState('');
-// check_out_date
-const [check_out_date, setCheck_OutDate] = useState('');
-// star_rating
-const [star_rating, setStarRating] = useState('');
-// room_selection
-const [room_selection, setRoomSelection] = useState('');
-// board_basis
-const [board_basis, setBoardBasis] = useState('');
-// pricing
-const [pricing, setPricing] = useState('');
-// pool
-const [pool, setPoo] = useState('');
-// kids_play_area
-const [kids_play_area, setKidsPlayArea] = useState('');
-// beach_access
-const [beach_access, setBeachAccess] = useState('');
-// agent_name
-const [agent_name, setAgentName] = useState('');
-// user_name
-const [user_name, setUserName] = useState('');
-// checkout_date
-const [checkout_date, setCheckoutDate] = useState('');
-// aditional_note
-const [aditional_note, setAdditionalNotice] = useState('');
-// user_email
-const [user_email, setUserEmail] = useState('');
-// suite : true
-const [suite, setSuite] = useState('');
-// deluxe true
-const [deluxe, setDeluxe] = useState('');
-// super_deluxe true
-const [super_deluxe, setSuperDeluxe] = useState('');
-// breakfast true
-const [breakfast, setBreakfast] = useState('');
-// bread true
-const [bread, setBread] = useState('');
-// full_board true
-const [full_board, setFullBoard] = useState('');
-  
+  // check_in_date
+  const [check_in_date, setCheckInDate] = useState('');
+  // check_out_date
+  const [check_out_date, setCheck_OutDate] = useState('');
+  // star_rating
+  const [star_rating, setStarRating] = useState('');
+  // room_selection
+  const [room_selection, setRoomSelection] = useState('');
+  // board_basis
+  const [board_basis, setBoardBasis] = useState('');
+  // pricing
+  const [pricing, setPricing] = useState('');
+  // pool
+  const [pool, setPool] = useState('');
+  // kids_play_area
+  const [kids_play_area, setKidsPlayArea] = useState('');
+  // beach_access
+  const [beach_access, setBeachAccess] = useState('');
+  // agent_name
+  const [agent_name, setAgentName] = useState('');
+  // user_name
+  const [user_name, setUserName] = useState('');
+  // checkout_date
+  const [checkout_date, setCheckoutDate] = useState('');
+  // aditional_note
+  const [aditional_note, setAdditionalNotice] = useState('');
+  // user_email
+  const [user_email, setUserEmail] = useState('');
+  // suite : true
+  const [suite, setSuite] = useState('');
+  // deluxe true
+  const [deluxe, setDeluxe] = useState('');
+  // super_deluxe true
+  const [super_deluxe, setSuperDeluxe] = useState('');
+  // breakfast true
+  const [breakfast, setBreakfast] = useState('');
+  // bread true
+  const [bread, setBread] = useState('');
+  // full_board true
+  const [full_board, setFullBoard] = useState('');
+
 
 
   const sendDataToAPI = () => {
@@ -54,47 +54,47 @@ const [full_board, setFullBoard] = useState('');
 
     // destination
     data.append('destination', destination);
-// check_in_date
-data.append('check_in_date', check_in_date);
-// check_out_date
-data.append('check_out_date', check_out_date);
-// star_rating
-data.append('star_rating', star_rating);
-// room_selection
-data.append('name', name);
-// board_basis
-data.append('name', name);
-// pricing
-data.append('name', name);
-// pool
-data.append('name', name);
-// kids_play_area
-data.append('name', name);
-// beach_access
-data.append('name', name);
-// agent_name
-data.append('name', name);
-// user_name
-data.append('name', name);
-// checkout_date
-data.append('name', name);
-// aditional_note
-data.append('name', name);
-// user_email
-data.append('name', name);
-// suite : true
-data.append('name', name);
-// deluxe true
-data.append('name', name);
-// super_deluxe true
-data.append('name', name);
-// breakfast true
-data.append('name', name);
-// bread true
-data.append('name', name);
-// full_board true
-data.append('name', name);
-    
+    // check_in_date
+    data.append('check_in_date', check_in_date);
+    // check_out_date
+    data.append('check_out_date', check_out_date);
+    // star_rating
+    data.append('star_rating', star_rating);
+    // room_selection
+    data.append('room_selection', room_selection);
+    // board_basis
+    data.append('board_basis', board_basis);
+    // pricing
+    data.append('pricing', pricing);
+    // pool
+    data.append('pool', pool);
+    // kids_play_area
+    data.append('kids_play_area', kids_play_area);
+    // beach_access
+    data.append('beach_access', beach_access);
+    // agent_name
+    data.append('agent_name', agent_name);
+    // user_name
+    data.append('user_name', user_name);
+    // checkout_date
+    data.append('checkout_date', checkout_date);
+    // aditional_note
+    data.append('aditional_note', aditional_note);
+    // user_email
+    data.append('user_email', user_email);
+    // suite : true
+    data.append('suite', suite);
+    // deluxe true
+    data.append('deluxe', deluxe);
+    // super_deluxe true
+    data.append('super_deluxe', super_deluxe);
+    // breakfast true
+    data.append('breakfast', breakfast);
+    // bread true
+    data.append('bread', bread);
+    // full_board true
+    data.append('full_board', full_board);
+
 
 
     request
@@ -104,51 +104,49 @@ data.append('name', name);
       .send(data)
       .then((response) => {
         console.log(response.body);
-        // reset form data after successful submission
-        
-        
+
         // destination
-        setName('');
-// check_in_date
-setName('');
-// check_out_date
-setName('');
-// star_rating
-setName('');
-// room_selection
-setName('');
-// board_basis
-setName('');
-// pricing
-setName('');
-// pool
-setName('');
-// kids_play_area
-setName('');
-// beach_access
-setName('');
-// agent_name
-setName('');
-// user_name
-setName('');
-// checkout_date
-setName('');
-// aditional_note
-setName('');
-// user_email
-setName('');
-// suite : true
-setName('');
-// deluxe true
-setName('');
-// super_deluxe true
-setName('');
-// breakfast true
-setName('');
-// bread true
-setName('');
-// full_board true
-setName('');
+        setDestination('');
+        // check_in_date
+        setCheckInDate('');
+        // check_out_date
+        setCheck_OutDate('');
+        // star_rating
+        setStarRating('');
+        // room_selection
+        setRoomSelection('');
+        // board_basis
+        setBoardBasis('');
+        // pricing
+        setPricing('');
+        // pool
+        setPool('');
+        // kids_play_area
+        setKidsPlayArea('');
+        // beach_access
+        setBeachAccess('');
+        // agent_name
+        setAgentName('');
+        // user_name
+        setUserName('');
+        // checkout_date
+        setCheckoutDate('');
+        // aditional_note
+        setAdditionalNotice('');
+        // user_email
+        setUserEmail('');
+        // suite : true
+        setSuite('');
+        // deluxe true
+        setDeluxe('');
+        // super_deluxe true
+        setSuperDeluxe('');
+        // breakfast true
+        setBreakfast('');
+        // bread true
+        setBread('');
+        // full_board true
+        setFullBoard('');
 
         alert('Data sent successfully')
       })
@@ -160,218 +158,219 @@ setName('');
 
   return (
 
-    
-    <Form>
-            {/* // destination */}
-            <Form.Field>
 
-<label>First Name</label>
-<input
-  name="name"
-  onChange={(e) => setName(e.target.value)}
-  placeholder="First Name"
-/>
-</Form.Field>
+    <Form>
+      {/* // destination */}
+      <Form.Field>
+
+        <label>destination</label>
+        <input
+          name="destination"
+          onChange={(e) => setName(e.target.value)}
+          placeholder="destination"
+        />
+      </Form.Field>
 
       {/* // check_in_date */}
       <Form.Field>
 
-        <label>First Name</label>
+        <label>check_in_date</label>
         <input
-          name="name"
+          name="check_in_date"
           onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          placeholder="check_in_date"
         />
       </Form.Field>
-{/* // check_out_date */}
-<Form.Field>
 
-        <label>First Name</label>
+      {/* // check_out_date */}
+      <Form.Field>
+
+        <label>check_out_datee</label>
         <input
-          name="name"
+          name="check_out_date"
           onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          placeholder="check_out_date"
         />
       </Form.Field>
-{/* // star_rating */}
-<Form.Field>
+      {/* // star_rating */}
+      <Form.Field>
 
-        <label>First Name</label>
+        <label>star_rating</label>
         <input
-          name="name"
+          name="star_rating"
           onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          placeholder="star_rating"
         />
       </Form.Field>
-{/* // room_selection */}
-<Form.Field>
+      {/* // room_selection */}
+      <Form.Field>
 
-        <label>First Name</label>
+        <label>room_selection</label>
         <input
-          name="name"
+          name="room_selection"
           onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          placeholder="room_selection"
         />
       </Form.Field>
-{/* // board_basis */}
-<Form.Field>
+      {/* // board_basis */}
+      <Form.Field>
 
-        <label>First Name</label>
+        <label>board_basis</label>
         <input
-          name="name"
+          name="board_basis"
           onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          placeholder="board_basis"
         />
       </Form.Field>
-{/* // pricing */}
-<Form.Field>
+      {/* // pricing */}
+      <Form.Field>
 
-        <label>First Name</label>
+        <label>pricing</label>
         <input
-          name="name"
+          name="pricing"
           onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          placeholder="pricing"
         />
       </Form.Field>
-{/* // pool */}
-<Form.Field>
+      {/* // pool */}
+      <Form.Field>
 
-        <label>First Name</label>
+        <label>pool</label>
         <input
-          name="name"
+          name="pool"
           onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          placeholder="pool"
         />
       </Form.Field>
-{/* // kids_play_area */}
-<Form.Field>
+      {/* // kids_play_area */}
+      <Form.Field>
 
-        <label>First Name</label>
+        <label>kids_play_area</label>
         <input
-          name="name"
+          name="kids_play_area"
           onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          placeholder="kids_play_area"
         />
       </Form.Field>
-{/* // beach_access */}
-<Form.Field>
+      {/* // beach_access */}
+      <Form.Field>
 
-        <label>First Name</label>
+        <label>beach_access</label>
         <input
-          name="name"
+          name="beach_access"
           onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          placeholder="beach_access"
         />
       </Form.Field>
-{/* // agent_name */}
-<Form.Field>
+      {/* // agent_name */}
+      <Form.Field>
 
-        <label>First Name</label>
+        <label>agent_name</label>
         <input
-          name="name"
+          name="agent_name"
           onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          placeholder="agent_name"
         />
       </Form.Field>
-{/* // user_name */}
-<Form.Field>
+      {/* // user_name */}
+      <Form.Field>
 
-        <label>First Name</label>
+        <label>user_name</label>
         <input
-          name="name"
+          name="user_name"
           onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          placeholder="user_name"
         />
       </Form.Field>
-{/* // checkout_date */}
-<Form.Field>
+      {/* // checkout_date */}
+      <Form.Field>
 
-        <label>First Name</label>
+        <label>checkout_date</label>
         <input
-          name="name"
+          name="checkout_date"
           onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          placeholder="checkout_date"
         />
       </Form.Field>
-{/* // aditional_note */}
-<Form.Field>
+      {/* // aditional_note */}
+      <Form.Field>
 
-        <label>First Name</label>
+        <label>aditional_note</label>
         <input
-          name="name"
+          name="aditional_note"
           onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          placeholder="aditional_note"
         />
       </Form.Field>
-{/* // user_email */}
-<Form.Field>
+      {/* // user_email */}
+      <Form.Field>
 
-        <label>First Name</label>
+        <label>user_email</label>
         <input
-          name="name"
+          name="user_email"
           onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          placeholder="user_email"
         />
       </Form.Field>
-{/* // suite : true */}
-<Form.Field>
+      {/* // suite : true */}
+      <Form.Field>
 
-        <label>First Name</label>
+        <label>suite</label>
         <input
-          name="name"
+          name="suite"
           onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          placeholder="suite"
         />
       </Form.Field>
-{/* // deluxe true */}
-<Form.Field>
+      {/* // deluxe true */}
+      <Form.Field>
 
-        <label>First Name</label>
+        <label>deluxe</label>
         <input
-          name="name"
+          name="deluxe"
           onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          placeholder="deluxe"
         />
       </Form.Field>
-{/* // super_deluxe true */}
-<Form.Field>
+      {/* // super_deluxe true */}
+      <Form.Field>
 
-        <label>First Name</label>
+        <label>super_deluxe</label>
         <input
-          name="name"
+          name="super_deluxe"
           onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          placeholder="super_deluxe"
         />
       </Form.Field>
-{/* // breakfast true */}
-<Form.Field>
+      {/* // breakfast true */}
+      <Form.Field>
 
-        <label>First Name</label>
+        <label>breakfast</label>
         <input
-          name="name"
+          name="breakfast"
           onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          placeholder="breakfast"
         />
       </Form.Field>
-      
-{/* // bread true */}
-<Form.Field>
 
-        <label>First Name</label>
+      {/* // bread true */}
+      <Form.Field>
+
+        <label>bread</label>
         <input
-          name="name"
+          name="bread"
           onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          placeholder="bread"
         />
       </Form.Field>
-{/* // full_board true */}
-<Form.Field>
+      {/* // full_board true */}
+      <Form.Field>
 
-        <label>First Name</label>
+        <label>full_board</label>
         <input
-          name="name"
+          name="full_board"
           onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          placeholder="full_board"
         />
       </Form.Field>
 
@@ -380,7 +379,7 @@ setName('');
       </Button>
     </Form>
 
-    
+
   );
 }
 
