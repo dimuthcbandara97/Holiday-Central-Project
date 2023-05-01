@@ -7,6 +7,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import TravelAgentBookHotel from './TravelAgents/TravelAgentBookHotel/TravelAgentBookHotel';
 import Create from './AddDataManual/BackofficeAdmin/create'
+import FlightAddToCart from './AddToCart/FlightAddToCart';
 
 function App() {
 
@@ -15,7 +16,9 @@ function App() {
       {/* <FlightSearch/> */}
       {/* <TravelAgentBookFlight/> */}
       {/* <TravelAgentBookHotel/> */}
-      <Create/>
+      {/* <Create/>
+       */}
+       <FlightAddToCart/>
     </div>
   );
 }

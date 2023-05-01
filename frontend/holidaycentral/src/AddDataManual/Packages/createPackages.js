@@ -3,7 +3,7 @@ import { Form, Button } from 'semantic-ui-react';
 import request from 'superagent';
 
 // This method will insert data into the backoffice
-function PackageAddToCart() {
+function CreatePackages() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
@@ -100,4 +100,4 @@ function PackageAddToCart() {
   );
 }
 
-export default PackageAddToCart;
+export default CreatePackages;
