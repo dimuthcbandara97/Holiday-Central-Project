@@ -6,14 +6,16 @@ import Landing from "../../Assets/landing.png";
 import Ticket from "../../Assets/ticket.png";
 import Calendar from "../../Assets/calendartime.png";
 import { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/fontawesome-free'
+import { faHotel } from '@fortawesome/free-solid-svg-icons';
 import HeaderAll from "../../Components/HeaderAll";
 
-const TravelAgentBookFlight = () => {
+const TravelAgentBookHotel = () => {
 
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const url = "http://localhost:4000/api/flight";
+    const url = "http://localhost:4000/api/hotel";
     fetch(url)
       .then(response => response.json())
       .then(json => {
@@ -24,8 +26,9 @@ const TravelAgentBookFlight = () => {
 
   return (
     <>
-     <HeaderAll/>
-
+      
+      <HeaderAll/>
+      
       <div class="container my-4">
         <div class="row justify-content-start ">
           <div class="col-12 mt-3">
@@ -40,7 +43,7 @@ const TravelAgentBookFlight = () => {
                   className="me-3"
                 />
                 <h3 class="fw-bold">
-                  Flight Ticket
+                  Hotel
                   <br /> Reservation
                 </h3>
               </div>
@@ -53,7 +56,7 @@ const TravelAgentBookFlight = () => {
 
       <div class="container border p-4 mt-5">
         <div className="row">
-          <div class="lead text-mute text-center fw-bold">Round Trips</div>
+          <div class="lead text-mute text-center fw-bold">Find Your Hotel</div>
         </div>
         <div className="row">
           {/* Departure and arrival */}
@@ -64,7 +67,7 @@ const TravelAgentBookFlight = () => {
               </div>
               <div className="col-8">
                 <div className="row">
-                  <div class="col-6 mt-2 text-secondary">From</div>
+                  <div class="col-6 mt-2 text-secondary">Location</div>
                   <div class="mt-2 col-6">
                     <div class="dropdown">
                       <button
@@ -84,7 +87,7 @@ const TravelAgentBookFlight = () => {
                           // <div key={item.id}>{item.departure_destination}</div>
                           <li>
                           <a class="dropdown-item" href="#">
-                          {item.departure_destination}
+                          {item.destination}
                           </a>
                         </li>
                         ))}
@@ -143,7 +146,7 @@ const TravelAgentBookFlight = () => {
               <div class="col-8">
                 <div class="row">
                   {/*row one class*/}
-                  <div class="col-6 mt-3">Class</div>
+                  <div class="col-6 mt-3">Room Selection</div>
                   <div class="col-6 mt-2 ">
                     <div class="dropdown">
                       <button
@@ -175,7 +178,7 @@ const TravelAgentBookFlight = () => {
                 </div>
                 <div class="row">
                   {/*row two person count*/}
-                  <div class="col-6 mt-3">Count</div>
+                  <div class="col-6 mt-3">Board Basis</div>
                   <div class="col-6 mt-2">
                     <div class="dropdown">
                       <button
@@ -247,7 +250,7 @@ const TravelAgentBookFlight = () => {
               <div class="col-8">
                 <div class="row">
                   {/*row one class*/}
-                  <div class="col-6 mt-3">Departure</div>
+                  <div class="col-6 mt-3">Checkin Date</div>
                   <div class="col-6 mt-2">
                     <div class="dropdown">
                       <button
@@ -279,7 +282,7 @@ const TravelAgentBookFlight = () => {
                 </div>
                 <div class="row">
                   {/*row two person count*/}
-                  <div class="col-6 mt-3">Return</div>
+                  <div class="col-6 mt-3">Checkout Date</div>
                   <div class="col-6 mt-2 ">
                     <div class="dropdown">
                       <button
@@ -348,4 +351,4 @@ const TravelAgentBookFlight = () => {
   );
 };
 
-export default TravelAgentBookFlight;
+export default TravelAgentBookHotel;

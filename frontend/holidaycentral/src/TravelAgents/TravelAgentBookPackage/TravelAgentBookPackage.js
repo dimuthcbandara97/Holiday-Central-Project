@@ -6,9 +6,11 @@ import Landing from "../../Assets/landing.png";
 import Ticket from "../../Assets/ticket.png";
 import Calendar from "../../Assets/calendartime.png";
 import { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/fontawesome-free'
+import { faHotel } from '@fortawesome/free-solid-svg-icons';
 import HeaderAll from "../../Components/HeaderAll";
 
-const TravelAgentBookFlight = () => {
+const TravelAgentBookPackage = () => {
 
   const [data, setData] = useState([]);
 
@@ -24,7 +26,7 @@ const TravelAgentBookFlight = () => {
 
   return (
     <>
-     <HeaderAll/>
+      <HeaderAll/>
 
       <div class="container my-4">
         <div class="row justify-content-start ">
@@ -40,7 +42,7 @@ const TravelAgentBookFlight = () => {
                   className="me-3"
                 />
                 <h3 class="fw-bold">
-                  Flight Ticket
+                  Hotel
                   <br /> Reservation
                 </h3>
               </div>
@@ -348,4 +350,4 @@ const TravelAgentBookFlight = () => {
   );
 };
 
-export default TravelAgentBookFlight;
+export default TravelAgentBookPackage;

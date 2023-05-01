@@ -2,16 +2,24 @@
 let BackOfficeStaffdb = require('../model/backofficestaffmodel')
 const bcrypt = require('bcryptjs');
 
-  exports.create = (req, res) => {
+exports.create = (req, res) => {
+    const { name, email, gender, status, imageurl, password } = req.body;
+  
+    // Hash the password using bcrypt
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(password, salt);
+  
+    // Create a new BackOfficeStaffdb object with the data from the request
     const user = new BackOfficeStaffdb({
-      name: req.body.name,
-      email: req.body.email,
-      gender: req.body.gender,
-      status: req.body.status,
-      imageurl: req.body.imageurl,
-      password: req.body.password
+      name,
+      email,
+      gender,
+      status,
+      imageurl,
+      password: hash,
     });
   
+    // Save the user object to the database
     user.save()
       .then(data => {
         res.status(200).send(data);
