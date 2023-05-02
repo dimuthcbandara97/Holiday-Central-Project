@@ -1,86 +1,66 @@
-import { useState } from "react";
-import useFetch from "../hooks/useFetch";
+import React from "react";
 
-const HotelSearch = () => {
-  const [priceMin, setPriceMin] = useState("");
-  const [priceMax, setPriceMax] = useState("");
-  const [duration, setDuration] = useState("");
-  const [airline, setAirline] = useState("");
-
-  const queryParams = {
-    priceMin,
-    priceMax,
-    duration,
-    airline,
-  };
-
-  const query = new URLSearchParams(queryParams).toString();
-  const url = `http://localhost:4000/api/hotel/filter?${query}`;
-
-  const { data, loading, error, reFetch } = useFetch(url);
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    reFetch();
-  };
-
+const BookHotel = () => {
   return (
-    <div>
-      <form onSubmit={handleSearch}>
-        <label htmlFor="priceMin">Minimum Price:</label>
-        <input
-          type="text"
-          id="priceMin"
-          value={priceMin}
-          onChange={(e) => setPriceMin(e.target.value)}
-        />
+    <div class="p-5 m-5 border rounded justify-content-center">
+      <div class="fs-2 fw-bold justify-content-center my-3">Hotel Booking</div>
+      <form class="row g-3">
+        {/*Destination*/}
+        <div class="row justify-content-start">
+          <div class="col-md-4">
+            <label for="inputState" class="form-label">
+              Destination
+            </label>
+            <select id="inputState" class="form-select">
+              <option selected>Choose...</option>
+              <option>Colombo</option>
+              <option>Negombo</option>
+              <option>Galle</option>
+            </select>
+          </div>
+        </div>
+        {/*Check in and out dates*/}
+        <div class="row justify-content-start mt-3">
+          <div class="col-md-4">
+            <label for="inputState" class="form-label">
+              Check In Date
+            </label>
+            <input id="startDate" class="form-control" type="date" />
+          </div>
 
-        <label htmlFor="priceMax">Maximum Price:</label>
-        <input
-          type="text"
-          id="priceMax"
-          value={priceMax}
-          onChange={(e) => setPriceMax(e.target.value)}
-        />
+          <div class="col-md-4">
+            <label for="inputState" class="form-label">
+              Check Out Date
+            </label>
+            <input id="startDate" class="form-control" type="date" />
+          </div>
+        </div>
 
-        <label htmlFor="duration">Duration:</label>
-        <input
-          type="text"
-          id="duration"
-          value={duration}
-          onChange={(e) => setDuration(e.target.value)}
-        />
+        {/*Star Rating */}
+        <div class="row justify-content-start mt-3">
+          <div class="col-md-4">
+            <label for="inputState" class="form-label">
+              Star Rating
+            </label>
+            <select id="inputState" class="form-select">
+              <option selected>Choose...</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+        </div>
 
-        <label htmlFor="airline">Airline:</label>
-        <input
-          type="text"
-          id="airline"
-          value={airline}
-          onChange={(e) => setAirline(e.target.value)}
-        />
-
-        <button type="submit">Search</button>
+        <div class="col-12">
+          <button type="submit" class="btn btn-secondary">
+            Next
+          </button>
+        </div>
       </form>
-
-      {loading && <p>Loading...</p>}
-
-      {error && <p>{error.message}</p>}
-
-      {data.length > 0 ? (
-        <ul>
-          {data.map((flightReservation) => (
-            <li key={flightReservation.id}>
-              <p>Price: {flightReservation.pricing}</p>
-              <p>Star Rating: {flightReservation.star_rating}</p>
-              <p>Facilities: {flightReservation.facilities}</p>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No flight reservations matching the given criteria found.</p>
-      )}
     </div>
   );
 };
 
-export default HotelSearch;
+export default BookHotel;
