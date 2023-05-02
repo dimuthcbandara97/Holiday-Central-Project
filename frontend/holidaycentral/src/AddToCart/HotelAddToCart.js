@@ -98,7 +98,7 @@ function HotelAddToCart() {
 
 
     request
-      .post('http://localhost:4000/api/backoffice')
+      .post('http://localhost:4000/api/checkout/hotel')
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .set('Access-Control-Allow-Origin', '*')
       .send(data)
@@ -166,7 +166,7 @@ function HotelAddToCart() {
         <label>destination</label>
         <input
           name="destination"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setDestination(e.target.value)}
           placeholder="destination"
         />
       </Form.Field>
@@ -177,7 +177,7 @@ function HotelAddToCart() {
         <label>check_in_date</label>
         <input
           name="check_in_date"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setCheckInDate(e.target.value)}
           placeholder="check_in_date"
         />
       </Form.Field>
@@ -188,7 +188,7 @@ function HotelAddToCart() {
         <label>check_out_datee</label>
         <input
           name="check_out_date"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setCheck_OutDate(e.target.value)}
           placeholder="check_out_date"
         />
       </Form.Field>
@@ -198,7 +198,7 @@ function HotelAddToCart() {
         <label>star_rating</label>
         <input
           name="star_rating"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setStarRating(e.target.value)}
           placeholder="star_rating"
         />
       </Form.Field>
@@ -208,7 +208,7 @@ function HotelAddToCart() {
         <label>room_selection</label>
         <input
           name="room_selection"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setRoomSelection(e.target.value)}
           placeholder="room_selection"
         />
       </Form.Field>
@@ -218,7 +218,7 @@ function HotelAddToCart() {
         <label>board_basis</label>
         <input
           name="board_basis"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setBoardBasis(e.target.value)}
           placeholder="board_basis"
         />
       </Form.Field>
@@ -228,7 +228,7 @@ function HotelAddToCart() {
         <label>pricing</label>
         <input
           name="pricing"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setPricing(e.target.value)}
           placeholder="pricing"
         />
       </Form.Field>
@@ -238,7 +238,7 @@ function HotelAddToCart() {
         <label>pool</label>
         <input
           name="pool"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setPool(e.target.value)}
           placeholder="pool"
         />
       </Form.Field>
@@ -248,7 +248,7 @@ function HotelAddToCart() {
         <label>kids_play_area</label>
         <input
           name="kids_play_area"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setKidsPlayArea(e.target.value)}
           placeholder="kids_play_area"
         />
       </Form.Field>
@@ -258,7 +258,7 @@ function HotelAddToCart() {
         <label>beach_access</label>
         <input
           name="beach_access"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setBeachAccess(e.target.value)}
           placeholder="beach_access"
         />
       </Form.Field>
@@ -268,7 +268,7 @@ function HotelAddToCart() {
         <label>agent_name</label>
         <input
           name="agent_name"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setAgentName(e.target.value)}
           placeholder="agent_name"
         />
       </Form.Field>
@@ -278,7 +278,7 @@ function HotelAddToCart() {
         <label>user_name</label>
         <input
           name="user_name"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setUserName(e.target.value)}
           placeholder="user_name"
         />
       </Form.Field>
@@ -288,7 +288,7 @@ function HotelAddToCart() {
         <label>checkout_date</label>
         <input
           name="checkout_date"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setCheckoutDate(e.target.value)}
           placeholder="checkout_date"
         />
       </Form.Field>
@@ -298,7 +298,7 @@ function HotelAddToCart() {
         <label>aditional_note</label>
         <input
           name="aditional_note"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setAdditionalNotice(e.target.value)}
           placeholder="aditional_note"
         />
       </Form.Field>
@@ -308,7 +308,7 @@ function HotelAddToCart() {
         <label>user_email</label>
         <input
           name="user_email"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setUserEmail(e.target.value)}
           placeholder="user_email"
         />
       </Form.Field>
@@ -318,7 +318,7 @@ function HotelAddToCart() {
         <label>suite</label>
         <input
           name="suite"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setSuite(e.target.value)}
           placeholder="suite"
         />
       </Form.Field>
@@ -328,7 +328,7 @@ function HotelAddToCart() {
         <label>deluxe</label>
         <input
           name="deluxe"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setDeluxe(e.target.value)}
           placeholder="deluxe"
         />
       </Form.Field>
@@ -338,7 +338,7 @@ function HotelAddToCart() {
         <label>super_deluxe</label>
         <input
           name="super_deluxe"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setSuperDeluxe(e.target.value)}
           placeholder="super_deluxe"
         />
       </Form.Field>
@@ -348,7 +348,7 @@ function HotelAddToCart() {
         <label>breakfast</label>
         <input
           name="breakfast"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setBreakfast(e.target.value)}
           placeholder="breakfast"
         />
       </Form.Field>
@@ -359,7 +359,7 @@ function HotelAddToCart() {
         <label>bread</label>
         <input
           name="bread"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setBread(e.target.value)}
           placeholder="bread"
         />
       </Form.Field>
@@ -369,7 +369,7 @@ function HotelAddToCart() {
         <label>full_board</label>
         <input
           name="full_board"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setFullBoard(e.target.value)}
           placeholder="full_board"
         />
       </Form.Field>

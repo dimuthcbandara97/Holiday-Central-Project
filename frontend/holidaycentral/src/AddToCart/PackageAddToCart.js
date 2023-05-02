@@ -18,6 +18,8 @@ function PackageAddToCart() {
   const [package_rating, setPackageRating] = useState('');
   // agent_name
   const [agent_name, setAgentName] = useState('');
+   // user_name
+   const [user_name, setUserName] = useState('');
   // user_email
   const [user_email, setUserEmail] = useState('');
   // checkout_date
@@ -35,73 +37,77 @@ function PackageAddToCart() {
 
   const sendDataToAPI = () => {
     const data = new URLSearchParams();
-    
+
     // destination
-    data.append('name', name);
+    data.append('destination', destination);
     // speciality
-    data.append('name', name);
+    data.append('speciality', speciality);
     // duration
-    data.append('name', name);
+    data.append('duration', duration);
     // number_of_travellers
-    data.append('name', name);
+    data.append('number_of_travellers', number_of_travellers);
     // price
-    data.append('name', name);
+    data.append('price', price);
     // package_rating
-    data.append('name', name);
+    data.append('package_rating', package_rating);
     // agent_name
-    data.append('name', name);
+    data.append('agent_name', agent_name);
+    // user_name
+    data.append('user_name', user_name);
     // user_email
-    data.append('name', name);
+    data.append('user_email', user_email);
     // checkout_date
-    data.append('name', name);
+    data.append('checkout_date', checkout_date);
     // aditional_note
-    data.append('name', name);
+    data.append('aditional_note', aditional_note);
     // family_holiday
-    data.append('name', name);
+    data.append('family_holiday', family_holiday);
     // wildlife_excursion
-    data.append('name', name);
+    data.append('wildlife_excursion', wildlife_excursion);
     // beach_holiday
-    data.append('name', name);
+    data.append('beach_holiday', beach_holiday);
     // honeymoon
-    data.append('name', name);
+    data.append('honeymoon', honeymoon);
 
     request
-      .post('http://localhost:4000/api/backoffice')
+      .post('http://localhost:4000/api/checkout/package')
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .set('Access-Control-Allow-Origin', '*')
       .send(data)
       .then((response) => {
         console.log(response.body);
         // reset form data after successful submission
-;
+        ;
         // destination
-        setName('')
-// speciality
-setName('')
-// duration
-setName('')
-// number_of_travellers
-setName('')
-// price
-setName('')
-// package_rating
-setName('')
-// agent_name
-setName('')
-// user_email
-setName('')
-// checkout_date
-setName('')
-// aditional_note
-setName('')
-// family_holiday
-setName('')
-// wildlife_excursion
-setName('')
-// beach_holiday
-setName('')
-// honeymoon
-setName('')
+        setDestination('')
+        // speciality
+        setSpeciality('')
+        // duration
+        setDurattion('')
+        // number_of_travellers
+        setNumberOfTravellers('')
+        // price
+        setPrice('')
+        // package_rating
+        setPackageRating('')
+        // agent_name
+        setAgentName('')
+        // user_email
+        setUserEmail('')
+        // user_name
+        setUserName('')
+        // checkout_date
+        setCheckoutDate('')
+        // aditional_note
+        setAdditionalNotice('')
+        // family_holiday
+        setFamilyHoliday('')
+        // wildlife_excursion
+        setWildlifeExcursion('')
+        // beach_holiday
+        setBeachHoliday('')
+        // honeymoon
+        setHoneymoon('')
         alert('Data sent successfully')
       })
       .catch((error) => {
@@ -112,134 +118,158 @@ setName('')
 
   return (
     <Form>
-      
+
 
       {/* destination */}
       <Form.Field>
-        <label>First Name</label>
+        <label>destination</label>
         <input
-          name="name"
-          onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          name="destination"
+          onChange={(e) => setDestination(e.target.value)}
+          placeholder="destination"
         />
       </Form.Field>
-{/* speciality */}
-<Form.Field>
-        <label>First Name</label>
+
+      {/* speciality */}
+      <Form.Field>
+        <label>speciality</label>
         <input
-          name="name"
-          onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          name="speciality"
+          onChange={(e) => setSpeciality(e.target.value)}
+          placeholder="speciality"
         />
       </Form.Field>
-{/* duration */}
-<Form.Field>
-        <label>First Name</label>
+
+      {/* duration */}
+      <Form.Field>
+        <label>duration</label>
         <input
-          name="name"
-          onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          name="duration"
+          onChange={(e) => setDurattion(e.target.value)}
+          placeholder="duration"
         />
       </Form.Field>
-{/* number_of_travellers */}
-<Form.Field>
-        <label>First Name</label>
+
+      {/* number_of_travellers */}
+      <Form.Field>
+        <label>number_of_travellers</label>
         <input
-          name="name"
-          onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          name="number_of_travellers"
+          onChange={(e) => setNumberOfTravellers(e.target.value)}
+          placeholder="number_of_travellers"
         />
       </Form.Field>
-{/* price */}
-<Form.Field>
-        <label>First Name</label>
+
+      {/* price */}
+      <Form.Field>
+        <label>price</label>
         <input
-          name="name"
-          onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          name="price"
+          onChange={(e) => setPrice(e.target.value)}
+          placeholder="price"
         />
       </Form.Field>
-{/* package_rating */}
-<Form.Field>
-        <label>First Name</label>
+
+      {/* package_rating */}
+      <Form.Field>
+        <label>package_rating</label>
         <input
-          name="name"
-          onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          name="package_rating"
+          onChange={(e) => setPackageRating(e.target.value)}
+          placeholder="package_rating"
         />
       </Form.Field>
-{/* agent_name */}
-<Form.Field>
-        <label>First Name</label>
+
+      {/* agent_name */}
+      <Form.Field>
+        <label>agent_name</label>
         <input
-          name="name"
-          onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          name="agent_name"
+          onChange={(e) => setAgentName(e.target.value)}
+          placeholder="agent_name"
         />
       </Form.Field>
-{/* user_email */}
-<Form.Field>
-        <label>First Name</label>
+
+      {/* user_name */}
+      <Form.Field>
+        <label>user_name</label>
         <input
-          name="name"
-          onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          name="user_name"
+          onChange={(e) => setUserName(e.target.value)}
+          placeholder="user_name"
         />
       </Form.Field>
-{/* checkout_date */}
-<Form.Field>
-        <label>First Name</label>
+
+      {/* user_email */}
+      <Form.Field>
+        <label>user_email</label>
         <input
-          name="name"
-          onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          name="user_email"
+          onChange={(e) => setUserEmail(e.target.value)}
+          placeholder="user_email"
         />
       </Form.Field>
-{/* aditional_note */}
-<Form.Field>
-        <label>First Name</label>
+
+      {/* checkout_date */}
+      <Form.Field>
+        <label>checkout_date</label>
         <input
-          name="name"
-          onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          name="checkout_date"
+          onChange={(e) => setCheckoutDate(e.target.value)}
+          placeholder="checkout_date"
         />
       </Form.Field>
-{/* family_holiday */}
-<Form.Field>
-        <label>First Name</label>
+
+      {/* aditional_note */}
+      <Form.Field>
+        <label>aditional_note</label>
         <input
-          name="name"
-          onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          name="aditional_note"
+          onChange={(e) => setAdditionalNotice(e.target.value)}
+          placeholder="aditional_note"
         />
       </Form.Field>
-{/* wildlife_excursion */}
-<Form.Field>
-        <label>First Name</label>
+
+      {/* family_holiday */}
+      <Form.Field>
+        <label>family_holiday</label>
         <input
-          name="name"
-          onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          name="family_holiday"
+          onChange={(e) => setFamilyHoliday(e.target.value)}
+          placeholder="family_holiday"
         />
       </Form.Field>
-{/* beach_holiday */}
-<Form.Field>
-        <label>First Name</label>
+
+      {/* wildlife_excursion */}
+      <Form.Field>
+        <label>wildlife_excursion</label>
         <input
-          name="name"
-          onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          name="wildlife_excursion"
+          onChange={(e) => setWildlifeExcursion(e.target.value)}
+          placeholder="wildlife_excursion"
         />
       </Form.Field>
-{/* honeymoon */}
-<Form.Field>
-        <label>First Name</label>
+
+      {/* beach_holiday */}
+      <Form.Field>
+        <label>beach_holiday</label>
         <input
-          name="name"
-          onChange={(e) => setName(e.target.value)}
-          placeholder="First Name"
+          name="beach_holiday"
+          onChange={(e) => setBeachHoliday(e.target.value)}
+          placeholder="beach_holiday"
         />
       </Form.Field>
+
+      {/* honeymoon */}
+      <Form.Field>
+        <label>honeymoon</label>
+        <input
+          name="honeymoon"
+          onChange={(e) => setHoneymoon(e.target.value)}
+          placeholder="honeymoon"
+        />
+      </Form.Field>
+
       <Button type="submit" onClick={sendDataToAPI}>
         Submit
       </Button>

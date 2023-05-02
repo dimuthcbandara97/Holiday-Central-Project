@@ -8,17 +8,21 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import TravelAgentBookHotel from './TravelAgents/TravelAgentBookHotel/TravelAgentBookHotel';
 import Create from './AddDataManual/BackofficeAdmin/create'
 import FlightAddToCart from './AddToCart/FlightAddToCart';
+import HotelAddToCart from './AddToCart/HotelAddToCart';
+import PackageAddToCart from './AddToCart/PackageAddToCart';
 
 function App() {
 
   return (
     <div className="App">
-      {/* <FlightSearch/> */}
+      <FlightSearch/>
       {/* <TravelAgentBookFlight/> */}
       {/* <TravelAgentBookHotel/> */}
       {/* <Create/>
        */}
-       <FlightAddToCart/>
+       {/* <FlightAddToCart/> */}
+       {/* <HotelAddToCart/> */}
+       {/* <PackageAddToCart/> */}
     </div>
   );
 }

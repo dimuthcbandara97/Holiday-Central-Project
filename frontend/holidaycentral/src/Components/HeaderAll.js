@@ -38,7 +38,7 @@ function HeaderAll() {
               </li>
               <li class="nav-item mx-2">
                 <a class="nav-link text-secondary" href="#">
-                  <i class="bi bi-gear"></i> Profile
+                <i class="bi bi-box-arrow-right"></i> Logout
                 </a>
               </li>
             </ul>
