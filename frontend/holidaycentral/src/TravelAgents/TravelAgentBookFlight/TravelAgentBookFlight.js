@@ -7,6 +7,7 @@ import Ticket from "../../Assets/ticket.png";
 import Calendar from "../../Assets/calendartime.png";
 import { useEffect, useState } from 'react';
 import HeaderAll from "../../Components/HeaderAll";
+import { Link } from "react-router-dom";
 
 const TravelAgentBookFlight = () => {
 
@@ -99,9 +100,12 @@ const TravelAgentBookFlight = () => {
           </div>
         </div>
         <div class="col-12">
+          <Link to="/travel/dashboard/flight/select">
           <button type="submit" class="btn btn-secondary">
             Next
           </button>
+          </Link>
+        
         </div>
       </form>
     </div>

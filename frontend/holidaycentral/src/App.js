@@ -12,6 +12,11 @@ import HotelAddToCart from './AddToCart/HotelAddToCart';
 import PackageAddToCart from './AddToCart/PackageAddToCart';
 import HotelSearch from './Search/HotelSearch';
 import PackageSearch from './Search/PackageSearch';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import TestRoute from './TravelAgents/TestRoute';
+import LoginPage from './LoginPAge/LoginPage';
+import TravelAgentMenu from './TravelAgents/TravelAgentsMenu';
+import TravelAgentSelectFlight from './TravelAgents/TravelAgentBookFlight/TravelAgentSelectFlight';
 
 function App() {
 
@@ -26,7 +31,34 @@ function App() {
        */}
        {/* <FlightAddToCart/> */}
        {/* <HotelAddToCart/> */}
-       <PackageAddToCart/>
+       <BrowserRouter>
+       <Routes>
+        
+        <Route path='/' element = {<LoginPage/>}></Route>
+
+        {/* Routes for Admin  */}
+        <Route path='/admin' element = {<HotelAddToCart/>}></Route>
+       
+        <Route path='/admin/dashboard/:id' element = {<TestRoute/>}></Route>
+
+        {/* Routes for Travel Agent  */}
+        <Route path='/travel/dashboard' element = {<TravelAgentMenu/>}></Route>
+        
+        <Route path='/travel/dashboard/flight' element={<TravelAgentBookFlight/>}/>
+        <Route path='/travel/dashboard/flight/select' element={<TravelAgentSelectFlight/>}/>
+        <Route path='/travel/dashboard/flight/checkout' element={<FlightAddToCart/>}/>
+
+        <Route path='/travel/dashboard/hotel' element={<TravelAgentBookFlight/>}/>
+        <Route path='/travel/dashboard/hotel/select' element={<TravelAgentSelectFlight/>}/>
+        <Route path='/travel/dashboard/hotel/checkout' element={<FlightAddToCart/>}/>
+
+        <Route path='/travel/dashboard/package' element={<TravelAgentBookFlight/>}/>
+        <Route path='/travel/dashboard/package/select' element={<TravelAgentSelectFlight/>}/>
+        <Route path='/travel/dashboard/package/checkout' element={<FlightAddToCart/>}/>
+        
+        {/* Routes for BackofficeAdmin */}
+       </Routes>
+       </BrowserRouter>
     </div>
   );
 }
