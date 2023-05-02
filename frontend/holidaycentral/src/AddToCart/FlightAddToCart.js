@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import request from 'superagent';
+import HeaderAll from '../Components/HeaderAll';
+import './styles.css'
 
 // This method will insert data into the backoffice
 function FlightAddToCart() {
@@ -127,8 +129,10 @@ function FlightAddToCart() {
   };
 
   return (
-    <Form>
-      <Form.Field>
+    <>
+    <HeaderAll/>
+    <Form style={{ display: 'grid', gap: '10px', gridTemplateColumns: '1fr 1fr' }}>
+      <Form.Field className="form-field">
         <label>Departure Destination</label>
         <input
           name="departure_destination"
@@ -137,7 +141,7 @@ function FlightAddToCart() {
         />
       </Form.Field>
 
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>Arrival Destination</label>
         <input
           name="arrival_destination"
@@ -145,7 +149,7 @@ function FlightAddToCart() {
           placeholder="Email Arrival"
         />
       </Form.Field>
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>Departure Date</label>
         <input
           name="departure_date"
@@ -153,7 +157,7 @@ function FlightAddToCart() {
           placeholder="Departure Date"
         />
       </Form.Field>
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>Arrival Date</label>
         <input
           name="arrival_date"
@@ -161,7 +165,7 @@ function FlightAddToCart() {
           placeholder="Arrival Date"
         />
       </Form.Field>
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>Cabin Class</label>
         <input
           name="cabin_class"
@@ -169,7 +173,7 @@ function FlightAddToCart() {
           placeholder="Cabin Class"
         />
       </Form.Field>
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>Duration</label>
         <input
           name="duration"
@@ -178,7 +182,7 @@ function FlightAddToCart() {
         />
       </Form.Field>
       {/* // "price", */}
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>Price</label>
         <input
           name="price"
@@ -187,7 +191,7 @@ function FlightAddToCart() {
         />
       </Form.Field>
       {/* // "airline", */}
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>Airline</label>
         <input
           name="airline"
@@ -196,7 +200,7 @@ function FlightAddToCart() {
         />
       </Form.Field>
       {/* // "agent_name", */}
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>Agent Name</label>
         <input
           name="agent_name"
@@ -205,7 +209,7 @@ function FlightAddToCart() {
         />
       </Form.Field>
       {/* // "user_name", */}
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>User Name</label>
         <input
           name="user_name"
@@ -214,7 +218,7 @@ function FlightAddToCart() {
         />
       </Form.Field>
       {/* // "user_email", */}
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>User Email</label>
         <input
           name="user_email"
@@ -223,7 +227,7 @@ function FlightAddToCart() {
         />
       </Form.Field>
       {/* // "checkout_date", */}
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>checkout_date</label>
         <input
           name="checkout_date"
@@ -232,7 +236,7 @@ function FlightAddToCart() {
         />
       </Form.Field>
       {/* // "additional_note", */}
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>additional_note</label>
         <input
           name="additional_note"
@@ -241,7 +245,7 @@ function FlightAddToCart() {
         />
       </Form.Field>
 
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>middlee</label>
         <input
           name="middle"
@@ -249,7 +253,7 @@ function FlightAddToCart() {
           placeholder="middle"
         />
       </Form.Field>
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>isle</label>
         <input
           name="isle"
@@ -258,7 +262,7 @@ function FlightAddToCart() {
         />
       </Form.Field>
 
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>widow</label>
         <input
           name="widow"
@@ -267,8 +271,8 @@ function FlightAddToCart() {
         />
       </Form.Field>
 
-      <Form.Field>
-        <label>abasic</label>
+      <Form.Field className="form-field">
+        <label>basic</label>
         <input
           name="basic"
           onChange={(e) => setBasic(e.target.value)}
@@ -276,7 +280,7 @@ function FlightAddToCart() {
         />
       </Form.Field>
 
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>indian</label>
         <input
           name="indian"
@@ -285,7 +289,7 @@ function FlightAddToCart() {
         />
       </Form.Field>
 
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>sri_lankan</label>
         <input
           name="sri_lankan"
@@ -294,7 +298,7 @@ function FlightAddToCart() {
         />
       </Form.Field>
 
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>italian</label>
         <input
           name="italian"
@@ -302,10 +306,21 @@ function FlightAddToCart() {
           placeholder="italian"
         />
       </Form.Field>
-      <Button type="submit" onClick={sendDataToAPI}>
-        Submit
-      </Button>
+       <Form.Field className="form-submit">
+        <Button type="submit">
+          Add To Cart
+          {/* <span className="search-icon"> &#x1F50D;</span> */}
+        </Button>
+      </Form.Field>
+      <Form.Field className="form-submit">
+        <Button type="submit" onClick={sendDataToAPI}>
+          Checkout
+          {/* <span className="search-icon"> &#x1F50D;</span> */}
+        </Button>
+      </Form.Field>
     </Form>
+    </>
+    
   );
 }
 

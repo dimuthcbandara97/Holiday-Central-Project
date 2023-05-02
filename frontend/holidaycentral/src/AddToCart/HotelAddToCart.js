@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import request from 'superagent';
+import HeaderAll from '../Components/HeaderAll';
 
 // This method will insert data into the backoffice
 function HotelAddToCart() {
@@ -159,9 +160,11 @@ function HotelAddToCart() {
   return (
 
 
-    <Form>
+   <>
+   <HeaderAll/>
+   <Form>
       {/* // destination */}
-      <Form.Field>
+      <Form.Field className="form-field">
 
         <label>destination</label>
         <input
@@ -172,7 +175,7 @@ function HotelAddToCart() {
       </Form.Field>
 
       {/* // check_in_date */}
-      <Form.Field>
+      <Form.Field className="form-field">
 
         <label>check_in_date</label>
         <input
@@ -183,7 +186,7 @@ function HotelAddToCart() {
       </Form.Field>
 
       {/* // check_out_date */}
-      <Form.Field>
+      <Form.Field className="form-field">
 
         <label>check_out_datee</label>
         <input
@@ -193,7 +196,7 @@ function HotelAddToCart() {
         />
       </Form.Field>
       {/* // star_rating */}
-      <Form.Field>
+      <Form.Field className="form-field">
 
         <label>star_rating</label>
         <input
@@ -203,7 +206,7 @@ function HotelAddToCart() {
         />
       </Form.Field>
       {/* // room_selection */}
-      <Form.Field>
+      <Form.Field className="form-field">
 
         <label>room_selection</label>
         <input
@@ -213,7 +216,7 @@ function HotelAddToCart() {
         />
       </Form.Field>
       {/* // board_basis */}
-      <Form.Field>
+      <Form.Field className="form-field">
 
         <label>board_basis</label>
         <input
@@ -223,7 +226,7 @@ function HotelAddToCart() {
         />
       </Form.Field>
       {/* // pricing */}
-      <Form.Field>
+      <Form.Field className="form-field">
 
         <label>pricing</label>
         <input
@@ -233,7 +236,7 @@ function HotelAddToCart() {
         />
       </Form.Field>
       {/* // pool */}
-      <Form.Field>
+      <Form.Field className="form-field">
 
         <label>pool</label>
         <input
@@ -243,7 +246,7 @@ function HotelAddToCart() {
         />
       </Form.Field>
       {/* // kids_play_area */}
-      <Form.Field>
+      <Form.Field className="form-field">
 
         <label>kids_play_area</label>
         <input
@@ -253,7 +256,7 @@ function HotelAddToCart() {
         />
       </Form.Field>
       {/* // beach_access */}
-      <Form.Field>
+      <Form.Field className="form-field">
 
         <label>beach_access</label>
         <input
@@ -263,7 +266,7 @@ function HotelAddToCart() {
         />
       </Form.Field>
       {/* // agent_name */}
-      <Form.Field>
+      <Form.Field className="form-field">
 
         <label>agent_name</label>
         <input
@@ -273,7 +276,7 @@ function HotelAddToCart() {
         />
       </Form.Field>
       {/* // user_name */}
-      <Form.Field>
+      <Form.Field className="form-field">
 
         <label>user_name</label>
         <input
@@ -283,7 +286,7 @@ function HotelAddToCart() {
         />
       </Form.Field>
       {/* // checkout_date */}
-      <Form.Field>
+      <Form.Field className="form-field">
 
         <label>checkout_date</label>
         <input
@@ -293,7 +296,7 @@ function HotelAddToCart() {
         />
       </Form.Field>
       {/* // aditional_note */}
-      <Form.Field>
+      <Form.Field className="form-field">
 
         <label>aditional_note</label>
         <input
@@ -303,7 +306,7 @@ function HotelAddToCart() {
         />
       </Form.Field>
       {/* // user_email */}
-      <Form.Field>
+      <Form.Field className="form-field">
 
         <label>user_email</label>
         <input
@@ -313,7 +316,7 @@ function HotelAddToCart() {
         />
       </Form.Field>
       {/* // suite : true */}
-      <Form.Field>
+      <Form.Field className="form-field">
 
         <label>suite</label>
         <input
@@ -323,7 +326,7 @@ function HotelAddToCart() {
         />
       </Form.Field>
       {/* // deluxe true */}
-      <Form.Field>
+      <Form.Field className="form-field">
 
         <label>deluxe</label>
         <input
@@ -333,7 +336,7 @@ function HotelAddToCart() {
         />
       </Form.Field>
       {/* // super_deluxe true */}
-      <Form.Field>
+      <Form.Field className="form-field">
 
         <label>super_deluxe</label>
         <input
@@ -343,7 +346,7 @@ function HotelAddToCart() {
         />
       </Form.Field>
       {/* // breakfast true */}
-      <Form.Field>
+      <Form.Field className="form-field">
 
         <label>breakfast</label>
         <input
@@ -354,7 +357,7 @@ function HotelAddToCart() {
       </Form.Field>
 
       {/* // bread true */}
-      <Form.Field>
+      <Form.Field className="form-field">
 
         <label>bread</label>
         <input
@@ -364,7 +367,7 @@ function HotelAddToCart() {
         />
       </Form.Field>
       {/* // full_board true */}
-      <Form.Field>
+      <Form.Field className="form-field">
 
         <label>full_board</label>
         <input
@@ -373,11 +376,25 @@ function HotelAddToCart() {
           placeholder="full_board"
         />
       </Form.Field>
-
+{/* 
       <Button type="submit" onClick={sendDataToAPI}>
         Submit
-      </Button>
+      </Button> */}
+      <Form.Field className="form-submit">
+        <Button type="submit">
+          Add To Cart
+          {/* <span className="search-icon"> &#x1F50D;</span> */}
+        </Button>
+        <Button type="submit" onClick={sendDataToAPI}>
+          Checkout
+          {/* <span className="search-icon"> &#x1F50D;</span> */}
+        </Button>
+      </Form.Field>
+      <Form.Field className="form-submit">
+        
+        </Form.Field>
     </Form>
+   </>
 
 
   );

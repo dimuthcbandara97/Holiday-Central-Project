@@ -10,19 +10,23 @@ import Create from './AddDataManual/BackofficeAdmin/create'
 import FlightAddToCart from './AddToCart/FlightAddToCart';
 import HotelAddToCart from './AddToCart/HotelAddToCart';
 import PackageAddToCart from './AddToCart/PackageAddToCart';
+import HotelSearch from './Search/HotelSearch';
+import PackageSearch from './Search/PackageSearch';
 
 function App() {
 
   return (
     <div className="App">
-      <FlightSearch/>
+      {/* <FlightSearch/> */}
+      {/* <HotelSearch/> */}
+      {/* <PackageSearch/> */}
       {/* <TravelAgentBookFlight/> */}
       {/* <TravelAgentBookHotel/> */}
       {/* <Create/>
        */}
        {/* <FlightAddToCart/> */}
        {/* <HotelAddToCart/> */}
-       {/* <PackageAddToCart/> */}
+       <PackageAddToCart/>
     </div>
   );
 }

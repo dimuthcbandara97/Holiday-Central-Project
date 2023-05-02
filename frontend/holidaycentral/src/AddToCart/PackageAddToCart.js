@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import request from 'superagent';
+import HeaderAll from '../Components/HeaderAll';
 
 // This method will insert data into the backoffice
 function PackageAddToCart() {
@@ -117,11 +118,13 @@ function PackageAddToCart() {
   };
 
   return (
+    <>
+    <HeaderAll/>
     <Form>
 
 
       {/* destination */}
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>destination</label>
         <input
           name="destination"
@@ -131,7 +134,7 @@ function PackageAddToCart() {
       </Form.Field>
 
       {/* speciality */}
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>speciality</label>
         <input
           name="speciality"
@@ -141,7 +144,7 @@ function PackageAddToCart() {
       </Form.Field>
 
       {/* duration */}
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>duration</label>
         <input
           name="duration"
@@ -151,7 +154,7 @@ function PackageAddToCart() {
       </Form.Field>
 
       {/* number_of_travellers */}
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>number_of_travellers</label>
         <input
           name="number_of_travellers"
@@ -161,7 +164,7 @@ function PackageAddToCart() {
       </Form.Field>
 
       {/* price */}
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>price</label>
         <input
           name="price"
@@ -171,7 +174,7 @@ function PackageAddToCart() {
       </Form.Field>
 
       {/* package_rating */}
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>package_rating</label>
         <input
           name="package_rating"
@@ -181,7 +184,7 @@ function PackageAddToCart() {
       </Form.Field>
 
       {/* agent_name */}
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>agent_name</label>
         <input
           name="agent_name"
@@ -191,7 +194,7 @@ function PackageAddToCart() {
       </Form.Field>
 
       {/* user_name */}
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>user_name</label>
         <input
           name="user_name"
@@ -201,7 +204,7 @@ function PackageAddToCart() {
       </Form.Field>
 
       {/* user_email */}
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>user_email</label>
         <input
           name="user_email"
@@ -211,7 +214,7 @@ function PackageAddToCart() {
       </Form.Field>
 
       {/* checkout_date */}
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>checkout_date</label>
         <input
           name="checkout_date"
@@ -221,7 +224,7 @@ function PackageAddToCart() {
       </Form.Field>
 
       {/* aditional_note */}
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>aditional_note</label>
         <input
           name="aditional_note"
@@ -231,7 +234,7 @@ function PackageAddToCart() {
       </Form.Field>
 
       {/* family_holiday */}
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>family_holiday</label>
         <input
           name="family_holiday"
@@ -241,7 +244,7 @@ function PackageAddToCart() {
       </Form.Field>
 
       {/* wildlife_excursion */}
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>wildlife_excursion</label>
         <input
           name="wildlife_excursion"
@@ -251,7 +254,7 @@ function PackageAddToCart() {
       </Form.Field>
 
       {/* beach_holiday */}
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>beach_holiday</label>
         <input
           name="beach_holiday"
@@ -261,7 +264,7 @@ function PackageAddToCart() {
       </Form.Field>
 
       {/* honeymoon */}
-      <Form.Field>
+      <Form.Field className="form-field">
         <label>honeymoon</label>
         <input
           name="honeymoon"
@@ -270,10 +273,22 @@ function PackageAddToCart() {
         />
       </Form.Field>
 
-      <Button type="submit" onClick={sendDataToAPI}>
+      {/* <Button type="submit" onClick={sendDataToAPI}>
         Submit
-      </Button>
+      </Button> */}
+      <Form.Field className="form-submit">
+        <Button type="submit">
+          Add To Cart
+          {/* <span className="search-icon"> &#x1F50D;</span> */}
+        </Button>
+        <Button type="submit" onClick={sendDataToAPI}>
+          Checkout
+          {/* <span className="search-icon"> &#x1F50D;</span> */}
+        </Button>
+      </Form.Field>
     </Form>
+    </>
+
   );
 }
 
