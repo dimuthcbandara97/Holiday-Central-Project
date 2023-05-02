@@ -10,8 +10,9 @@ import FlightAddToCart from "./AddToCart/FlightAddToCart";
 import HotelAddToCart from "./AddToCart/HotelAddToCart";
 import HotelSelect from "./TravelAgents/TravelAgentBookHotel/FilterHotel";
 import PackageAddToCart from "./AddToCart/PackageAddToCart";
+import PackageSelect from "./TravelAgents/TravelAgentBookPackage/PackageFilter";
 import HotelSearch from "./Search/HotelSearch";
-import PackageSearch from "./Search/PackageSearch";
+import PackageSearch from "./TravelAgents/TravelAgentBookPackage/TravelAgentBookPackages";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import TestRoute from "./TravelAgents/TestRoute";
 import LoginPage from "./LoginPAge/LoginPage";
@@ -66,17 +67,14 @@ function App() {
             element={<HotelAddToCart />}
           />
 
-          <Route
-            path="/travel/dashboard/package"
-            element={<TravelAgentBookFlight />}
-          />
+          <Route path="/travel/dashboard/package" element={<PackageSearch />} />
           <Route
             path="/travel/dashboard/package/select"
-            element={<TravelAgentSelectFlight />}
+            element={<PackageSelect />}
           />
           <Route
             path="/travel/dashboard/package/checkout"
-            element={<FlightAddToCart />}
+            element={<PackageAddToCart />}
           />
 
           {/* Routes for BackofficeAdmin */}
