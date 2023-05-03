@@ -26,6 +26,8 @@ import Admin from "./Components/Admin/Admin";
 import AdminAddAgent from "./Components/Admin/AddNewAgent/AddNewAgent";
 import AdminResetPass from "./Components/Admin/ResetPassword/ResetPassword";
 import AdminViewAgent from "./Components/Admin/ViewAllAgents/ViewAllAgents";
+import Booking from "./Components/Bookings";
+import Cart from "./Components/Cart";
 
 function App() {
   return (
@@ -73,6 +75,8 @@ function App() {
             path="/travel/dashboard/package/checkout"
             element={<PackageAddToCart />}
           />
+          <Route path="/travel/dashboard/mybookings" element={<Booking />} />
+          <Route path="/travel/dashboard/cart" element={<Cart />} />
 
           {/* Routes for BackofficeStaff */}
 

@@ -281,7 +281,7 @@ function FlightAddToCart() {
           </Form.Field>
 
           <Form.Field className="form-field">
-            <label>No of Widow Seats</label>
+            <label>No of Window Seats</label>
             <input
               name="widow"
               onChange={(e) => setWidow(e.target.value)}

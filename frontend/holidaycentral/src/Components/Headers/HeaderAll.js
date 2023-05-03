@@ -26,12 +26,19 @@ function HeaderAll() {
         >
           <ul class="navbar-nav fw-normal">
             <li class="nav-item mx-2">
-              <a class="nav-link text-secondary" aria-current="page" href="#">
+              <a
+                class="nav-link text-secondary"
+                aria-current="page"
+                href="/travel/dashboard/cart"
+              >
                 <i class="bi bi-cart"></i> Cart
               </a>
             </li>
             <li class="nav-item mx-2">
-              <a class="nav-link text-secondary" href="#">
+              <a
+                class="nav-link text-secondary"
+                href="/travel/dashboard/mybookings"
+              >
                 <i class="bi bi-calendar4-week"></i> My bookings
               </a>
             </li>
