@@ -1,38 +1,15 @@
 import React from "react";
 
-import Plane from "../../../Assets/plane.png"
-import Departure from "../../../Assets/departures.png";
-import Landing from "../../../Assets/landing.png";
-import Ticket from "../../../Assets/ticket.png";
-import Calendar from "../../../Assets/calendartime.png";
+
 import { useEffect, useState } from 'react';
 import HeaderAll from "../../Headers/HeaderAll";
 import { Link } from "react-router-dom";
 
 const TravelAgentBookFlight = () => {
 
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    const url = "http://localhost:4000/api/flight";
-    fetch(url)
-      .then(response => response.json())
-      .then(json => {
-        setData(json);
-      })
-      .catch(e => console.log("", e));
-  }, []);
-
+  // localhost:4000/api/flight/filter_search 
   return (
     <>
-    {/* {data.map(item => (
-                          // <div key={item.id}>{item.departure_destination}</div>
-                          <li>
-                          <a class="dropdown-item" href="#">
-                          {item.arrival_destination}
-                          </a>
-                        </li>
-                        ))} */}
      <HeaderAll/>
      <div class="p-5 m-5 border rounded justify-content-center">
       <div class="fs-2 fw-bold justify-content-center my-3">Flight Booking</div>
@@ -43,9 +20,10 @@ const TravelAgentBookFlight = () => {
             <label for="inputState" class="form-label">
               From
             </label>
-            <select id="inputState" class="form-select">
+            <select id="inputState" class="form-select" >
               <option selected>Choose...</option>
-              <option>...</option>
+              <option>Colombo</option>
+              <option></option>
             </select>
           </div>
 

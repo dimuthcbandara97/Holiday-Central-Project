@@ -3,6 +3,7 @@ import HeaderAll from "../../Headers/HeaderAll";
 import { Link } from "react-router-dom";
 
 const BookPackages = () => {
+  // localhost:4000/api/package/filter_search
   return (
     <>
       <HeaderAll />

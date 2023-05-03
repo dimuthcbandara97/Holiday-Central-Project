@@ -12,6 +12,7 @@ import HeaderAll from "../../Headers/HeaderAll";
 
 const TravelAgentBookHotel = () => {
 
+  // localhost:4000/api/hotel/filter_search
   const [data, setData] = useState([]);
 
   useEffect(() => {
