@@ -220,6 +220,46 @@ exports.findBy = (req, res) => {
     });
 };
 
+exports.findBySearch = (req, res) => {
+  const { departure_destination,
+  arrival_destination,
+  departure_date,
+  arrival_date,
+  cabin_class, } = req.query;
+  const query = {};
+  
+  if (departure_destination) {
+    query.departure_destination = departure_destination;
+  }
+  if (arrival_destination) {
+    query.arrival_destination = arrival_destination;
+  }
+  if (departure_date) {
+    query.departure_date = departure_date;
+  }
+  if (arrival_date) {
+    query.arrival_date = arrival_date;
+  }
+  if (cabin_class) {
+    query.cabin_class = cabin_class;
+  }
+
+  FlightReservationDb.find(query)
+    .then(flightReservations => {
+      if (flightReservations.length === 0) {
+        return res.send({
+          message: "No flight reservations matching the given criteria found."
+        });
+      }
+      res.send(flightReservations);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving flight reservations."
+      });
+    });
+};
 
 
 exports.countBy = (req, res) => {

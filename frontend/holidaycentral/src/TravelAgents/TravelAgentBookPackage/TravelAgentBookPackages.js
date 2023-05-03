@@ -1,5 +1,6 @@
 import React from "react";
 import HeaderAll from "../../Components/HeaderAll";
+import { Link } from "react-router-dom";
 
 const BookPackages = () => {
   return (
@@ -82,9 +83,12 @@ const BookPackages = () => {
         </div>
 
         <div class="col-12">
+          <Link to='/travel/dashboard/package/select'>
           <button type="submit" class="btn btn-secondary">
             Next
           </button>
+          </Link>
+          
         </div>
       </form>
     </div>

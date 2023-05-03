@@ -273,9 +273,6 @@ function PackageAddToCart() {
         />
       </Form.Field>
 
-      {/* <Button type="submit" onClick={sendDataToAPI}>
-        Submit
-      </Button> */}
       <Form.Field className="form-submit">
         <Button type="submit">
           Add To Cart

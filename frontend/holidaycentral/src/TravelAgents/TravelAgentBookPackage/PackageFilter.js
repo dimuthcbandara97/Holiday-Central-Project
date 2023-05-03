@@ -1,7 +1,10 @@
 import React from "react";
+import HeaderAll from "../../Components/HeaderAll";
 
 const BookHotel = () => {
   return (
+    <>
+    <HeaderAll/>
     <div class="p-5 m-5 border rounded justify-content-center">
       <div class="fs-2 fw-bold justify-content-center my-3">
         Package Booking
@@ -67,6 +70,7 @@ const BookHotel = () => {
         </div>
       </form>
     </div>
+    </>
   );
 };
 
