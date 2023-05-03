@@ -145,13 +145,7 @@ function FlightAddToCart() {
       <HeaderAll />
       <div class="display-5 fw-bold p-3 m-3">Summary of Details</div>
       <div class="container p-3 m-3 border rounded">
-        <Form
-          style={{
-            display: "grid",
-            gap: "10px",
-            gridTemplateColumns: "1fr 1fr",
-          }}
-        >
+        <Form>
           <Form.Field className="form-field ">
             <label>Departure Destination</label>
             <input
@@ -172,7 +166,7 @@ function FlightAddToCart() {
           <Form.Field className="form-field">
             <label>Departure Date</label>
             <input
-            type="date"
+              type="date"
               name="departure_date"
               onChange={(e) => setDepartureDate(e.target.value)}
               required
@@ -181,7 +175,7 @@ function FlightAddToCart() {
           <Form.Field className="form-field">
             <label>Arrival Date</label>
             <input
-            type="date"
+              type="date"
               name="arrival_date"
               onChange={(e) => setArrivalDate(e.target.value)}
               required
@@ -206,8 +200,11 @@ function FlightAddToCart() {
           {/* // "price", */}
           <Form.Field className="form-field">
             <label>Price</label>
-            <input name="price" onChange={(e) => setPrice(e.target.value)}
-            required />
+            <input
+              name="price"
+              onChange={(e) => setPrice(e.target.value)}
+              required
+            />
           </Form.Field>
           {/* // "airline", */}
           <Form.Field className="form-field">
@@ -240,7 +237,7 @@ function FlightAddToCart() {
           <Form.Field className="form-field">
             <label>User Email</label>
             <input
-            type="email"
+              type="email"
               name="user_email"
               onChange={(e) => setUserEmail(e.target.value)}
               required
@@ -250,7 +247,7 @@ function FlightAddToCart() {
           <Form.Field className="form-field">
             <label>Checkout Date</label>
             <input
-            type="date"
+              type="date"
               name="checkout_date"
               onChange={(e) => setCheckoutDate(e.target.value)}
               required
@@ -276,29 +273,37 @@ function FlightAddToCart() {
           </Form.Field>
           <Form.Field className="form-field">
             <label>No of Isle Seats</label>
-            <input name="isle" onChange={(e) => setIsle(e.target.value)} 
-            required
+            <input
+              name="isle"
+              onChange={(e) => setIsle(e.target.value)}
+              required
             />
           </Form.Field>
 
           <Form.Field className="form-field">
             <label>No of Widow Seats</label>
-            <input name="widow" onChange={(e) => setWidow(e.target.value)} 
-            required
+            <input
+              name="widow"
+              onChange={(e) => setWidow(e.target.value)}
+              required
             />
           </Form.Field>
 
           <Form.Field className="form-field">
             <label>No of Basic Seats</label>
-            <input name="basic" onChange={(e) => setBasic(e.target.value)}
-            required
+            <input
+              name="basic"
+              onChange={(e) => setBasic(e.target.value)}
+              required
             />
           </Form.Field>
 
           <Form.Field className="form-field">
             <label>No of Indian Food Likees</label>
-            <input name="indian" onChange={(e) => setIndian(e.target.value)} 
-            required
+            <input
+              name="indian"
+              onChange={(e) => setIndian(e.target.value)}
+              required
             />
           </Form.Field>
 

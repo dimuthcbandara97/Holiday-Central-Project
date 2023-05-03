@@ -1,9 +1,11 @@
 import useFetch from "./hooks/useFetch";
 import FlightSearch from "./Search/FlightSearch";
 import TravelAgentBookFlight from "./Components/TravelAgent/Flight/TravelAgentBookFlight";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+
 import TravelAgentBookHotel from "./Components/TravelAgent/Hotel/TravelAgentBookHotel";
 import Create from "./AddDataManual/BackofficeAdmin/create";
 import FlightAddToCart from "./Components/TravelAgent/Flight/FlightAddToCart";
@@ -35,8 +37,6 @@ function App() {
 
           {/* Routes for Admin  */}
           {/* <Route path="/admin" element={<HotelAddToCart />}></Route> */}
-
-          
 
           {/* Routes for Travel Agent  */}
           <Route path="/travel/dashboard" element={<TravelAgentMenu />}></Route>
