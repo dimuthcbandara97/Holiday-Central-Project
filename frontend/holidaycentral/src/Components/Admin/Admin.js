@@ -3,6 +3,7 @@ import React from "react";
 import AddUser from "./../../Assets/add-user.png";
 import Lock from "./../../Assets/padlock.png";
 import HeaderAdmin from "../Headers/HeaderAdmin";
+import { Link } from "react-router-dom";
 
 const Admin = () => {
   return (
@@ -16,9 +17,11 @@ const Admin = () => {
               <div class="card-body text-center py-4">
                 <img src={AddUser} alt="" width={40} />
                 <h4 class="card-title mt-3">Add Travel Agents</h4>
-                <a href="#" class="btn btn-outline-dark btn-lg mt-3">
-                  Add Now
-                </a>
+                <Link to="/admin/dashboard/add">
+                  <a href="#" class="btn btn-outline-dark btn-lg mt-3">
+                    Add Now
+                  </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -28,9 +31,11 @@ const Admin = () => {
               <div class="card-body text-center py-4">
                 <img src={Lock} alt="" width={40} />
                 <h4 class="card-title mt-3">Reset Password</h4>
-                <a href="#" class="btn btn-outline-dark btn-lg mt-3">
-                  Reset Now
-                </a>
+                <Link to="/admin/dashboard/reset">
+                  <a href="#" class="btn btn-outline-dark btn-lg mt-3">
+                    Reset Now
+                  </a>
+                </Link>
               </div>
             </div>
           </div>

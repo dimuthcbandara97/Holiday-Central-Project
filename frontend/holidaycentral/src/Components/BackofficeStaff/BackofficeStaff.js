@@ -5,6 +5,7 @@ import Sunset from "./../../Assets/sunset.png";
 import Plane from "./../../Assets/plane.png";
 
 import HeaderBackOffice from "../Headers/HeaderBackOffice";
+import { Link } from "react-router-dom";
 
 const BackofficeStaff = () => {
   return (
@@ -17,9 +18,11 @@ const BackofficeStaff = () => {
               <div class="card-body text-center py-4">
                 <img src={Plane} alt="" width={40} />
                 <h4 class="card-title mt-3">Flights</h4>
-                <a href="#" class="btn btn-outline-dark btn-lg mt-3">
-                  Enter
-                </a>
+                <Link to="/backoffice/dashboard/flight">
+                  <a href="#" class="btn btn-outline-dark btn-lg mt-3">
+                    Enter
+                  </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -29,9 +32,11 @@ const BackofficeStaff = () => {
               <div class="card-body text-center py-4">
                 <img src={Hotel} alt="" width={40} />
                 <h4 class="card-title mt-3">Hotels</h4>
-                <a href="#" class="btn btn-outline-dark btn-lg mt-3">
-                  Enter
-                </a>
+                <Link to="/backoffice/dashboard/hotel">
+                  <a href="#" class="btn btn-outline-dark btn-lg mt-3">
+                    Enter
+                  </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -41,9 +46,11 @@ const BackofficeStaff = () => {
               <div class="card-body text-center py-4">
                 <img src={Sunset} alt="" width={40} />
                 <h4 class="card-title mt-3">Packages</h4>
-                <a href="#" class="btn btn-outline-dark btn-lg mt-3">
-                  Enter
-                </a>
+                <Link to="/backoffice/dashboard/package">
+                  <a href="#" class="btn btn-outline-dark btn-lg mt-3">
+                    Enter
+                  </a>
+                </Link>
               </div>
             </div>
           </div>
