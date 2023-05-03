@@ -172,7 +172,7 @@ function HotelAddToCart() {
           <Form.Field className="form-field">
             <label>Check In Date</label>
             <input
-            type="date"
+              type="date"
               required
               name="check_in_date"
               onChange={(e) => setCheckInDate(e.target.value)}
@@ -183,7 +183,7 @@ function HotelAddToCart() {
           <Form.Field className="form-field">
             <label>Check Out Date</label>
             <input
-            type="date"
+              type="date"
               required
               name="check_out_date"
               onChange={(e) => setCheck_OutDate(e.target.value)}
@@ -228,9 +228,12 @@ function HotelAddToCart() {
           {/* // pool */}
           <Form.Field className="form-field">
             <label>Pool</label>
-            <input 
-            placeholder="true / false"
-            required name="pool" onChange={(e) => setPool(e.target.value)} />
+            <input
+              placeholder="true / false"
+              required
+              name="pool"
+              onChange={(e) => setPool(e.target.value)}
+            />
           </Form.Field>
           {/* // kids_play_area */}
           <Form.Field className="form-field">
@@ -294,18 +297,20 @@ function HotelAddToCart() {
             <label>Suite</label>
             <input
               required
-              name="suite" onChange={(e) => setSuite(e.target.value)}
+              name="suite"
+              onChange={(e) => setSuite(e.target.value)}
               placeholder="true / false"
-              />
+            />
           </Form.Field>
           {/* // deluxe true */}
           <Form.Field className="form-field">
             <label>Deluxe</label>
             <input
               required
-              name="deluxe" onChange={(e) => setDeluxe(e.target.value)} 
+              name="deluxe"
+              onChange={(e) => setDeluxe(e.target.value)}
               placeholder="true / false"
-              />
+            />
           </Form.Field>
           {/* // super_deluxe true */}
           <Form.Field className="form-field">
@@ -319,7 +324,7 @@ function HotelAddToCart() {
           </Form.Field>
           {/* // breakfast true */}
           <Form.Field className="form-field">
-            <label>breakfast</label>
+            <label>Breakfast</label>
             <input
               required
               name="breakfast"
@@ -331,10 +336,12 @@ function HotelAddToCart() {
           {/* // bread true */}
           <Form.Field className="form-field">
             <label>Bread</label>
-            <input required name="bread" onChange={(e) => setBread(e.target.value)}
-            placeholder="true / false"
+            <input
+              required
+              name="bread"
+              onChange={(e) => setBread(e.target.value)}
+              placeholder="true / false"
             />
-         
           </Form.Field>
           {/* // full_board true */}
           <Form.Field className="form-field">

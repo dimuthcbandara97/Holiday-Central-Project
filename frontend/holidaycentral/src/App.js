@@ -22,7 +22,6 @@ import TravelAgentSelectFlight from "./TravelAgents/TravelAgentBookFlight/Flight
 function App() {
   return (
     <div className="App">
-
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<LoginPage />}></Route>
