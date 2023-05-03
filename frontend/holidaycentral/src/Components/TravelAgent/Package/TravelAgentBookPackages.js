@@ -1,9 +1,40 @@
 import React from "react";
 import HeaderAll from "../../Headers/HeaderAll";
 import { Link } from "react-router-dom";
+import useFetch from "../../../hooks/useFetch";
+import { useState } from "react";
 
 const BookPackages = () => {
   // localhost:4000/api/package/filter_search
+
+  // From
+  const [departure_destination, setDepartureDestination] = useState("");
+  // To
+  const [arrival_destination, setArrivalDestination] = useState("");
+  // Departure
+  const [departure_date, setDepartureDate] = useState("");
+  // Return
+  const [arrival_date, setArrivalDate] = useState("");
+  // Class
+  const [cabin_class, setCabinClass] = useState("");
+
+  const queryParams = {
+    departure_destination,
+    arrival_destination,
+    departure_date,
+    arrival_date,
+    cabin_class
+  };
+
+  const query = new URLSearchParams(queryParams).toString();
+  const url = `http://localhost:4000/api/flight/filter_search?${query}`;
+
+  const { data, loading, error, reFetch } = useFetch(url);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    reFetch();
+  };
   return (
     <>
       <HeaderAll />
@@ -83,14 +114,42 @@ const BookPackages = () => {
             </div>
           </div>
 
-          <div class="col-12">
+
+          
+        </form>
+      </div>
+      <div class="p-5 m-5 border rounded justify-content-start">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Hotel Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Star Rating</th>
+              <th scope="col">Duration</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>@mdo</td>
+              <td>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="col-12">
             <Link to="/travel/dashboard/package/select">
               <button type="submit" class="btn btn-secondary">
                 Next
               </button>
             </Link>
           </div>
-        </form>
       </div>
     </>
   );

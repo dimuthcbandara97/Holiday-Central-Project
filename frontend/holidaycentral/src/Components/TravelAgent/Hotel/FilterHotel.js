@@ -1,8 +1,37 @@
 import React from "react";
 import HeaderAll from "../../Headers/HeaderAll";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import useFetch from "../../../hooks/useFetch";
 
 const BookHotel = () => {
+
+  // From
+  const [star_rating, setStarRating] = useState("");
+  // To
+  const [min_price, setMinPrice] = useState("");
+  // Departure
+  const [max_price, setMaxPrice] = useState("");
+  // Return
+  const [facilities, setFacilities] = useState("");
+
+  const queryParams = {
+    star_rating,
+    min_price,
+    max_price,
+    facilities,
+
+  };
+
+  const query = new URLSearchParams(queryParams).toString();
+  const url = `http://localhost:4000/api/flight/filter_search?${query}`;
+
+  const { data, loading, error, reFetch } = useFetch(url);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    reFetch();
+  };
   return (
     <>
       <HeaderAll />

@@ -31,7 +31,7 @@ const BookHotel = () => {
   //   const selectedValue = e.target.value;
   //   setPriceMin(selectedValue);
   // }
-  
+
   return (
     <>
       <HeaderAll />
@@ -68,6 +68,8 @@ const BookHotel = () => {
                 class="form-control"
                 id="formGroupExampleInput"
                 placeholder="Min"
+                value={priceMin} // Added value attribute to sync state with the selected value
+                onChange={(e) => setPriceMin(e.target.value)}
               />
             </div>
 
@@ -78,6 +80,8 @@ const BookHotel = () => {
                 class="form-control"
                 id="formGroupExampleInput"
                 placeholder="Max"
+                value={priceMax} // Added value attribute to sync state with the selected value
+                onChange={(e) => setPriceMax(e.target.value)}
               />
             </div>
 
@@ -109,12 +113,12 @@ const BookHotel = () => {
       </div>
 
       <div class="p-5 m-5 border rounded justify-content-start">
-      {loading && <p>Loading...</p>}
+        {loading && <p>Loading...</p>}
 
-{error && <p>{error.message}</p>}
+        {error && <p>Error Finding the log </p>}
 
         <table class="table">
-          
+
           <thead>
             <tr>
               <th scope="col">Overall Details Of The Fligts</th>
@@ -122,26 +126,27 @@ const BookHotel = () => {
             </tr>
           </thead>
           <tbody>
-            
+
             <tr>
-            {data.length > 0 ? (
-              <>
-            {data.map((flightReservation) => (
-      <tr scope="row" key={flightReservation.id}>
-        <td>Price: {flightReservation.price}</td>
-        <td>Duration: {flightReservation.duration}</td>
-        <td>Airline: {flightReservation.airline}</td>
-      </tr>
-    ))}</>): (
-      <p>No flight reservations matching the given criteria found.</p>
-    )} 
-              <td> 
+              {data.length > 0 ? (
+                <>
+                  {data.map((flightReservation) => (
+                    <tr scope="row" key={flightReservation.id}>
+                      <td>Price: {flightReservation.price}</td>
+                      <td>Duration: {flightReservation.duration}</td>
+                      <td>Airline: {flightReservation.airline}</td>
+                      <Link to="/travel/dashboard/flight/checkout">
+                        <button class="btn btn-dark">Book</button>
+                      </Link>
+                    </tr>
+                  ))}</>) : (
+                <p>No flight reservations matching the given criteria found.</p>
+              )}
+              <td>
                 <div class="d-flex flex-row  mb-3">
                   <div>
                     {/*  */}
-                    <Link to="/travel/dashboard/flight/checkout">
-                      <button class="btn btn-dark">Book</button>
-                    </Link>
+
                   </div>
                 </div>
               </td>
