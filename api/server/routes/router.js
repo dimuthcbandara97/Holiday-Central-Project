@@ -65,6 +65,7 @@ route.put('/api/package/:id',packagecontroller.update)
 route.delete('/api/package/:id',packagecontroller.delete)
 route.get('/api/package/count',packagecontroller.countBy)
 route.get('/api/package/filter',packagecontroller.findBy)
+route.get('/api/package/filter_search',packagecontroller.findBySearch)
 
 // API routes for Traveling controller
 route.post('/api/travel',travel.create)

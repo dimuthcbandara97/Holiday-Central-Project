@@ -220,6 +220,44 @@ exports.findBy = (req, res) => {
     });
 };
 
+// Find By Search Method For Package
+exports.findBySearch = (req, res) => {
+  const { destination,
+  speciality,
+  duration,
+  number_of_travellers, } = req.query;
+  const query = {};
+
+  if (destination) {
+    query.destination = destination;
+  }
+  if (duration) {
+    query.duration = duration;
+  }
+  if (speciality) {
+    query.speciality = speciality;
+  }
+  if (number_of_travellers) {
+    query.number_of_travellers = number_of_travellers;
+  }
+
+  PackageReservationsDB.find(query)
+    .then(packageReservations => {
+      if (packageReservations.length === 0) {
+        return res.status(404).send({
+          message: "No flight reservations matching the given criteria found."
+        });
+      }
+      res.send(packageReservations);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving flight reservations."
+      });
+    });
+};
+
 
 exports.countBy = (req, res) => {
   const { price, duration, package_rating} = req.query;
