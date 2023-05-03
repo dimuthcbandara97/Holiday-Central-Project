@@ -25,7 +25,7 @@ const BookHotel = () => {
   };
 
   const query = new URLSearchParams(queryParams).toString();
-  const url = `http://localhost:4000/api/flight/filter?${query}`;
+  const url = `http://localhost:4000/api/package/filter?${query}`;
 
   const { data, loading, error, reFetch } = useFetch(url);
 
@@ -45,15 +45,18 @@ const BookHotel = () => {
           <div class="row justify-content-start mt-3">
             <div class="col-md-2">
               <label for="inputState" class="form-label">
-                Star Rating
+                Package Rating
               </label>
-              <select id="inputState" class="form-select">
+              <select id="inputState" class="form-select"
+              value={package_rating} // Added value attribute to sync state with the selected value
+              onChange={(e) => setPackageRating(e.target.value)}
+              >
                 <option selected>Choose...</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+                <option value='1'>1</option>
+                <option value='2'>2</option>
+                <option value='3'>3</option>
+                <option value='4'>4</option>
+                <option value='5'>5</option>
               </select>
             </div>
 
@@ -66,6 +69,8 @@ const BookHotel = () => {
                 class="form-control"
                 id="formGroupExampleInput"
                 placeholder="Min"
+                value={min_price} // Added value attribute to sync state with the selected value
+                onChange={(e) => setMinPrice(e.target.value)}
               />
             </div>
 
@@ -76,6 +81,8 @@ const BookHotel = () => {
                 class="form-control"
                 id="formGroupExampleInput"
                 placeholder="Max"
+                value={max_price} // Added value attribute to sync state with the selected value
+                onChange={(e) => setMaxPrice(e.target.value)}
               />
             </div>
 
@@ -84,17 +91,20 @@ const BookHotel = () => {
               <label for="inputState" class="form-label">
                 Duration
               </label>
-              <select id="inputState" class="form-select">
+              <select id="inputState" class="form-select"
+              value={duration} // Added value attribute to sync state with the selected value
+              onChange={(e) => setDuration(e.target.value)}
+              >
                 <option selected>Choose...</option>
-                <option>1 Week</option>
-                <option>2 Weeks</option>
-                <option>3 Weeks</option>
-                <option>4 Weeks</option>
+                <option value='1'>1 Week</option>
+                <option value='2'>2 Weeks</option>
+                <option value='3'>3 Weeks</option>
+                <option value='4'>4 Weeks</option>
               </select>
             </div>
 
             <div class="col-2 mt-4">
-              <button type="submit" class="btn btn-secondary">
+              <button type="submit" class="btn btn-secondary" onClick={handleSearch}>
                 Filter
               </button>
             </div>
@@ -102,38 +112,53 @@ const BookHotel = () => {
         </form>
       </div>
 
+      
       <div class="p-5 m-5 border rounded justify-content-start">
+        {loading && <p>Loading...</p>}
+
+        {error && <p>The Selected Options Isn't Available </p>}
+
         <table class="table">
+
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Hotel Name</th>
-              <th scope="col">Price</th>
-              <th scope="col">Star Rating</th>
-              <th scope="col">Duration</th>
+              <th scope="col">Overall Details Of The Fligts</th>
               <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
+
             <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
+              {data.length > 0 ? (
+                <>
+                  {data.map((packageReservation) => (
+                    <tr scope="row" key={packageReservation.id}>
+                      <td>Star Rating: {packageReservation.package_rating}</td>
+                      <td>Duration : {packageReservation.duration}</td>
+                      <td> <Link to="/travel/dashboard/package/checkout">
+                      <button class="btn btn-dark">Book</button>
+      </Link></td>
+                      {/* <Link to="/travel/dashboard/flight/checkout">
+                        <button class="btn btn-dark">Book</button>
+                      </Link> */}
+                    </tr>
+                  ))}</>) : (
+                <p>No flight reservations matching the given criteria found.</p>
+              )}
               <td>
                 <div class="d-flex flex-row  mb-3">
                   <div>
-                    <Link to="/travel/dashboard/package/checkout">
-                      <button class="btn btn-dark">Book</button>
-                    </Link>
+                    {/*  */}
+
                   </div>
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
+        
       </div>
+      
     </>
   );
 };

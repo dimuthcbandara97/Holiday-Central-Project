@@ -6,28 +6,25 @@ import { useState } from "react";
 
 const BookPackages = () => {
    // From
-   const [destination, setPackageRating] = useState("");
-   // To
-   const [price, setMinPrice] = useState("");
+   const [destination, setDestination] = useState("");
+
    // Departure
-   const [number_of_travellers, setMaxPrice] = useState("");
+   const [number_of_travellers, setNumberofTravellers] = useState("");
    // Return
    const [duration, setDuration] = useState("");
 
    const [speciality,setSpeciality] = useState("");
  
  
- 
    const queryParams = {
     destination,
     duration,
     number_of_travellers,
-    price,
     speciality
    };
  
    const query = new URLSearchParams(queryParams).toString();
-   const url = `http://localhost:4000/api/flight/filter_search?${query}`;
+   const url = `http://localhost:4000/api/package/filter_search?${query}`;
  
    const { data, loading, error, reFetch } = useFetch(url);
  
@@ -49,11 +46,16 @@ const BookPackages = () => {
               <label for="inputState" class="form-label">
                 Destination
               </label>
-              <select id="inputState" class="form-select">
+              <select id="inputState" class="form-select"
+              value={destination} // Added value attribute to sync state with the selected value
+              onChange={(e) => setDestination(e.target.value)}
+              
+              >
+              
                 <option selected>Choose...</option>
-                <option>Colombo</option>
-                <option>Negombo</option>
-                <option>Galle</option>
+                <option value="colombo">Colombo</option>
+                <option value="Negombo">Negombo</option>
+                <option value="Galle">Galle</option>
               </select>
             </div>
           </div>
@@ -64,12 +66,15 @@ const BookPackages = () => {
               <label for="inputState" class="form-label">
                 Duration
               </label>
-              <select id="inputState" class="form-select">
+              <select id="inputState" class="form-select"
+              value={duration} // Added value attribute to sync state with the selected value
+              onChange={(e) => setDuration(e.target.value)}
+              >
                 <option selected>Choose...</option>
-                <option>1 Week</option>
-                <option>2 Weeks</option>
-                <option>3 Weeks</option>
-                <option>4 Weeks</option>
+                <option value="1">1 Week</option>
+                <option value="2 ">2 Weeks</option>
+                <option value="3"> 3 Weeks</option>
+                <option value="4">4 Weeks</option>
               </select>
             </div>
           </div>
@@ -80,20 +85,20 @@ const BookPackages = () => {
               <label for="inputState" class="form-label">
                 Number of Travelers
               </label>
-              <select id="inputState" class="form-select">
+              <select id="inputState" class="form-select"
+              value={number_of_travellers} // Added value attribute to sync state with the selected value
+              onChange={(e) => setNumberofTravellers(e.target.value)}
+              >
                 <option selected>Choose...</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                
               </select>
             </div>
           </div>
@@ -104,12 +109,14 @@ const BookPackages = () => {
               <label for="inputState" class="form-label">
                 Speciality
               </label>
-              <select id="inputState" class="form-select">
+              <select id="inputState" class="form-select"
+              value={speciality} // Added value attribute to sync state with the selected value
+              onChange={(e) => setSpeciality(e.target.value)}>
                 <option selected>Choose...</option>
-                <option>Honeymoon</option>
-                <option>Beach Holiday</option>
-                <option>Wildlife Excursion</option>
-                <option>Family Holiday</option>
+                <option value="honeymoon">Honeymoon</option>
+                <option value="beach_holiday">Beach Holiday</option>
+                <option value="wildlife_excursion">Wildlife Excursion</option>
+                <option value="family_holiday">Family Holiday</option>
               </select>
             </div>
           </div>
@@ -161,12 +168,13 @@ const BookPackages = () => {
             </tr>
           </tbody>
         </table>
-      </div>
-      <Link to="/travel/dashboard/package/select">
+        <Link to="/travel/dashboard/package/select">
               <button type="submit" class="btn btn-secondary">
                 Next
               </button>
             </Link>
+      </div>
+      
     </>
   );
 };

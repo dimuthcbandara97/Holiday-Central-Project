@@ -86,7 +86,8 @@ const BookHotel = () => {
               </label>
               <select id="inputState" class="form-select"
                 value={star_rating} // Added value attribute to sync state with the selected value
-                onChange={(e) => setStarRating(e.target.value)}>
+                onChange={(e) => setStarRating(e.target.value)}
+                >
                 <option selected>Choose...</option>
                 <option>1</option>
                 <option>2</option>
