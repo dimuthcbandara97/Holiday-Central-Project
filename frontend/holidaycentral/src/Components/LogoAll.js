@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function LogoAll() {
-  return (
-    <div>LogoAll</div>
-  )
+  return <div>LogoAll</div>;
 }
 
-export default LogoAll
+export default LogoAll;
