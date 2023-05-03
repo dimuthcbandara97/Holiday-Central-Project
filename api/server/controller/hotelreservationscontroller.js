@@ -137,6 +137,41 @@ exports.findBy = (req, res) => {
     });
 };
 
+// Find By Search Method
+exports.findBySearch = (req, res) => {
+  const { destination, check_in_date, check_out_date, star_rating } = req.query;
+  const query = {};
+
+  if (destination) {
+    query.destination = destination;
+  }
+  if (star_rating) {
+    query.star_rating = star_rating;
+  }
+  if (check_in_date) {
+    query.check_in_date = check_in_date;
+  }
+  if (check_out_date) {
+    query.check_out_date = check_out_date;
+  }
+
+  HotelReservationsDb.find(query)
+    .then(hotelReservations =>{
+      if (hotelReservations.length === 0) {
+        return res.status(404).send({
+          message: "No flight reservations matching the given criteria found."
+        });
+      }
+      res.send(hotelReservations);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving flight reservations."
+      });
+    });
+};
+
 exports.countBy = (req, res) => {
   const { price, star_rating, facilities } = req.query;
   const query = {};

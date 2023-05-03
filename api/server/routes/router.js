@@ -17,6 +17,7 @@ const flightcheckout = require('../controller/checkoutcontroller/flightcheckoutc
 const hotelcheckout = require('../controller/checkoutcontroller/hotelcheckoutcontroller');
 const packagecheckout = require('../controller/checkoutcontroller/packagecheckoutcontroller');
 
+
 /***
  * 
  * @Description Root route
@@ -46,6 +47,7 @@ route.put('/api/flight/:id',flight.update)
 route.delete('/api/flight/:id',flight.delete)
 route.get('/api/flight/count',flight.countBy)
 route.get('/api/flight/filter',flight.findBy)
+route.get('/api/flight/filter_search',flight.findBySearch)
 
 // API routes for hotel reservation
 route.post('/api/hotel',hotel.create)
@@ -54,6 +56,7 @@ route.put('/api/hotel/:id',hotel.update)
 route.delete('/api/hotel/:id',hotel.delete)
 route.get('/api/hotel/count',hotel.countBy)
 route.get('/api/hotel/filter',hotel.findBy)
+route.get('/api/hotel/filter_search',hotel.findBySearch)
 
 // API routes for package reservation
 route.post('/api/package',packagecontroller.create)
