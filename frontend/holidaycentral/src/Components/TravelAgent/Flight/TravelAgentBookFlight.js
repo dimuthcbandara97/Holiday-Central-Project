@@ -1,12 +1,12 @@
 import React from "react";
 
-import Plane from "../../Assets/plane.png"
-import Departure from "../../Assets/departures.png";
-import Landing from "../../Assets/landing.png";
-import Ticket from "../../Assets/ticket.png";
-import Calendar from "../../Assets/calendartime.png";
+import Plane from "../../../Assets/plane.png"
+import Departure from "../../../Assets/departures.png";
+import Landing from "../../../Assets/landing.png";
+import Ticket from "../../../Assets/ticket.png";
+import Calendar from "../../../Assets/calendartime.png";
 import { useEffect, useState } from 'react';
-import HeaderAll from "../../Components/Headers/HeaderAll";
+import HeaderAll from "../../Headers/HeaderAll";
 import { Link } from "react-router-dom";
 
 const TravelAgentBookFlight = () => {

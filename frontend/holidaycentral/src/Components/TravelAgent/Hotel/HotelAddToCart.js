@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button } from "semantic-ui-react";
 import request from "superagent";
-import HeaderAll from "../Components/Headers/HeaderAll";
+import HeaderAll from "../../Headers/HeaderAll";
 
 // This method will insert data into the backoffice
 function HotelAddToCart() {

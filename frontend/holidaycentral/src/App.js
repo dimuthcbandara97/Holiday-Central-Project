@@ -1,23 +1,22 @@
 import useFetch from "./hooks/useFetch";
 import FlightSearch from "./Search/FlightSearch";
-import TravelAgentBookFlight from "./TravelAgents/TravelAgentBookFlight/TravelAgentBookFlight";
+import TravelAgentBookFlight from "./Components/TravelAgent/Flight/TravelAgentBookFlight";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import TravelAgentBookHotel from "./TravelAgents/TravelAgentBookHotel/TravelAgentBookHotel";
+import TravelAgentBookHotel from "./Components/TravelAgent/Hotel/TravelAgentBookHotel";
 import Create from "./AddDataManual/BackofficeAdmin/create";
-import FlightAddToCart from "./AddToCart/FlightAddToCart";
-import HotelAddToCart from "./AddToCart/HotelAddToCart";
-import HotelSelect from "./TravelAgents/TravelAgentBookHotel/FilterHotel";
-import PackageAddToCart from "./AddToCart/PackageAddToCart";
-import PackageSelect from "./TravelAgents/TravelAgentBookPackage/PackageFilter";
+import FlightAddToCart from "./Components/TravelAgent/Flight/FlightAddToCart";
+import HotelAddToCart from "./Components/TravelAgent/Hotel/HotelAddToCart";
+import HotelSelect from "./Components/TravelAgent/Hotel/FilterHotel";
+import PackageAddToCart from "./Components/TravelAgent/Package/PackageAddToCart";
+import PackageSelect from "./Components/TravelAgent/Package/PackageFilter";
 import HotelSearch from "./Search/HotelSearch";
-import PackageSearch from "./TravelAgents/TravelAgentBookPackage/TravelAgentBookPackages";
+import PackageSearch from "./Components/TravelAgent/Package/TravelAgentBookPackages";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import TestRoute from "./TravelAgents/TestRoute";
-import LoginPage from "./LoginPAge/LoginPage";
-import TravelAgentMenu from "./TravelAgents/TravelAgentsMenu";
-import TravelAgentSelectFlight from "./TravelAgents/TravelAgentBookFlight/FlightFilter";
+import LoginPage from "./Components/LoginPage/LoginPage";
+import TravelAgentMenu from "./Components/TravelAgent/TravelAgentsMenu";
+import TravelAgentSelectFlight from "./Components/TravelAgent/Flight/FlightFilter";
 import BackofficeStaff from "./Components/BackofficeStaff/BackofficeStaff";
 import BackofficeStaffFlight from "./Components/BackofficeStaff/Flights/FlightUpdate";
 import BackofficeStaffHotel from "./Components/BackofficeStaff/Hotels/HotelUpdate";
@@ -37,7 +36,7 @@ function App() {
           {/* Routes for Admin  */}
           {/* <Route path="/admin" element={<HotelAddToCart />}></Route> */}
 
-          <Route path="/admin/dashboard/:id" element={<TestRoute />}></Route>
+          
 
           {/* Routes for Travel Agent  */}
           <Route path="/travel/dashboard" element={<TravelAgentMenu />}></Route>

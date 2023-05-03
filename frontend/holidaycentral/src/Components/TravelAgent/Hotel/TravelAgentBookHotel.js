@@ -1,14 +1,14 @@
 import React from "react";
 
-import Plane from "../../Assets/plane.png"
-import Departure from "../../Assets/departures.png";
-import Landing from "../../Assets/landing.png";
-import Ticket from "../../Assets/ticket.png";
-import Calendar from "../../Assets/calendartime.png";
+import Plane from "../../../Assets/plane.png"
+import Departure from "../../../Assets/departures.png";
+import Landing from "../../../Assets/landing.png";
+import Ticket from "../../../Assets/ticket.png";
+import Calendar from "../../../Assets/calendartime.png";
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/fontawesome-free'
 import { faHotel } from '@fortawesome/free-solid-svg-icons';
-import HeaderAll from "../../Components/Headers/HeaderAll";
+import HeaderAll from "../../Headers/HeaderAll";
 
 const TravelAgentBookHotel = () => {
 

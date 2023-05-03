@@ -1,9 +1,9 @@
 import React from "react";
 
-import Plane from "../Assets/plane.png";
-import Hotel from "../Assets/hotel.png";
-import Sunset from "../Assets/sunset.png";
-import HeaderAll from "../Components/Headers/HeaderAll";
+import Plane from "../../Assets/plane.png";
+import Hotel from "../../Assets/hotel.png";
+import Sunset from "../../Assets/sunset.png";
+import HeaderAll from "../Headers/HeaderAll";
 import { Link } from "react-router-dom";
 
 const TravelAgentMenu = () => {

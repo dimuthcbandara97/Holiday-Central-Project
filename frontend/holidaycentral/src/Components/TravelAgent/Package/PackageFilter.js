@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderAll from "../../Components/Headers/HeaderAll";
+import HeaderAll from "../../Headers/HeaderAll";
 import { Link } from "react-router-dom";
 
 const BookHotel = () => {

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Form, Button } from "semantic-ui-react";
 import request from "superagent";
-import HeaderAll from "../Components/Headers/HeaderAll";
-import "./styles.css";
+import HeaderAll from "../../Headers/HeaderAll";
+// import "./styles.css";
 
 // This method will insert data into the backoffice
 function FlightAddToCart() {

@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import HeaderAll from "../../Components/Headers/HeaderAll";
-import useFetch from "../../hooks/useFetch";
+import HeaderAll from "../../Headers/HeaderAll";
+import useFetch from "../../../hooks/useFetch";
 
 const BookHotel = () => {
 
