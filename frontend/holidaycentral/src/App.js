@@ -18,6 +18,14 @@ import TestRoute from "./TravelAgents/TestRoute";
 import LoginPage from "./LoginPAge/LoginPage";
 import TravelAgentMenu from "./TravelAgents/TravelAgentsMenu";
 import TravelAgentSelectFlight from "./TravelAgents/TravelAgentBookFlight/FlightFilter";
+import BackofficeStaff from "./Components/BackofficeStaff/BackofficeStaff";
+import BackofficeStaffFlight from "./Components/BackofficeStaff/Flights/FlightUpdate";
+import BackofficeStaffHotel from "./Components/BackofficeStaff/Hotels/HotelUpdate";
+import BackofficeStaffPackage from "./Components/BackofficeStaff/Packages/PackageUpdate";
+import Admin from "./Components/Admin/Admin";
+import AdminAddAgent from "./Components/Admin/AddNewAgent/AddNewAgent";
+import AdminResetPass from "./Components/Admin/ResetPassword/ResetPassword";
+import AdminViewAgent from "./Components/Admin/ViewAllAgents/ViewAllAgents";
 
 function App() {
   return (
@@ -68,7 +76,28 @@ function App() {
             element={<PackageAddToCart />}
           />
 
-          {/* Routes for BackofficeAdmin */}
+          {/* Routes for BackofficeStaff */}
+
+          <Route path="/backoffice/dashboard/" element={<BackofficeStaff />} />
+          <Route
+            path="/backoffice/dashboard/flight"
+            element={<BackofficeStaffFlight />}
+          />
+          <Route
+            path="/backoffice/dashboard/hotel"
+            element={<BackofficeStaffHotel />}
+          />
+          <Route
+            path="/backoffice/dashboard/package"
+            element={<BackofficeStaffPackage />}
+          />
+
+          {/* Routes for Admin */}
+
+          <Route path="/admin/dashboard/" element={<Admin />} />
+          <Route path="/admin/dashboard/add" element={<AdminAddAgent />} />
+          <Route path="/admin/dashboard/reset" element={<AdminResetPass />} />
+          <Route path="/admin/dashboard/view" element={<AdminViewAgent />} />
         </Routes>
       </BrowserRouter>
     </div>
