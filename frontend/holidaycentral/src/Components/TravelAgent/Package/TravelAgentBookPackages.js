@@ -5,36 +5,36 @@ import useFetch from "../../../hooks/useFetch";
 import { useState } from "react";
 
 const BookPackages = () => {
-  // localhost:4000/api/package/filter_search
+   // From
+   const [destination, setPackageRating] = useState("");
+   // To
+   const [price, setMinPrice] = useState("");
+   // Departure
+   const [number_of_travellers, setMaxPrice] = useState("");
+   // Return
+   const [duration, setDuration] = useState("");
 
-  // From
-  const [departure_destination, setDepartureDestination] = useState("");
-  // To
-  const [arrival_destination, setArrivalDestination] = useState("");
-  // Departure
-  const [departure_date, setDepartureDate] = useState("");
-  // Return
-  const [arrival_date, setArrivalDate] = useState("");
-  // Class
-  const [cabin_class, setCabinClass] = useState("");
-
-  const queryParams = {
-    departure_destination,
-    arrival_destination,
-    departure_date,
-    arrival_date,
-    cabin_class
-  };
-
-  const query = new URLSearchParams(queryParams).toString();
-  const url = `http://localhost:4000/api/flight/filter_search?${query}`;
-
-  const { data, loading, error, reFetch } = useFetch(url);
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    reFetch();
-  };
+   const [speciality,setSpeciality] = useState("");
+ 
+ 
+ 
+   const queryParams = {
+    destination,
+    duration,
+    number_of_travellers,
+    price,
+    speciality
+   };
+ 
+   const query = new URLSearchParams(queryParams).toString();
+   const url = `http://localhost:4000/api/flight/filter_search?${query}`;
+ 
+   const { data, loading, error, reFetch } = useFetch(url);
+ 
+   const handleSearch = (e) => {
+     e.preventDefault();
+     reFetch();
+   };
   return (
     <>
       <HeaderAll />
@@ -119,38 +119,54 @@ const BookPackages = () => {
         </form>
       </div>
       <div class="p-5 m-5 border rounded justify-content-start">
+        {loading && <p>Loading...</p>}
+
+        {error && <p>The Selected Options Isn't Available </p>}
+
         <table class="table">
+
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Hotel Name</th>
-              <th scope="col">Price</th>
-              <th scope="col">Star Rating</th>
-              <th scope="col">Duration</th>
+              <th scope="col">Overall Details Of The Fligts</th>
               <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
+
             <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
+              {data.length > 0 ? (
+                <>
+                  {data.map((packageReservation) => (
+                    <tr scope="row" key={packageReservation.id}>
+                      <td>Destination: {packageReservation.destination}</td>
+                      <td>Duration : {packageReservation.duration}</td>
+                      <td>Number Of travellers: {packageReservation.number_of_travellers}</td>
+                      <td>Speciality: {packageReservation.speciality}</td>
+
+                      {/* <Link to="/travel/dashboard/flight/checkout">
+                        <button class="btn btn-dark">Book</button>
+                      </Link> */}
+                    </tr>
+                  ))}</>) : (
+                <p>No flight reservations matching the given criteria found.</p>
+              )}
               <td>
-                
+                <div class="d-flex flex-row  mb-3">
+                  <div>
+                    {/*  */}
+
+                  </div>
+                </div>
               </td>
             </tr>
           </tbody>
         </table>
-        <div class="col-12">
-            <Link to="/travel/dashboard/package/select">
+      </div>
+      <Link to="/travel/dashboard/package/select">
               <button type="submit" class="btn btn-secondary">
                 Next
               </button>
             </Link>
-          </div>
-      </div>
     </>
   );
 };

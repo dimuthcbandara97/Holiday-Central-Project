@@ -54,8 +54,8 @@ const TravelAgentBookFlight = () => {
                 From (Departure Destination)
               </label>
               <select id="inputState" class="form-select"
-              value={departure_destination} // Added value attribute to sync state with the selected value
-              onChange={(e) => setDepartureDestination(e.target.value)}
+                value={departure_destination} // Added value attribute to sync state with the selected value
+                onChange={(e) => setDepartureDestination(e.target.value)}
               >
                 <option ></option>
                 <option value="Colombo">Colombo</option>
@@ -67,8 +67,8 @@ const TravelAgentBookFlight = () => {
                 To (Arrival Destination)
               </label>
               <select id="inputState" class="form-select"
-               value={arrival_destination} // Added value attribute to sync state with the selected value
-               onChange={(e) => setArrivalDestination(e.target.value)}
+                value={arrival_destination} // Added value attribute to sync state with the selected value
+                onChange={(e) => setArrivalDestination(e.target.value)}
               >
                 <option selected></option>
                 <option value="France">France</option>
@@ -83,8 +83,8 @@ const TravelAgentBookFlight = () => {
                 Class
               </label>
               <select id="inputState" class="form-select"
-               value={cabin_class} // Added value attribute to sync state with the selected value
-               onChange={(e) => setCabinClass(e.target.value)}
+                value={cabin_class} // Added value attribute to sync state with the selected value
+                onChange={(e) => setCabinClass(e.target.value)}
               >
                 <option selected></option>
                 <option value="Economy">Economy</option>
@@ -109,9 +109,9 @@ const TravelAgentBookFlight = () => {
               <label for="inputState" class="form-label">
                 Departure Date
               </label>
-              <input id="startDate" class="form-control" type="date" 
-              value={departure_date}
-              onChange={(e) => setDepartureDate(e.target.value)}
+              <input id="startDate" class="form-control" type="date"
+                value={departure_date}
+                onChange={(e) => setDepartureDate(e.target.value)}
               />
             </div>
 
@@ -119,58 +119,58 @@ const TravelAgentBookFlight = () => {
               <label for="inputState" class="form-label">
                 Return Date
               </label>
-              <input id="startDate" class="form-control" type="date" 
-               value={arrival_date}
-               onChange={(e) => setArrivalDate(e.target.value)}
+              <input id="startDate" class="form-control" type="date"
+                value={arrival_date}
+                onChange={(e) => setArrivalDate(e.target.value)}
               />
             </div>
           </div>
 
 
           <div class="p-5 m-5 border rounded justify-content-start">
-        {loading && <p>Loading...</p>}
+            {loading && <p>Loading...</p>}
 
-        {error && <p>Error Finding the log </p>}
+            {error && <p>Error Finding the log </p>}
 
-        <table class="table">
+            <table class="table">
 
-          <thead>
-            <tr>
-              <th scope="col">Overall Details Of The Fligts</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
+              <thead>
+                <tr>
+                  <th scope="col">Overall Details Of The Fligts</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
 
-            <tr>
-              {data.length > 0 ? (
-                <>
-                  {data.map((flightReservation) => (
-                    <tr scope="row" key={flightReservation.id}>
-                      <td>Departure: {flightReservation.departure_destination}</td>
-                      <td>Arrival: {flightReservation.arrival_destination}</td>
-                      <td>Cabin Class: {flightReservation.cabin_class}</td>
-                      <td>Departure Date: {flightReservation.departure_date}</td>
-                      <td>Return Date: {flightReservation.arrival_date}</td>
-                      {/* <Link to="/travel/dashboard/flight/checkout">
+                <tr>
+                  {data.length > 0 ? (
+                    <>
+                      {data.map((flightReservation) => (
+                        <tr scope="row" key={flightReservation.id}>
+                          <td>Departure: {flightReservation.departure_destination}</td>
+                          <td>Arrival: {flightReservation.arrival_destination}</td>
+                          <td>Cabin Class: {flightReservation.cabin_class}</td>
+                          <td>Departure Date: {flightReservation.departure_date}</td>
+                          <td>Return Date: {flightReservation.arrival_date}</td>
+                          {/* <Link to="/travel/dashboard/flight/checkout">
                         <button class="btn btn-dark">Book</button>
                       </Link> */}
-                    </tr>
-                  ))}</>) : (
-                <p>No flight reservations matching the given criteria found.</p>
-              )}
-              <td>
-                <div class="d-flex flex-row  mb-3">
-                  <div>
-                    {/*  */}
+                        </tr>
+                      ))}</>) : (
+                    <p>No flight reservations matching the given criteria found.</p>
+                  )}
+                  <td>
+                    <div class="d-flex flex-row  mb-3">
+                      <div>
+                        {/*  */}
 
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <div class="col-12">
             <Link to="/travel/dashboard/flight/select">
               <button type="submit" class="btn btn-secondary">

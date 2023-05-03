@@ -25,7 +25,7 @@ const BookHotel = () => {
   };
 
   const query = new URLSearchParams(queryParams).toString();
-  const url = `http://localhost:4000/api/flight/filter_search?${query}`;
+  const url = `http://localhost:4000/api/flight/filter?${query}`;
 
   const { data, loading, error, reFetch } = useFetch(url);
 
