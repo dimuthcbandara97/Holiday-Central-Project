@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderAll from "../Components/Headers/HeaderAll";
+import HeaderAll from "../../Headers/HeaderAll";
 import { Link } from "react-router-dom";
 
 const BookHotel = () => {
@@ -59,30 +59,7 @@ const BookHotel = () => {
             </div>
           </div>
 
-          <div class="row justify-content-start mt-3">
-            <div class="col-md-4">
-              <label for="inputState" class="form-label">
-                Hotel Room Type
-              </label>
-              <select id="inputState" class="form-select">
-                <option selected>Choose...</option>
-                <option>Deluxe</option>
-                <option>Super Deluxe</option>
-                <option>Suit</option>
-              </select>
-            </div>
-
-            <div class="col-md-4">
-              <label for="inputState" class="form-label">
-                Board Basis
-              </label>
-              <select id="inputState" class="form-select">
-                <option selected>Choose...</option>
-                <option>Full Board</option>
-                <option>Bread and Breakfast</option>
-              </select>
-            </div>
-          </div>
+          
 
           <div class="col-12">
             <Link to="/travel/dashboard/hotel/select">

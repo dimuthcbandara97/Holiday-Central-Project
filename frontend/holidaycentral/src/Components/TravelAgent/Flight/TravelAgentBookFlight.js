@@ -100,31 +100,7 @@ const TravelAgentBookFlight = () => {
             </div>
           </div>
 
-          <div class="row justify-content-start mt-3">
-            <div class="col-md-4">
-              <label for="inputState" class="form-label">
-                Meal Selection
-              </label>
-              <select id="inputState" class="form-select">
-                <option selected>Choose...</option>
-                <option>Sri Lankan</option>
-                <option>Indian</option>
-                <option>Italian</option>
-              </select>
-            </div>
-
-            <div class="col-md-4">
-              <label for="inputState" class="form-label">
-                Seat Selection
-              </label>
-              <select id="inputState" class="form-select">
-                <option selected>Choose...</option>
-                <option>Basic Widow</option>
-                <option>Isle</option>
-                <option>Middle Seat</option>
-              </select>
-            </div>
-          </div>
+          
           <div class="col-12">
             <Link to="/travel/dashboard/flight/select">
               <button type="submit" class="btn btn-secondary">

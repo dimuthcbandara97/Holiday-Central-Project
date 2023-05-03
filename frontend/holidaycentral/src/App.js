@@ -6,14 +6,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-import TravelAgentBookHotel from "./Components/TravelAgent/Hotel/TravelAgentBookHotel";
 import Create from "./AddDataManual/BackofficeAdmin/create";
 import FlightAddToCart from "./Components/TravelAgent/Flight/FlightAddToCart";
 import HotelAddToCart from "./Components/TravelAgent/Hotel/HotelAddToCart";
 import HotelSelect from "./Components/TravelAgent/Hotel/FilterHotel";
 import PackageAddToCart from "./Components/TravelAgent/Package/PackageAddToCart";
 import PackageSelect from "./Components/TravelAgent/Package/PackageFilter";
-import HotelSearch from "./Search/HotelSearch";
+import HotelSearch from "./Components/TravelAgent/Hotel/HotelSearch";
 import PackageSearch from "./Components/TravelAgent/Package/TravelAgentBookPackages";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginPage from "./Components/LoginPage/LoginPage";
