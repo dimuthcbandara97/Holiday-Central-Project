@@ -1,12 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function HeaderAll() {
   return (
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-xl">
-          <a class="navbar-brand fw-bold" href="#">
+          <Link class="navbar-brand fw-bold" to="/travel/dashboard">
             <i class="bi bi-square-half"></i> Holiday Central
-          </a>
+          </Link>
           <div >
 
           </div>

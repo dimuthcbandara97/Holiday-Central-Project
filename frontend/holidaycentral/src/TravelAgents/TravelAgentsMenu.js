@@ -1,8 +1,5 @@
 import React from "react";
 
-// import Plane from "./../../Assets/plane.png";
-// import Hotel from "./../../Assets/hotel.png";
-// import Sunset from "./../../Assets/sunset.png";
 import Plane from "../Assets/plane.png"
 import Hotel from "../Assets/hotel.png"
 import Sunset from "../Assets/sunset.png"
@@ -23,7 +20,7 @@ const TravelAgentMenu = () => {
                 <img src={Plane} alt="" width={40} />
                 <h4 class="card-title mt-3">Flight Ticket Reservation</h4>
                 <Link to="/travel/dashboard/flight" class="btn btn-outline-dark btn-lg mt-3">
-                  Book Now
+                  Book Your Flight
                 </Link>
               </div>
             </div>
@@ -34,9 +31,9 @@ const TravelAgentMenu = () => {
               <div class="card-body text-center py-4">
                 <img src={Hotel} alt="" width={40} />
                 <h4 class="card-title mt-3">Hotel Reservation</h4>
-                <a href="#" class="btn btn-outline-dark btn-lg mt-3">
-                  Book Now
-                </a>
+                <Link to='/travel/dashboard/hotel' class="btn btn-outline-dark btn-lg mt-3">
+                  Book Your Hotel
+                </Link>
               </div>
             </div>
           </div>
@@ -46,8 +43,8 @@ const TravelAgentMenu = () => {
               <div class="card-body text-center py-4">
                 <img src={Sunset} alt="" width={40} />
                 <h4 class="card-title mt-3">Holiday Packages</h4>
-                <Link to="#" class="btn btn-outline-dark btn-lg mt-3">
-                  Book Now
+                <Link to="/travel/dashboard/package" class="btn btn-outline-dark btn-lg mt-3">
+                  Book Your Package
                 </Link>
               </div>
             </div>

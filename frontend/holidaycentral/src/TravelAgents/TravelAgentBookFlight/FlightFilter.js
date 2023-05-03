@@ -1,8 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import HeaderAll from "../../Components/HeaderAll";
 
 const BookHotel = () => {
   return (
     <>
+      <HeaderAll/>
       <div class="p-5 m-5 border rounded justify-content-center">
         <div class="fs-2 fw-bold justify-content-center my-3">
           Flight Booking
@@ -86,7 +89,10 @@ const BookHotel = () => {
               <td>
                 <div class="d-flex flex-row  mb-3">
                   <div>
+                    {/*  */}
+                    <Link to="/travel/dashboard/flight/checkout">
                     <button class="btn btn-dark">Book</button>
+                    </Link>
                   </div>
                 </div>
               </td>

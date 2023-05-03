@@ -1,5 +1,6 @@
 import React from "react";
 import HeaderAll from "../../Components/HeaderAll";
+import { Link } from "react-router-dom";
 
 const BookHotel = () => {
   return (
@@ -90,7 +91,10 @@ const BookHotel = () => {
               <td>
                 <div class="d-flex flex-row  mb-3">
                   <div>
+                    <Link to='/travel/dashboard/hotel/checkout'>
                     <button class="btn btn-dark">Book</button>
+                    </Link>
+                    
                   </div>
                 </div>
               </td>

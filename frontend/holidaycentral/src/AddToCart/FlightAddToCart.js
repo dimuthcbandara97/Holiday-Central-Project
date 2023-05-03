@@ -157,6 +157,7 @@ function FlightAddToCart() {
             <input
               name="departure_destination"
               onChange={(e) => setDepartureDestination(e.target.value)}
+              required
             />
           </Form.Field>
 
@@ -165,20 +166,25 @@ function FlightAddToCart() {
             <input
               name="arrival_destination"
               onChange={(e) => setArrivalDestination(e.target.value)}
+              required
             />
           </Form.Field>
           <Form.Field className="form-field">
             <label>Departure Date</label>
             <input
+            type="date"
               name="departure_date"
               onChange={(e) => setDepartureDate(e.target.value)}
+              required
             />
           </Form.Field>
           <Form.Field className="form-field">
             <label>Arrival Date</label>
             <input
+            type="date"
               name="arrival_date"
               onChange={(e) => setArrivalDate(e.target.value)}
+              required
             />
           </Form.Field>
           <Form.Field className="form-field">
@@ -186,6 +192,7 @@ function FlightAddToCart() {
             <input
               name="cabin_class"
               onChange={(e) => setCabinClass(e.target.value)}
+              required
             />
           </Form.Field>
           <Form.Field className="form-field">
@@ -193,12 +200,14 @@ function FlightAddToCart() {
             <input
               name="duration"
               onChange={(e) => setDuration(e.target.value)}
+              required
             />
           </Form.Field>
           {/* // "price", */}
           <Form.Field className="form-field">
             <label>Price</label>
-            <input name="price" onChange={(e) => setPrice(e.target.value)} />
+            <input name="price" onChange={(e) => setPrice(e.target.value)}
+            required />
           </Form.Field>
           {/* // "airline", */}
           <Form.Field className="form-field">
@@ -206,6 +215,7 @@ function FlightAddToCart() {
             <input
               name="airline"
               onChange={(e) => setAirline(e.target.value)}
+              required
             />
           </Form.Field>
           {/* // "agent_name", */}
@@ -214,6 +224,7 @@ function FlightAddToCart() {
             <input
               name="agent_name"
               onChange={(e) => setAgentName(e.target.value)}
+              required
             />
           </Form.Field>
           {/* // "user_name", */}
@@ -222,22 +233,27 @@ function FlightAddToCart() {
             <input
               name="user_name"
               onChange={(e) => setUserName(e.target.value)}
+              required
             />
           </Form.Field>
           {/* // "user_email", */}
           <Form.Field className="form-field">
             <label>User Email</label>
             <input
+            type="email"
               name="user_email"
               onChange={(e) => setUserEmail(e.target.value)}
+              required
             />
           </Form.Field>
           {/* // "checkout_date", */}
           <Form.Field className="form-field">
             <label>Checkout Date</label>
             <input
+            type="date"
               name="checkout_date"
               onChange={(e) => setCheckoutDate(e.target.value)}
+              required
             />
           </Form.Field>
           {/* // "additional_note", */}
@@ -246,6 +262,7 @@ function FlightAddToCart() {
             <input
               name="additional_note"
               onChange={(e) => setAdditionalNotice(e.target.value)}
+              required
             />
           </Form.Field>
 
@@ -254,26 +271,35 @@ function FlightAddToCart() {
             <input
               name="middle"
               onChange={(e) => setMiddleAmount(e.target.value)}
+              required
             />
           </Form.Field>
           <Form.Field className="form-field">
             <label>No of Isle Seats</label>
-            <input name="isle" onChange={(e) => setIsle(e.target.value)} />
+            <input name="isle" onChange={(e) => setIsle(e.target.value)} 
+            required
+            />
           </Form.Field>
 
           <Form.Field className="form-field">
             <label>No of Widow Seats</label>
-            <input name="widow" onChange={(e) => setWidow(e.target.value)} />
+            <input name="widow" onChange={(e) => setWidow(e.target.value)} 
+            required
+            />
           </Form.Field>
 
           <Form.Field className="form-field">
             <label>No of Basic Seats</label>
-            <input name="basic" onChange={(e) => setBasic(e.target.value)} />
+            <input name="basic" onChange={(e) => setBasic(e.target.value)}
+            required
+            />
           </Form.Field>
 
           <Form.Field className="form-field">
             <label>No of Indian Food Likees</label>
-            <input name="indian" onChange={(e) => setIndian(e.target.value)} />
+            <input name="indian" onChange={(e) => setIndian(e.target.value)} 
+            required
+            />
           </Form.Field>
 
           <Form.Field className="form-field">
@@ -281,6 +307,7 @@ function FlightAddToCart() {
             <input
               name="sri_lankan"
               onChange={(e) => setSriLankan(e.target.value)}
+              required
             />
           </Form.Field>
 
@@ -289,6 +316,7 @@ function FlightAddToCart() {
             <input
               name="italian"
               onChange={(e) => setItalian(e.target.value)}
+              required
             />
           </Form.Field>
           <Form.Field className="form-submit">

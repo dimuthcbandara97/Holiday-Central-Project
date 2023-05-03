@@ -162,6 +162,7 @@ function HotelAddToCart() {
           <Form.Field className="form-field">
             <label>Destination</label>
             <input
+              required
               name="destination"
               onChange={(e) => setDestination(e.target.value)}
             />
@@ -171,6 +172,8 @@ function HotelAddToCart() {
           <Form.Field className="form-field">
             <label>Check In Date</label>
             <input
+            type="date"
+              required
               name="check_in_date"
               onChange={(e) => setCheckInDate(e.target.value)}
             />
@@ -180,6 +183,8 @@ function HotelAddToCart() {
           <Form.Field className="form-field">
             <label>Check Out Date</label>
             <input
+            type="date"
+              required
               name="check_out_date"
               onChange={(e) => setCheck_OutDate(e.target.value)}
             />
@@ -188,6 +193,7 @@ function HotelAddToCart() {
           <Form.Field className="form-field">
             <label>Start Rating</label>
             <input
+              required
               name="star_rating"
               onChange={(e) => setStarRating(e.target.value)}
             />
@@ -196,6 +202,7 @@ function HotelAddToCart() {
           <Form.Field className="form-field">
             <label>Room Selection</label>
             <input
+              required
               name="room_selection"
               onChange={(e) => setRoomSelection(e.target.value)}
             />
@@ -204,6 +211,7 @@ function HotelAddToCart() {
           <Form.Field className="form-field">
             <label>Board Basis</label>
             <input
+              required
               name="board_basis"
               onChange={(e) => setBoardBasis(e.target.value)}
             />
@@ -212,6 +220,7 @@ function HotelAddToCart() {
           <Form.Field className="form-field">
             <label>Pricing</label>
             <input
+              required
               name="pricing"
               onChange={(e) => setPricing(e.target.value)}
             />
@@ -219,12 +228,16 @@ function HotelAddToCart() {
           {/* // pool */}
           <Form.Field className="form-field">
             <label>Pool</label>
-            <input name="pool" onChange={(e) => setPool(e.target.value)} />
+            <input 
+            placeholder="true / false"
+            required name="pool" onChange={(e) => setPool(e.target.value)} />
           </Form.Field>
           {/* // kids_play_area */}
           <Form.Field className="form-field">
             <label>Kids Play Area</label>
             <input
+              placeholder="true / false"
+              required
               name="kids_play_area"
               onChange={(e) => setKidsPlayArea(e.target.value)}
             />
@@ -233,6 +246,8 @@ function HotelAddToCart() {
           <Form.Field className="form-field">
             <label>Beach Access</label>
             <input
+              placeholder="true / false"
+              required
               name="beach_access"
               onChange={(e) => setBeachAccess(e.target.value)}
             />
@@ -241,6 +256,7 @@ function HotelAddToCart() {
           <Form.Field className="form-field">
             <label>Agent Name</label>
             <input
+              required
               name="agent_name"
               onChange={(e) => setAgentName(e.target.value)}
             />
@@ -249,6 +265,7 @@ function HotelAddToCart() {
           <Form.Field className="form-field">
             <label>User Name</label>
             <input
+              required
               name="user_name"
               onChange={(e) => setUserName(e.target.value)}
             />
@@ -258,6 +275,7 @@ function HotelAddToCart() {
           <Form.Field className="form-field">
             <label>Additional Notes</label>
             <input
+              required
               name="aditional_note"
               onChange={(e) => setAdditionalNotice(e.target.value)}
             />
@@ -266,6 +284,7 @@ function HotelAddToCart() {
           <Form.Field className="form-field">
             <label>User Email</label>
             <input
+              required
               name="user_email"
               onChange={(e) => setUserEmail(e.target.value)}
             />
@@ -273,42 +292,67 @@ function HotelAddToCart() {
           {/* // suite : true */}
           <Form.Field className="form-field">
             <label>Suite</label>
-            <input name="suite" onChange={(e) => setSuite(e.target.value)} />
+            <input
+              required
+              name="suite" onChange={(e) => setSuite(e.target.value)}
+              placeholder="true / false"
+              />
           </Form.Field>
           {/* // deluxe true */}
           <Form.Field className="form-field">
             <label>Deluxe</label>
-            <input name="deluxe" onChange={(e) => setDeluxe(e.target.value)} />
+            <input
+              required
+              name="deluxe" onChange={(e) => setDeluxe(e.target.value)} 
+              placeholder="true / false"
+              />
           </Form.Field>
           {/* // super_deluxe true */}
           <Form.Field className="form-field">
             <label>Super Deluxe</label>
             <input
+              required
               name="super_deluxe"
               onChange={(e) => setSuperDeluxe(e.target.value)}
+              placeholder="true / false"
             />
           </Form.Field>
           {/* // breakfast true */}
           <Form.Field className="form-field">
             <label>breakfast</label>
             <input
+              required
               name="breakfast"
               onChange={(e) => setBreakfast(e.target.value)}
-              placeholder="breakfast"
+              placeholder="true / false"
             />
           </Form.Field>
 
           {/* // bread true */}
           <Form.Field className="form-field">
             <label>Bread</label>
-            <input name="bread" onChange={(e) => setBread(e.target.value)} />
+            <input required name="bread" onChange={(e) => setBread(e.target.value)}
+            placeholder="true / false"
+            />
+         
           </Form.Field>
           {/* // full_board true */}
           <Form.Field className="form-field">
             <label>Full Board</label>
             <input
+              required
               name="full_board"
               onChange={(e) => setFullBoard(e.target.value)}
+              placeholder="true / false"
+            />
+          </Form.Field>
+          <Form.Field className="form-field">
+            <label>Checkout Date(Billing Date You want to finalize) </label>
+            <input
+              required
+              name="checkout_date"
+              onChange={(e) => setCheckoutDate(e.target.value)}
+              type="date"
             />
           </Form.Field>
 

@@ -22,21 +22,13 @@ import TravelAgentSelectFlight from "./TravelAgents/TravelAgentBookFlight/Flight
 function App() {
   return (
     <div className="App">
-      {/* <FlightSearch/> */}
-      {/* <HotelSearch/> */}
-      {/* <PackageSearch/> */}
-      {/* <TravelAgentBookFlight/> */}
-      {/* <TravelAgentBookHotel/> */}
-      {/* <Create/>
-       */}
-      {/* <FlightAddToCart/> */}
-      {/* <HotelAddToCart/> */}
+
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LoginPage />}></Route>
+          <Route exact path="/" element={<LoginPage />}></Route>
 
           {/* Routes for Admin  */}
-          <Route path="/admin" element={<HotelAddToCart />}></Route>
+          {/* <Route path="/admin" element={<HotelAddToCart />}></Route> */}
 
           <Route path="/admin/dashboard/:id" element={<TestRoute />}></Route>
 
