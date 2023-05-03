@@ -288,6 +288,43 @@ exports.countBy = (req, res) => {
       });
     });
 };
+
+exports.countBySearch = (req, res) => {
+  const { departure_destination,
+    arrival_destination,
+    departure_date,
+    arrival_date,
+    cabin_class, } = req.query;
+    const query = {};
+    
+    if (departure_destination) {
+      query.departure_destination = departure_destination;
+    }
+    if (arrival_destination) {
+      query.arrival_destination = arrival_destination;
+    }
+    if (departure_date) {
+      query.departure_date = departure_date;
+    }
+    if (arrival_date) {
+      query.arrival_date = arrival_date;
+    }
+    if (cabin_class) {
+      query.cabin_class = cabin_class;
+    }
+
+  FlightReservationDb.countDocuments(query)
+    .then(count => {
+      res.send({ count: count });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message ||
+          "Some error occurred while retrieving the count of flight reservations."
+      });
+    });
+};
 // update a new identifed user by user id
 exports.update = (req, res) => {
   if (!req.body) {

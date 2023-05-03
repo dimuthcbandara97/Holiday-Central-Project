@@ -48,6 +48,7 @@ route.delete('/api/flight/:id',flight.delete)
 route.get('/api/flight/count',flight.countBy)
 route.get('/api/flight/filter',flight.findBy)
 route.get('/api/flight/filter_search',flight.findBySearch)
+route.get('/api/flight/count_search',flight.countBySearch)
 
 // API routes for hotel reservation
 route.post('/api/hotel',hotel.create)
@@ -57,6 +58,7 @@ route.delete('/api/hotel/:id',hotel.delete)
 route.get('/api/hotel/count',hotel.countBy)
 route.get('/api/hotel/filter',hotel.findBy)
 route.get('/api/hotel/filter_search',hotel.findBySearch)
+route.get('/api/hotel/count_search',hotel.countBySearch)
 
 // API routes for package reservation
 route.post('/api/package',packagecontroller.create)
@@ -66,6 +68,7 @@ route.delete('/api/package/:id',packagecontroller.delete)
 route.get('/api/package/count',packagecontroller.countBy)
 route.get('/api/package/filter',packagecontroller.findBy)
 route.get('/api/package/filter_search',packagecontroller.findBySearch)
+route.get('/api/package/count_search',packagecontroller.countBySearch)
 
 // API routes for Traveling controller
 route.post('/api/travel',travel.create)

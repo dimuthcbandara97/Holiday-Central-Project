@@ -198,6 +198,36 @@ exports.countBy = (req, res) => {
       });
     });
 };
+
+exports.countBySearch = (req, res) => {
+  const { destination, check_in_date, check_out_date, star_rating } = req.query;
+  const query = {};
+
+  if (destination) {
+    query.destination = destination;
+  }
+  if (star_rating) {
+    query.star_rating = star_rating;
+  }
+  if (check_in_date) {
+    query.check_in_date = check_in_date;
+  }
+  if (check_out_date) {
+    query.check_out_date = check_out_date;
+  }
+
+  HotelReservationsDb.countDocuments(query)
+    .then(count => {
+      res.send({ count: count });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message ||
+          "Some error occurred while retrieving the count of flight reservations."
+      });
+    });
+};
 // update a new identifed user by user id
 exports.update = (req, res) => {
     if(!req.body){

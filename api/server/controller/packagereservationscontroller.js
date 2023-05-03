@@ -285,6 +285,40 @@ exports.countBy = (req, res) => {
       });
     });
 };
+
+exports.countBySearch = (req, res) => {
+  const { destination,
+    speciality,
+    duration,
+    number_of_travellers, } = req.query;
+    const query = {};
+  
+    if (destination) {
+      query.destination = destination;
+    }
+    if (duration) {
+      query.duration = duration;
+    }
+    if (speciality) {
+      query.speciality = speciality;
+    }
+    if (number_of_travellers) {
+      query.number_of_travellers = number_of_travellers;
+    }
+
+  PackageReservationsDB.countDocuments(query)
+    .then(count => {
+      res.send({ count: count });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message ||
+          "Some error occurred while retrieving the count of flight reservations."
+      });
+    });
+};
+
 // update a new identifed user by user id
 exports.update = (req, res) => {
     if(!req.body){
