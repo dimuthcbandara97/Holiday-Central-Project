@@ -1,11 +1,40 @@
 import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import HeaderAll from "../../Components/HeaderAll";
+import useFetch from "../../hooks/useFetch";
 
 const BookHotel = () => {
+
+  const [priceMin, setPriceMin] = useState("");
+  const [priceMax, setPriceMax] = useState("");
+  const [duration, setDuration] = useState("");
+  const [airline, setAirline] = useState("");
+
+  const queryParams = {
+    priceMin,
+    priceMax,
+    duration,
+    airline,
+  };
+
+  const query = new URLSearchParams(queryParams).toString();
+  const url = `http://localhost:4000/api/flight/filter?${query}`;
+
+  const { data, loading, error, reFetch } = useFetch(url);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    reFetch();
+  };
+  // function handleDropdownChange(e) {
+  //   const selectedValue = e.target.value;
+  //   setPriceMin(selectedValue);
+  // }
+  
   return (
     <>
-      <HeaderAll/>
+      <HeaderAll />
       <div class="p-5 m-5 border rounded justify-content-center">
         <div class="fs-2 fw-bold justify-content-center my-3">
           Flight Booking
@@ -17,11 +46,16 @@ const BookHotel = () => {
               <label for="inputState" class="form-label">
                 Duration
               </label>
-              <select id="inputState" class="form-select">
+              <select
+                id="inputState"
+                class="form-select"
+                value={duration} // Added value attribute to sync state with the selected value
+                onChange={(e) => setDuration(e.target.value)}
+              >
                 <option selected>Choose...</option>
-                <option>2-4 Hours</option>
-                <option>3-6 Hours</option>
-                <option>3-8 Hours</option>
+                <option value="2-4 Hours">2-4 Hours</option>
+                <option value="3-6 Hours">3-6 Hours</option>
+                <option value="3-8 Hours">3-8 Hours</option>
               </select>
             </div>
 
@@ -52,11 +86,16 @@ const BookHotel = () => {
               <label for="inputState" class="form-label">
                 Airline
               </label>
-              <select id="inputState" class="form-select">
+              <select
+                id="inputState"
+                class="form-select"
+                value={airline} // Added value attribute to sync state with the selected value
+                onChange={(e) => setAirline(e.target.value)}
+              >
                 <option selected>Choose...</option>
-                <option>Sri Lanka Airlines</option>
-                <option>Emirates</option>
-                <option>Air France</option>
+                <option value="Emirates">Emirates</option>
+                <option value="Sri Lankan">Sri Lankan</option>
+                <option value="Air France">Air France</option>
               </select>
             </div>
 
@@ -70,28 +109,38 @@ const BookHotel = () => {
       </div>
 
       <div class="p-5 m-5 border rounded justify-content-start">
+      {loading && <p>Loading...</p>}
+
+{error && <p>{error.message}</p>}
+
         <table class="table">
+          
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Airline</th>
-              <th scope="col">Price</th>
-              <th scope="col">Duration</th>
+              <th scope="col">Overall Details Of The Fligts</th>
               <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
+            
             <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>
+            {data.length > 0 ? (
+              <>
+            {data.map((flightReservation) => (
+      <tr scope="row" key={flightReservation.id}>
+        <td>Price: {flightReservation.price}</td>
+        <td>Duration: {flightReservation.duration}</td>
+        <td>Airline: {flightReservation.airline}</td>
+      </tr>
+    ))}</>): (
+      <p>No flight reservations matching the given criteria found.</p>
+    )} 
+              <td> 
                 <div class="d-flex flex-row  mb-3">
                   <div>
                     {/*  */}
                     <Link to="/travel/dashboard/flight/checkout">
-                    <button class="btn btn-dark">Book</button>
+                      <button class="btn btn-dark">Book</button>
                     </Link>
                   </div>
                 </div>
@@ -100,6 +149,9 @@ const BookHotel = () => {
           </tbody>
         </table>
       </div>
+
+
+
     </>
   );
 };
