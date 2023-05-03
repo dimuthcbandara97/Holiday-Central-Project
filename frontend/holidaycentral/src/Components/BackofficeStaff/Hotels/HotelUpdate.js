@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderBackOffice from "../../HeaderBackOffice";
+import HeaderBackOffice from "../../Headers/HeaderBackOffice";
 
 const Update = () => {
   return (

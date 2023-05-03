@@ -1,6 +1,5 @@
 import React from "react";
-import HeaderAll from "../../HeaderAll";
-import HeaderAdmin from "../../HeaderAdmin";
+import HeaderAdmin from "../../Headers/HeaderAdmin";
 
 const Reset = () => {
   return (

@@ -8,7 +8,7 @@ import Calendar from "../../Assets/calendartime.png";
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/fontawesome-free'
 import { faHotel } from '@fortawesome/free-solid-svg-icons';
-import HeaderAll from "../../Components/HeaderAll";
+import HeaderAll from "../../Components/Headers/HeaderAll";
 
 const TravelAgentBookHotel = () => {
 

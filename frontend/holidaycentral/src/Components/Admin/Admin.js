@@ -2,8 +2,7 @@ import React from "react";
 
 import AddUser from "./../../Assets/add-user.png";
 import Lock from "./../../Assets/padlock.png";
-import HeaderAll from "../HeaderAll";
-import HeaderAdmin from "../HeaderAdmin";
+import HeaderAdmin from "../Headers/HeaderAdmin";
 
 const Admin = () => {
   return (

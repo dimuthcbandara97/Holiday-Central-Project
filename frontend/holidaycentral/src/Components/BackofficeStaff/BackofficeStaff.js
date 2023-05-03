@@ -4,7 +4,7 @@ import Hotel from "./../../Assets/hotel.png";
 import Sunset from "./../../Assets/sunset.png";
 import Plane from "./../../Assets/plane.png";
 
-import HeaderBackOffice from "../HeaderBackOffice";
+import HeaderBackOffice from "../Headers/HeaderBackOffice";
 
 const BackofficeStaff = () => {
   return (
