@@ -152,6 +152,110 @@ function HotelAddToCart() {
       });
   };
 
+  const sendDataToCart = () => {
+    const data = new URLSearchParams();
+
+    // destination
+    data.append("destination", destination);
+    // check_in_date
+    data.append("check_in_date", check_in_date);
+    // check_out_date
+    data.append("check_out_date", check_out_date);
+    // star_rating
+    data.append("star_rating", star_rating);
+    // room_selection
+    data.append("room_selection", room_selection);
+    // board_basis
+    data.append("board_basis", board_basis);
+    // pricing
+    data.append("pricing", pricing);
+    // pool
+    data.append("pool", pool);
+    // kids_play_area
+    data.append("kids_play_area", kids_play_area);
+    // beach_access
+    data.append("beach_access", beach_access);
+    // agent_name
+    data.append("agent_name", agent_name);
+    // user_name
+    data.append("user_name", user_name);
+    // checkout_date
+    data.append("checkout_date", checkout_date);
+    // aditional_note
+    data.append("aditional_note", aditional_note);
+    // user_email
+    data.append("user_email", user_email);
+    // suite : true
+    data.append("suite", suite);
+    // deluxe true
+    data.append("deluxe", deluxe);
+    // super_deluxe true
+    data.append("super_deluxe", super_deluxe);
+    // breakfast true
+    data.append("breakfast", breakfast);
+    // bread true
+    data.append("bread", bread);
+    // full_board true
+    data.append("full_board", full_board);
+
+    request
+      .post("http://localhost:4000/api/cart/hotel")
+      .set("Content-Type", "application/x-www-form-urlencoded")
+      .set("Access-Control-Allow-Origin", "*")
+      .send(data)
+      .then((response) => {
+        console.log(response.body);
+
+        // destination
+        setDestination("");
+        // check_in_date
+        setCheckInDate("");
+        // check_out_date
+        setCheck_OutDate("");
+        // star_rating
+        setStarRating("");
+        // room_selection
+        setRoomSelection("");
+        // board_basis
+        setBoardBasis("");
+        // pricing
+        setPricing("");
+        // pool
+        setPool("");
+        // kids_play_area
+        setKidsPlayArea("");
+        // beach_access
+        setBeachAccess("");
+        // agent_name
+        setAgentName("");
+        // user_name
+        setUserName("");
+        // checkout_date
+        setCheckoutDate("");
+        // aditional_note
+        setAdditionalNotice("");
+        // user_email
+        setUserEmail("");
+        // suite : true
+        setSuite("");
+        // deluxe true
+        setDeluxe("");
+        // super_deluxe true
+        setSuperDeluxe("");
+        // breakfast true
+        setBreakfast("");
+        // bread true
+        setBread("");
+        // full_board true
+        setFullBoard("");
+
+        alert("Data sent successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <>
       <HeaderAll />
@@ -364,7 +468,7 @@ function HotelAddToCart() {
           </Form.Field>
 
           <Form.Field className="form-submit">
-            <Button type="submit" class="btn me-5">
+            <Button type="submit" class="btn me-5" onClick={sendDataToCart}>
               Add To Cart
               {/* <span className="search-icon"> &#x1F50D;</span> */}
             </Button>

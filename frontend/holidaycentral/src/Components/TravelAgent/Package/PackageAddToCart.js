@@ -115,6 +115,84 @@ function PackageAddToCart() {
       });
   };
 
+  const sendDataToCart = () => {
+    const data = new URLSearchParams();
+
+    // destination
+    data.append("destination", destination);
+    // speciality
+    data.append("speciality", speciality);
+    // duration
+    data.append("duration", duration);
+    // number_of_travellers
+    data.append("number_of_travellers", number_of_travellers);
+    // price
+    data.append("price", price);
+    // package_rating
+    data.append("package_rating", package_rating);
+    // agent_name
+    data.append("agent_name", agent_name);
+    // user_name
+    data.append("user_name", user_name);
+    // user_email
+    data.append("user_email", user_email);
+    // checkout_date
+    data.append("checkout_date", checkout_date);
+    // aditional_note
+    data.append("aditional_note", aditional_note);
+    // family_holiday
+    data.append("family_holiday", family_holiday);
+    // wildlife_excursion
+    data.append("wildlife_excursion", wildlife_excursion);
+    // beach_holiday
+    data.append("beach_holiday", beach_holiday);
+    // honeymoon
+    data.append("honeymoon", honeymoon);
+
+    request
+      .post("http://localhost:4000/api/cart/package")
+      .set("Content-Type", "application/x-www-form-urlencoded")
+      .set("Access-Control-Allow-Origin", "*")
+      .send(data)
+      .then((response) => {
+        console.log(response.body);
+        // reset form data after successful submission
+        // destination
+        setDestination("");
+        // speciality
+        setSpeciality("");
+        // duration
+        setDurattion("");
+        // number_of_travellers
+        setNumberOfTravellers("");
+        // price
+        setPrice("");
+        // package_rating
+        setPackageRating("");
+        // agent_name
+        setAgentName("");
+        // user_email
+        setUserEmail("");
+        // user_name
+        setUserName("");
+        // checkout_date
+        setCheckoutDate("");
+        // aditional_note
+        setAdditionalNotice("");
+        // family_holiday
+        setFamilyHoliday("");
+        // wildlife_excursion
+        setWildlifeExcursion("");
+        // beach_holiday
+        setBeachHoliday("");
+        // honeymoon
+        setHoneymoon("");
+        alert("Data sent successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <>
       <HeaderAll />
@@ -128,6 +206,7 @@ function PackageAddToCart() {
             <input
               name="destination"
               onChange={(e) => setDestination(e.target.value)}
+              required
             />
           </Form.Field>
 
@@ -137,6 +216,7 @@ function PackageAddToCart() {
             <input
               name="speciality"
               onChange={(e) => setSpeciality(e.target.value)}
+              required
             />
           </Form.Field>
 
@@ -146,6 +226,7 @@ function PackageAddToCart() {
             <input
               name="duration"
               onChange={(e) => setDurattion(e.target.value)}
+              required
             />
           </Form.Field>
 
@@ -155,19 +236,23 @@ function PackageAddToCart() {
             <input
               name="number_of_travellers"
               onChange={(e) => setNumberOfTravellers(e.target.value)}
+              required
             />
           </Form.Field>
 
           {/* price */}
           <Form.Field className="form-field">
             <label>Price</label>
-            <input name="price" onChange={(e) => setPrice(e.target.value)} />
+            <input name="price" onChange={(e) => setPrice(e.target.value)}
+              required
+            />
           </Form.Field>
 
           {/* package_rating */}
           <Form.Field className="form-field">
             <label>Package Rating</label>
             <input
+              required
               name="package_rating"
               onChange={(e) => setPackageRating(e.target.value)}
             />
@@ -177,6 +262,7 @@ function PackageAddToCart() {
           <Form.Field className="form-field">
             <label>Agent Name</label>
             <input
+              required
               name="agent_name"
               onChange={(e) => setAgentName(e.target.value)}
             />
@@ -186,6 +272,7 @@ function PackageAddToCart() {
           <Form.Field className="form-field">
             <label>User Name</label>
             <input
+              required
               name="user_name"
               onChange={(e) => setUserName(e.target.value)}
             />
@@ -195,6 +282,7 @@ function PackageAddToCart() {
           <Form.Field className="form-field">
             <label>User Email</label>
             <input
+              required
               name="user_email"
               onChange={(e) => setUserEmail(e.target.value)}
             />
@@ -204,6 +292,7 @@ function PackageAddToCart() {
           <Form.Field className="form-field">
             <label>Checkout Date</label>
             <input
+              required
               name="checkout_date"
               onChange={(e) => setCheckoutDate(e.target.value)}
             />
@@ -213,6 +302,7 @@ function PackageAddToCart() {
           <Form.Field className="form-field">
             <label>Aditional Note</label>
             <input
+              required
               name="aditional_note"
               onChange={(e) => setAdditionalNotice(e.target.value)}
             />
@@ -222,6 +312,7 @@ function PackageAddToCart() {
           <Form.Field className="form-field">
             <label>Family Holiday</label>
             <input
+              required
               name="family_holiday"
               onChange={(e) => setFamilyHoliday(e.target.value)}
             />
@@ -231,6 +322,7 @@ function PackageAddToCart() {
           <Form.Field className="form-field">
             <label>Wildlife Excursion</label>
             <input
+              required
               name="wildlife_excursion"
               onChange={(e) => setWildlifeExcursion(e.target.value)}
             />
@@ -240,6 +332,7 @@ function PackageAddToCart() {
           <Form.Field className="form-field">
             <label>Beach Holiday</label>
             <input
+              required
               name="beach_holiday"
               onChange={(e) => setBeachHoliday(e.target.value)}
             />
@@ -249,13 +342,14 @@ function PackageAddToCart() {
           <Form.Field className="form-field">
             <label>Honeymoon</label>
             <input
+              required
               name="honeymoon"
               onChange={(e) => setHoneymoon(e.target.value)}
             />
           </Form.Field>
 
           <Form.Field className="form-submit">
-            <Button type="submit" class="btn me-5">
+            <Button type="submit" class="btn me-5" onClick={sendDataToCart}>
               Add To Cart
               {/* <span className="search-icon"> &#x1F50D;</span> */}
             </Button>
