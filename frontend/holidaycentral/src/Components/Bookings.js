@@ -1,12 +1,61 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import HeaderAll from "./Headers/HeaderAll";
-
+import useFetch from "../hooks/useFetch";
+import axios from 'axios';
 
 const Booking = () => {
 
+  const [dataFlight, setDataFlight] = useState([]);
+  const [dataHotel, setDataHotel] = useState([]);
+  const [dataPackage, setDataPackage] = useState([]);
+
+  useEffect(() => {
+    // Cart Flight
+    axios.get('localhost:4000/api/checkout/flight')
+      .then(response => {
+        setDataFlight(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+      // Cart Hotel
+      // axios.get('localhost:4000/api/checkout/hotel')
+      // .then(response => {
+      //   setDataHotel(response.data);
+      // })
+      // .catch(error => {
+      //   console.log(error);
+      // });
+      // // Cart Package
+      // axios.get('localhost:4000/api/checkout/package')
+      // .then(response => {
+      //   setDataPackage(response.data);
+      // })
+      // .catch(error => {
+      //   console.log(error);
+      // });
+  }, []);
   return (
     <>
       <HeaderAll />
+      {dataFlight.map(item => (
+        <div key={item.id}>
+          <h3>{item.price}</h3>
+          <p>{item.duration ? 'Completed' : 'Not completed'}</p>
+        </div>
+      ))}
+      {/* {dataHotel.map(item => (
+        <div key={item.id}>
+          <h3>{item.room_selection}</h3>
+          <p>{item.duration ? 'Completed' : 'Not completed'}</p>
+        </div>
+      ))}
+      {dataFlight.map(item => (
+        <div key={item.id}>
+          <h3>{item.price}</h3>
+          <p>{item.duration ? 'Completed' : 'Not completed'}</p>
+        </div>
+      ))} */}
       <div class="container m-3 ps-3">
         <div class="display-4 fw-bold text-dark">
           <i class="bi bi-calendar-check me-4"></i>Reservations
