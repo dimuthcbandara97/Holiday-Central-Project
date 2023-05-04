@@ -47,6 +47,7 @@ function FlightAddToCart() {
   // italian
   const [italian, setItalian] = useState("");
 
+  // Direct Booking of the Flights
   const sendDataToAPI = () => {
     const data = new URLSearchParams();
     // Departure Destination
@@ -140,6 +141,99 @@ function FlightAddToCart() {
       });
   };
 
+  // Add an Item to the Cart
+  const sendDataToCart = () => {
+    const data = new URLSearchParams();
+    // Departure Destination
+    data.append("departure_destination", departure_destination);
+    // Arrival Destination
+    data.append("arrival_destination", arrival_destination);
+    // Departure Date
+    data.append("departure_date", departure_date);
+    // Arrival Date
+    data.append("arrival_date", arrival_date);
+    // Cabin Class
+    data.append("cabin_class", cabin_class);
+    // Duration
+    data.append("duration", duration);
+    {
+      /* // "price", */
+    }
+    data.append("price", price);
+    {
+      /* // "airline", */
+    }
+    data.append("airline", airline);
+    {
+      /* // "agent_name", */
+    }
+    data.append("agent_name", agent_name);
+    {
+      /* // "user_name", */
+    }
+    data.append("user_name", user_name);
+    {
+      /* // "user_email", */
+    }
+    data.append("user_email", user_email);
+    {
+      /* // "checkout_date", */
+    }
+    data.append("checkout_date", checkout_date);
+    {
+      /* // "additional_note", */
+    }
+    data.append("additional_note", additional_note);
+
+    // middle
+    data.append("middle", middle);
+    // isle
+    data.append("isle", isle);
+    // widow
+    data.append("widow", widow);
+    // basic
+    data.append("basic", basic);
+    // indian
+    data.append("indian", indian);
+    // sri_lankan
+    data.append("sri_lankan", sri_lankan);
+    // italian
+    data.append("italian", italian);
+
+    request
+      .post("http://localhost:4000/api/cart/flight")
+      .set("Content-Type", "application/x-www-form-urlencoded")
+      .set("Access-Control-Allow-Origin", "*")
+      .send(data)
+      .then((response) => {
+        console.log(response.body);
+        // reset form data after successful submission
+        setDepartureDestination("");
+        setArrivalDestination("");
+        setDepartureDate("");
+        setArrivalDate("");
+        setCabinClass("");
+        setDuration("");
+        setPrice("");
+        setAirline("");
+        setAgentName("");
+        setUserName("");
+        setUserEmail("");
+        setCheckoutDate("");
+        setAdditionalNotice("");
+        setMiddleAmount("");
+        setIsle("");
+        setWidow("");
+        setBasic("");
+        setIndian("");
+        setSriLankan("");
+        setItalian("");
+        alert("Data sent successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <>
       <HeaderAll />
@@ -325,7 +419,7 @@ function FlightAddToCart() {
             />
           </Form.Field>
           <Form.Field className="form-submit">
-            <Button type="submit" class="btn btn-dark">
+            <Button type="submit" onClick={sendDataToCart} class="btn btn-dark">
               Add To Cart
               {/* <span className="search-icon"> &#x1F50D;</span> */}
             </Button>
