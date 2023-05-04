@@ -54,6 +54,7 @@ const BookHotel = () => {
                 <option value="Colombo">Colombo</option>
                 <option value="Negombo">Negombo</option>
                 <option value="Galle">Galle</option>
+                <option value="Kurunegala">Kurunegala</option>
               </select>
             </div>
           </div>
@@ -121,39 +122,27 @@ const BookHotel = () => {
 
         {error && <p>The Selected Options Isn't Available </p>}
 
-        <table class="table">
+        <div class="fs-3">Overall Details Of The Hotels</div>
+        <table class="table table-bordered border-primary text-center">
           <thead>
-            <tr>
-              <th scope="col">Overall Details Of The Fligts</th>
-              <th scope="col"></th>
+            <tr class="table-success">
+              <th scope="col">Destination</th>
+              <th scope="col">Star Rating</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              {data.length > 0 ? (
-                <>
-                  {data.map((hotelReservation) => (
-                    <tr scope="row" key={hotelReservation.id}>
-                      <td>Destination: {hotelReservation.destination}</td>
-                      <td>Check In Date : {hotelReservation.check_in_date}</td>
-                      <td>Check Out Date: {hotelReservation.check_out_date}</td>
-                      <td>Star Rating: {hotelReservation.star_rating}</td>
-
-                      {/* <Link to="/travel/dashboard/flight/checkout">
-                        <button class="btn btn-dark">Book</button>
-                      </Link> */}
-                    </tr>
-                  ))}
-                </>
-              ) : (
-                <p>No flight reservations matching the given criteria found.</p>
-              )}
-              <td>
-                <div class="d-flex flex-row  mb-3">
-                  <div>{/*  */}</div>
-                </div>
-              </td>
-            </tr>
+            {data.length > 0 ? (
+              <>
+                {data.map((hotelReservation) => (
+                  <tr scope="row" key={hotelReservation.id}>
+                    <td>{hotelReservation.destination}</td>
+                    <td>{hotelReservation.star_rating}</td>
+                  </tr>
+                ))}
+              </>
+            ) : (
+              <p>No flight reservations matching the given criteria found.</p>
+            )}
           </tbody>
         </table>
       </div>

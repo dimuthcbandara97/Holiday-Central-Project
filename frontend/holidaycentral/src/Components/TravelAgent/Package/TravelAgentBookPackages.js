@@ -137,42 +137,28 @@ const BookPackages = () => {
 
         {error && <p>The Selected Options Isn't Available </p>}
 
-        <table class="table">
+        <div class="fs-3">Overall Details Of The Packages</div>
+        <table class="table table-bordered border-primary text-center">
           <thead>
-            <tr>
-              <th scope="col">Overall Details Of The Fligts</th>
-              <th scope="col"></th>
+            <tr class="table-success">
+              <th scope="col">Destination</th>
+              <th scope="col">Speciality</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              {data.length > 0 ? (
-                <>
-                  {data.map((packageReservation) => (
-                    <tr scope="row" key={packageReservation.id}>
-                      <td>Destination: {packageReservation.destination}</td>
-                      <td>Duration : {packageReservation.duration}</td>
-                      <td>
-                        Number Of travellers:{" "}
-                        {packageReservation.number_of_travellers}
-                      </td>
-                      <td>Speciality: {packageReservation.speciality}</td>
+            {data.length > 0 ? (
+              <>
+                {data.map((packageReservation) => (
+                  <tr scope="row" key={packageReservation.id}>
+                    <td>{packageReservation.destination}</td>
 
-                      {/* <Link to="/travel/dashboard/flight/checkout">
-                        <button class="btn btn-dark">Book</button>
-                      </Link> */}
-                    </tr>
-                  ))}
-                </>
-              ) : (
-                <p>No flight reservations matching the given criteria found.</p>
-              )}
-              <td>
-                <div class="d-flex flex-row  mb-3">
-                  <div>{/*  */}</div>
-                </div>
-              </td>
-            </tr>
+                    <td>{packageReservation.speciality}</td>
+                  </tr>
+                ))}
+              </>
+            ) : (
+              <p>No flight reservations matching the given criteria found.</p>
+            )}
           </tbody>
         </table>
       </div>

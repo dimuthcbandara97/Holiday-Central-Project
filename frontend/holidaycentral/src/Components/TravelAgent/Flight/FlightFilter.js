@@ -5,7 +5,6 @@ import HeaderAll from "../../Headers/HeaderAll";
 import useFetch from "../../../hooks/useFetch";
 
 const BookHotel = () => {
-
   const [priceMin, setPriceMin] = useState("");
   const [priceMax, setPriceMax] = useState("");
   const [duration, setDuration] = useState("");
@@ -117,46 +116,36 @@ const BookHotel = () => {
 
         {error && <p>Error Finding the log </p>}
 
-        <table class="table">
-
+        <div class="fs-3">Overall Details Of The Fligts</div>
+        <table class="table table-bordered border-primary text-center">
           <thead>
-            <tr>
-              <th scope="col">Overall Details Of The Fligts</th>
+            <tr class="table-success">
+              <th scope="col">Price</th>
+              <th scope="col">Duration</th>
+              <th scope="col">Airline</th>
               <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
-
-            <tr>
-              {data.length > 0 ? (
-                <>
-                  {data.map((flightReservation) => (
-                    <tr scope="row" key={flightReservation.id}>
-                      <td>Price: {flightReservation.price}</td>
-                      <td>Duration: {flightReservation.duration}</td>
-                      <td>Airline: {flightReservation.airline}</td>
-                      <Link to="/travel/dashboard/flight/checkout">
-                        <button class="btn btn-dark">Book</button>
-                      </Link>
-                    </tr>
-                  ))}</>) : (
-                <p>No flight reservations matching the given criteria found.</p>
-              )}
-              <td>
-                <div class="d-flex flex-row  mb-3">
-                  <div>
-                    {/*  */}
-
-                  </div>
-                </div>
-              </td>
-            </tr>
+            {data.length > 0 ? (
+              <>
+                {data.map((flightReservation) => (
+                  <tr scope="row" key={flightReservation.id}>
+                    <td>{flightReservation.price}</td>
+                    <td>{flightReservation.duration}</td>
+                    <td>{flightReservation.airline}</td>
+                    <Link to="/travel/dashboard/flight/checkout">
+                      <button class="btn btn-dark">Book</button>
+                    </Link>
+                  </tr>
+                ))}
+              </>
+            ) : (
+              <p>No flight reservations matching the given criteria found.</p>
+            )}
           </tbody>
         </table>
       </div>
-
-
-
     </>
   );
 };
