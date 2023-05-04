@@ -17,6 +17,10 @@ const flightcheckout = require('../controller/checkoutcontroller/flightcheckoutc
 const hotelcheckout = require('../controller/checkoutcontroller/hotelcheckoutcontroller');
 const packagecheckout = require('../controller/checkoutcontroller/packagecheckoutcontroller');
 
+// cart controllers
+const flightcart = require('../controller/cartcontroller/flightcartcontroller');
+const hotelcart = require('../controller/cartcontroller/hotelcartcontroller');
+const packagecart = require('../controller/cartcontroller/packagecartcontroller');
 
 /***
  * 
@@ -89,6 +93,16 @@ route.post('/api/checkout/package',packagecheckout.create)
 route.get('/api/checkout/flight',flightcheckout.find)
 route.get('/api/checkout/hotel',hotelcheckout.find)
 route.get('/api/checkout/package',packagecheckout.find)
+
+// API routes for cart
+route.post('/api/cart/flight',flightcart.create)
+route.post('/api/cart/hotel',hotelcart.create)
+route.post('/api/cart/package',packagecart.create)
+
+// API routes for checkout display
+route.get('/api/cart/flight',flightcart.find)
+route.get('/api/cart/hotel',hotelcart.find)
+route.get('/api/cart/package',packagecart.find)
 
 module.exports = route
 
