@@ -113,7 +113,7 @@ const BookHotel = () => {
         </form>
         <Link to="/travel/dashboard/hotel/select">
           <button type="submit" class="btn btn-secondary">
-            Next
+            Search
           </button>
         </Link>
       </div>
