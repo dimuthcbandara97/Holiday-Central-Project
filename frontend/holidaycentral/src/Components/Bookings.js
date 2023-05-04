@@ -47,50 +47,53 @@ const Booking = () => {
         </div>
         <div class="container border rounded mt-5 p-3 fw-bold">
           <div class="display-6">Flight Reservations</div>
-          <table class="table">
+          <table class="table table-bordered border-primary text-center">
+            <thead>
+              <tr class="table-success">
+                <th scope="col">Agent Name</th>
+                <th scope="col">User Name</th>
+                <th scope="col">User Email</th>
+                <th scope="col">Bill Date</th>
+                <th scope="col">Additional Note</th>
+                <th scope="col">Departure Destination</th>
+                <th scope="col">Arrival Destination</th>
+                <th scope="col">Departure Date</th>
+                <th scope="col">Arrival Date</th>
+                <th scope="col">Cabin Class</th>
+                <th scope="col">Price</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Airline</th>
+                <th scope="col">Indian Food</th>
+                <th scope="col">Sri Lankan Food</th>
+                <th scope="col">Italian Food</th>
+              </tr>
+            </thead>
+
             <tbody>
               {dataFlight.map((item) => (
-                <div key={item.id}>
-                  <tr>
-                    <td> Agent Name: {item.agent_name}</td>
-                    <td> User Name: {item.user_name}</td>
-                    <td> User Email: {item.user_email}</td>
-                    <td> Checkout Date: {item.checkout_date}</td>
-                    <td> Additional Note: {item.additional_note}</td>
-                    <td>
-                      {" "}
-                      Departure Destination: {item.departure_destination}
-                    </td>
-                    <td> Arrival Destination: {item.arrival_destination}</td>
-                    <td> Departure Date: {item.departure_date}</td>
-                    <td> Arrival Date: {item.arrival_date}</td>
-                  </tr>
-                  {/* <h3>{item.agent_name}</h3>
-          <p>{item.duration ? 'Completed' : 'Not completed'}</p> */}
-                </div>
+                <tr key={item.id}>
+                  <td> {item.agent_name}</td>
+                  <td> {item.user_name}</td>
+                  <td> {item.user_email}</td>
+                  <td> {item.checkout_date}</td>
+                  <td> {item.additional_note}</td>
+                  <td> {item.departure_destination}</td>
+                  <td> {item.arrival_destination}</td>
+                  <td> {item.departure_date}</td>
+                  <td> {item.arrival_date}</td>
+                  <td> {item.cabin_class}</td>
+                  <td> {item.price}</td>
+                  <td> {item.duration} Days</td>
+                  <td> {item.airline}</td>
+                  <td>{item.meal_preferences.indian}</td>
+                  <td> {item.meal_preferences.sri_lankan}</td>
+                  <td>{item.meal_preferences.italian}</td>
+                </tr>
               ))}
 
               {dataFlight.map((item) => (
                 <div key={item.id}>
-                  <tr>
-                    <td> Cabin Class: {item.cabin_class}</td>
-                    <td> Price: {item.price}</td>
-                    <td> Duration: {item.duration} Days</td>
-                    <td> Airline: {item.airline}</td>
-                    <td>
-                      {" "}
-                      Indian Meal Preferences: {item.meal_preferences.indian}
-                    </td>
-                    <td>
-                      {" "}
-                      Sri Lankan Meal Preferences:{" "}
-                      {item.meal_preferences.sri_lankan}
-                    </td>
-                    <td>
-                      {" "}
-                      Italina Meal Preferences: {item.meal_preferences.italian}
-                    </td>
-                  </tr>
+                  <tr></tr>
                   {/* <h3>{item.agent_name}</h3>
           <p>{item.duration ? 'Completed' : 'Not completed'}</p> */}
                 </div>
@@ -100,95 +103,88 @@ const Booking = () => {
         </div>
         <div class="container border rounded mt-5 p-3 fw-bold">
           <div class="display-6">Hotel Reservations</div>
-          <table class="table">
+          <table class="table table-bordered border-primary text-center">
+            <thead>
+              <tr class="table-success">
+                <th scope="col">Agent Name</th>
+                <th scope="col">Agent Email</th>
+                <th scope="col">Destination</th>
+                <th scope="col">Bill Date</th>
+                <th scope="col">Star Rating</th>
+                <th scope="col">Price</th>
+                <th scope="col">Deluxe Room</th>
+                <th scope="col">Super Deluxe Room</th>
+                <th scope="col">Suite</th>
+                <th scope="col">Full Board</th>
+                <th scope="col">Bread</th>
+                <th scope="col">Breakfast</th>
+                <th scope="col">Pool</th>
+                <th scope="col">Kids Play Area</th>
+                <th scope="col">Beach Access</th>
+                <th scope="col">Additional Notes</th>
+              </tr>
+            </thead>
             <tbody>
               {dataHotel.map((item) => (
-                <div key={item.id}>
-                  <tr>
-                    <td> Agent Name: {item.agent_name}</td>
-                    <td> User Name: {item.user_name}</td>
-                    <td> Agent Email: {item.agent_email}</td>
-                    <td> Checkout Date: {item.checkout_date}</td>
-                    <td> Destination: {item.destination}</td>
-                    <td> Check In Date: {item.check_in_date}</td>
-                    <td> Checkout Date: {item.check_out_date}</td>
-                    <td> Star Rating: {item.star_rating}</td>
-                    <td> Pricing: {item.pricing}</td>
+                <tr key={item.id}>
+                  <td> {item.agent_name}</td>
+                  <td> {item.user_email}</td>
+                  <td> {item.destination}</td>
+                  <td> {item.check_out_date}</td>
+                  <td> {item.star_rating}</td>
+                  <td> {item.pricing}</td>
 
-                    <td>
-                      {" "}
-                      Deluxe:{" "}
-                      {item.room_selection.deluxe ? "Want" : "Dont Want"}{" "}
-                    </td>
-                    <td>
-                      {" "}
-                      Super Deluxe:{" "}
-                      {item.room_selection.super_deluxe
-                        ? "Want"
-                        : "Dont Want"}{" "}
-                    </td>
-                    <td>
-                      {" "}
-                      Suite: {item.room_selection.suite
-                        ? "Want"
-                        : "Dont Want"}{" "}
-                    </td>
-                    <td>
-                      {" "}
-                      Full Board{" "}
-                      {item.board_basis.full_board ? "Want" : "Dont Want"}
-                    </td>
-                    <td> Bread Required {item.bread ? "Want" : "Dont Want"}</td>
-                    <td> Breakfast {item.breakfast ? "Want" : "Dont Want"}</td>
-                    <td>
-                      {" "}
-                      Pool: {item.facilities.pool ? "Want" : "Dont Want"}
-                    </td>
-                    <td>
-                      {" "}
-                      Kids Play Area:{" "}
-                      {item.facilities.kids_play_area ? "Want" : "Dont Want"}
-                    </td>
-                    <td>
-                      {" "}
-                      Beach Access:{" "}
-                      {item.facilities.beach_access ? "Want" : "Dont Want"}
-                    </td>
-                    <td> Additional Note: {item.aditional_note}</td>
-                  </tr>
-                  {/* <h3>{item.agent_name}</h3>
-          <p>{item.duration ? 'Completed' : 'Not completed'}</p> */}
-                </div>
+                  <td>{item.room_selection.deluxe ? "Yes" : "No"} </td>
+                  <td>{item.room_selection.super_deluxe ? "Yes" : "No"}</td>
+                  <td>{item.room_selection.suite ? "Yes" : "No"} </td>
+                  <td>{item.board_basis.full_board ? "Yes" : "Not"}</td>
+                  <td> {item.bread ? "Yes" : "No"}</td>
+                  <td> {item.breakfast ? "Yes" : "No"}</td>
+                  <td>{item.facilities.pool ? "Yes" : "No"}</td>
+                  <td>{item.facilities.kids_play_area ? "Yes" : "No"}</td>
+                  <td>{item.facilities.beach_access ? "Yes" : "No"}</td>
+                  <td> {item.aditional_note}</td>
+                </tr>
               ))}
             </tbody>
           </table>
         </div>
         <div class="container border rounded mt-5 p-3 fw-bold">
           <div class="display-6">Package Reservations</div>
-          <table class="table">
+          <table class="table table-bordered border-primary text-center">
+            <thead>
+              <tr class="table-success">
+                <th scope="col">Agent Name</th>
+                <th scope="col">Agent Email</th>
+                <th scope="col">Destination</th>
+                <th scope="col">Bill Date</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Travellers Count</th>
+                <th scope="col">Price</th>
+                <th scope="col">Package Rating</th>
+                <th scope="col">Honeymoon</th>
+                <th scope="col">Beach Holiday</th>
+                <th scope="col">WildLife Excursion</th>
+                <th scope="col">Family Holiday</th>
+              </tr>
+            </thead>
             <tbody>
               {dataPackage.map((item) => (
-                <div key={item.id}>
-                  <tr>
-                    <td> Italian Meal Preferences: {item.destination}</td>
+                <tr key={item.id}>
+                  <td> {item.agent_name}</td>
+                  <td> {item.user_email}</td>
+                  <td> {item.destination}</td>
+                  <td> {item.checkout_date}</td>
 
-                    <td> Price: {item.agent_name}</td>
-                    <td> Duration: {item.user_name} Days</td>
-                    <td> Airline: {item.user_email}</td>
-                    <td> Indian Meal Preferences: {item.checkout_date}</td>
-
-                    <td> Durations: {item.duration}</td>
-                    <td> Number of Travellers: {item.number_of_travellers}</td>
-                    <td> Price: {item.price}</td>
-                    <td> Package Rating: {item.package_rating}</td>
-                    <td> honeymoon: {item.speciality.honeymoon}</td>
-                    <td> Beach Holiday: {item.speciality.beach_holiday}</td>
-                    <td> Wildlife: {item.speciality.wildlife_excursion}</td>
-                    <td> Family Holiday: {item.speciality.family_holiday}</td>
-                  </tr>
-                  {/* <h3>{item.agent_name}</h3>
-          <p>{item.duration ? 'Completed' : 'Not completed'}</p> */}
-                </div>
+                  <td> {item.duration} days</td>
+                  <td> {item.number_of_travellers}</td>
+                  <td> {item.price}</td>
+                  <td> {item.package_rating}</td>
+                  <td> {item.speciality.honeymoon ? "Yes" : "No"}</td>
+                  <td> {item.speciality.beach_holiday ? "Yes" : "No"}</td>
+                  <td> {item.speciality.wildlife_excursion ? "Yes" : "No"}</td>
+                  <td> {item.speciality.family_holiday ? "Yes" : "No"}</td>
+                </tr>
               ))}
             </tbody>
           </table>
