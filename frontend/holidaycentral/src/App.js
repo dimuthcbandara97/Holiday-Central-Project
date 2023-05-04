@@ -28,6 +28,7 @@ import AdminResetPass from "./Components/Admin/ResetPassword/ResetPassword";
 import AdminViewAgent from "./Components/Admin/ViewAllAgents/ViewAllAgents";
 import Booking from "./Components/Bookings";
 import Cart from "./Components/Cart";
+import SuccessMsg from "./Components/Success";
 
 function App() {
   return (
@@ -100,6 +101,10 @@ function App() {
           <Route path="/admin/dashboard/add" element={<AdminAddAgent />} />
           <Route path="/admin/dashboard/reset" element={<AdminResetPass />} />
           <Route path="/admin/dashboard/view" element={<AdminViewAgent />} />
+
+          {/* Routes for Success Msg */}
+
+          <Route path="/travel/success" element={<SuccessMsg />} />
         </Routes>
       </BrowserRouter>
     </div>

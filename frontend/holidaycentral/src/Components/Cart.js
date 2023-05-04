@@ -1,7 +1,7 @@
-
 import React, { useState, useEffect } from "react";
 import HeaderAll from "./Headers/HeaderAll";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const [dataFlight, setDataFlight] = useState([]);
@@ -66,6 +66,7 @@ const Cart = () => {
                 <th scope="col">Indian Food</th>
                 <th scope="col">Sri Lankan Food</th>
                 <th scope="col">Italian Food</th>
+                <th scope="col"></th>
               </tr>
             </thead>
 
@@ -88,6 +89,11 @@ const Cart = () => {
                   <td>{item.meal_preferences.indian}</td>
                   <td> {item.meal_preferences.sri_lankan}</td>
                   <td>{item.meal_preferences.italian}</td>
+                  <td>
+                    <Link to="/travel/success">
+                      <button class="btn btn-dark">Book</button>
+                    </Link>
+                  </td>
                 </tr>
               ))}
 
@@ -122,6 +128,7 @@ const Cart = () => {
                 <th scope="col">Kids Play Area</th>
                 <th scope="col">Beach Access</th>
                 <th scope="col">Additional Notes</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -144,6 +151,9 @@ const Cart = () => {
                   <td>{item.facilities.kids_play_area ? "Yes" : "No"}</td>
                   <td>{item.facilities.beach_access ? "Yes" : "No"}</td>
                   <td> {item.aditional_note}</td>
+                  <Link to="/travel/success">
+                    <button class="btn btn-dark">Book</button>
+                  </Link>
                 </tr>
               ))}
             </tbody>
@@ -166,6 +176,7 @@ const Cart = () => {
                 <th scope="col">Beach Holiday</th>
                 <th scope="col">WildLife Excursion</th>
                 <th scope="col">Family Holiday</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -184,6 +195,9 @@ const Cart = () => {
                   <td> {item.speciality.beach_holiday ? "Yes" : "No"}</td>
                   <td> {item.speciality.wildlife_excursion ? "Yes" : "No"}</td>
                   <td> {item.speciality.family_holiday ? "Yes" : "No"}</td>
+                  <Link to="/travel/success">
+                    <button class="btn btn-dark">Book</button>
+                  </Link>
                 </tr>
               ))}
             </tbody>
