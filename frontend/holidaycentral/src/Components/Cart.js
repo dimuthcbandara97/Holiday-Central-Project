@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import HeaderAll from "./Headers/HeaderAll";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import qs from "qs";
 
 const Cart = () => {
   const [dataFlight, setDataFlight] = useState([]);
@@ -29,7 +30,7 @@ const Cart = () => {
       });
     // // Cart Package
     axios
-      .get("http://localhost:4000/api/checkout/package")
+      .get("http://localhost:4000/api/cart/package")
       .then((response) => {
         setDataPackage(response.data);
       })
@@ -37,6 +38,38 @@ const Cart = () => {
         console.log(error);
       });
   }, []);
+
+  const handleDelete = (id) => {
+    const data = { id };
+    axios({
+      method: "DELETE",
+      url: `http://localhost:4000/api/checkout/flight/${id}`,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      data: qs.stringify(data),
+    })
+      .then((response) => {
+        console.log(response);
+        setDataFlight(dataFlight.filter((item) => item.id !== id));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  //checkout the carted hotels
+  const checkoutHotel = (e) =>{
+    //get data
+
+    
+
+    //append data
+
+    //send data as "booked"
+
+  };
+
   return (
     <>
       <HeaderAll />
@@ -90,9 +123,14 @@ const Cart = () => {
                   <td> {item.meal_preferences.sri_lankan}</td>
                   <td>{item.meal_preferences.italian}</td>
                   <td>
-                    <Link to="/travel/success">
-                      <button class="btn btn-dark">Book</button>
-                    </Link>
+                    {/* <Link to="/travel/success"> */}
+                    <button
+                      class="btn btn-dark"
+                      onClick={() => handleDelete(item.id)}
+                    >
+                      Book
+                    </button>
+                    {/* </Link> */}
                   </td>
                 </tr>
               ))}
@@ -118,12 +156,10 @@ const Cart = () => {
                 <th scope="col">Bill Date</th>
                 <th scope="col">Star Rating</th>
                 <th scope="col">Price</th>
-                <th scope="col">Deluxe Room</th>
-                <th scope="col">Super Deluxe Room</th>
-                <th scope="col">Suite</th>
-                <th scope="col">Full Board</th>
-                <th scope="col">Bread</th>
-                <th scope="col">Breakfast</th>
+
+                <th scope="col">Room Selection</th>
+                <th scope="col">Board Basis</th>
+
                 <th scope="col">Pool</th>
                 <th scope="col">Kids Play Area</th>
                 <th scope="col">Beach Access</th>
@@ -132,28 +168,35 @@ const Cart = () => {
               </tr>
             </thead>
             <tbody>
-              {dataHotel.map((item) => (
-                <tr key={item.id}>
-                  <td> {item.agent_name}</td>
-                  <td> {item.user_email}</td>
-                  <td> {item.destination}</td>
-                  <td> {item.check_out_date}</td>
-                  <td> {item.star_rating}</td>
-                  <td> {item.pricing}</td>
+              {dataHotel.map((hotelItem) => (
+                <tr key={hotelItem.id}>
+                  <td> {hotelItem.agent_name}</td>
+                  <td> {hotelItem.user_email}</td>
+                  <td> {hotelItem.destination}</td>
+                  <td> {hotelItem.check_out_date}</td>
+                  <td> {hotelItem.star_rating}</td>
+                  <td> {hotelItem.pricing}</td>
 
-                  <td>{item.room_selection.deluxe ? "Yes" : "No"} </td>
-                  <td>{item.room_selection.super_deluxe ? "Yes" : "No"}</td>
-                  <td>{item.room_selection.suite ? "Yes" : "No"} </td>
-                  <td>{item.board_basis.full_board ? "Yes" : "Not"}</td>
-                  <td> {item.bread ? "Yes" : "No"}</td>
-                  <td> {item.breakfast ? "Yes" : "No"}</td>
-                  <td>{item.facilities.pool ? "Yes" : "No"}</td>
-                  <td>{item.facilities.kids_play_area ? "Yes" : "No"}</td>
-                  <td>{item.facilities.beach_access ? "Yes" : "No"}</td>
-                  <td> {item.aditional_note}</td>
-                  <Link to="/travel/success">
-                    <button class="btn btn-dark">Book</button>
-                  </Link>
+                  <td>{hotelItem.room_selection} </td>
+                  <td>{hotelItem.board_basis}</td>
+
+                  <td>
+                    {hotelItem.facilities.pool ? "Available" : "Not Available"}
+                  </td>
+                  <td>
+                    {hotelItem.facilities.kids_play_area
+                      ? "Available"
+                      : "Not Available"}
+                  </td>
+                  <td>
+                    {hotelItem.facilities.beach_access
+                      ? "Available"
+                      : "Not Available"}
+                  </td>
+                  <td> {hotelItem.aditional_note}</td>
+                  
+                    <button class="btn btn-dark" onClick={() => checkoutHotel(hotelItem)}>Book</button>
+                  
                 </tr>
               ))}
             </tbody>
@@ -164,7 +207,6 @@ const Cart = () => {
           <table class="table table-bordered border-primary text-center">
             <thead>
               <tr class="table-success">
-                <th scope="col">Agent Name</th>
                 <th scope="col">Agent Email</th>
                 <th scope="col">Destination</th>
                 <th scope="col">Bill Date</th>
@@ -182,7 +224,6 @@ const Cart = () => {
             <tbody>
               {dataPackage.map((item) => (
                 <tr key={item.id}>
-                  <td> {item.agent_name}</td>
                   <td> {item.user_email}</td>
                   <td> {item.destination}</td>
                   <td> {item.checkout_date}</td>

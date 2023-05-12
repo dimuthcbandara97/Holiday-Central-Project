@@ -3,6 +3,8 @@ import HeaderAll from "../../Headers/HeaderAll";
 import { Link } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
 import { useState } from "react";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 const BookPackages = () => {
   // From
@@ -28,8 +30,12 @@ const BookPackages = () => {
   const { data, loading, error, reFetch } = useFetch(url);
 
   const handleSearch = (e) => {
-    e.preventDefault();
-    reFetch();
+    // e.preventDefault();
+    // reFetch();
+    cookies.set("durationPackage", duration);
+    cookies.set("destinationPackage", destination);
+    cookies.set("number_of_travellersPackage", number_of_travellers);
+    cookies.set("specialityPackage", speciality);
   };
   return (
     <>
@@ -52,9 +58,10 @@ const BookPackages = () => {
                 onChange={(e) => setDestination(e.target.value)}
               >
                 <option selected>Choose...</option>
-                <option value="colombo">Colombo</option>
+                <option value="Colombo">Colombo</option>
                 <option value="Negombo">Negombo</option>
                 <option value="Galle">Galle</option>
+                <option value="Yala">Yala</option>
               </select>
             </div>
           </div>
@@ -118,14 +125,18 @@ const BookPackages = () => {
                 onChange={(e) => setSpeciality(e.target.value)}
               >
                 <option selected>Choose...</option>
-                <option value="honeymoon">Honeymoon</option>
-                <option value="beach_holiday">Beach Holiday</option>
-                <option value="wildlife_excursion">Wildlife Excursion</option>
-                <option value="family_holiday">Family Holiday</option>
+                <option value="Honeymoon">Honeymoon</option>
+                <option value="Beach_Holiday">Beach Holiday</option>
+                <option value="Wildlife_Excursion">Wildlife Excursion</option>
+                <option value="Family_Holiday">Family Holiday</option>
               </select>
             </div>
             <Link to="/travel/dashboard/package/select">
-              <button type="submit" class="btn btn-secondary mt-4">
+              <button
+                type="submit"
+                class="btn btn-secondary mt-4"
+                onClick={handleSearch}
+              >
                 Next
               </button>
             </Link>
@@ -157,7 +168,7 @@ const BookPackages = () => {
                 ))}
               </>
             ) : (
-              <p>No flight reservations matching the given criteria found.</p>
+              <p>No reservations matching the given criteria found.</p>
             )}
           </tbody>
         </table>

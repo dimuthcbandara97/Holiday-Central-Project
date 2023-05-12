@@ -2,10 +2,41 @@ import React, { useState } from "react";
 import { Form, Button } from "semantic-ui-react";
 import request from "superagent";
 import HeaderAll from "../../Headers/HeaderAll";
+import { useLocation } from "react-router-dom";
 import "./styles.css";
+// import Cookies from 'js-cookie';
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 // This method will insert data into the backoffice
 function FlightAddToCart() {
+  const departure_destination2 = cookies.get("departure_destinationFlight");
+  const arrival_destination2 = cookies.get("arrival_destinationFlight");
+  const departure_date2 = cookies.get("departure_dateFlight");
+  const arrival_date2 = cookies.get("arrival_dateFlight");
+  const cabin_class2 = cookies.get("cabin_classFlight");
+  const price2 = cookies.get("priceFlight");
+  const duration2 = cookies.get("durationFlight");
+  const airline2 = cookies.get("airlineFlight");
+
+  console.log(
+    departure_destination2 +
+      ": " +
+      arrival_destination2 +
+      ": " +
+      departure_date2 +
+      ": " +
+      arrival_date2 +
+      ": " +
+      cabin_class2 +
+      ": " +
+      price2 +
+      ": " +
+      duration2 +
+      ": " +
+      airline2
+  );
+
   // "departure_destination",
   const [departure_destination, setDepartureDestination] = useState("");
   // "arrival_destination",
@@ -51,25 +82,25 @@ function FlightAddToCart() {
   const sendDataToAPI = () => {
     const data = new URLSearchParams();
     // Departure Destination
-    data.append("departure_destination", departure_destination);
+    data.append("departure_destination", departure_destination2);
     // Arrival Destination
-    data.append("arrival_destination", arrival_destination);
+    data.append("arrival_destination", arrival_destination2);
     // Departure Date
-    data.append("departure_date", departure_date);
+    data.append("departure_date", departure_date2);
     // Arrival Date
-    data.append("arrival_date", arrival_date);
+    data.append("arrival_date", arrival_date2);
     // Cabin Class
-    data.append("cabin_class", cabin_class);
+    data.append("cabin_class", cabin_class2);
     // Duration
-    data.append("duration", duration);
+    data.append("duration", duration2);
     {
       /* // "price", */
     }
-    data.append("price", price);
+    data.append("price", price2);
     {
       /* // "airline", */
     }
-    data.append("airline", airline);
+    data.append("airline", airline2);
     {
       /* // "agent_name", */
     }
@@ -106,6 +137,13 @@ function FlightAddToCart() {
     // italian
     data.append("italian", italian);
 
+    // const cookies = document.cookie.split(";"); // Get all cookies as an array of strings
+
+    // cookies.forEach(cookie => {
+    //   const [name, value] = cookie.trim().split("="); // Split cookie into name and value
+    //   console.log(`${name}: ${value}`); // Print cookie name and value
+    // });
+
     request
       .post("http://localhost:4000/api/checkout/flight")
       .set("Content-Type", "application/x-www-form-urlencoded")
@@ -135,9 +173,11 @@ function FlightAddToCart() {
         setSriLankan("");
         setItalian("");
         alert("Data sent successfully");
+        window.location = "http://localhost:3000/travel/dashboard";
       })
       .catch((error) => {
         console.log(error);
+        alert("Unsuccessfull Atempt! Try again!");
       });
   };
 
@@ -145,25 +185,25 @@ function FlightAddToCart() {
   const sendDataToCart = () => {
     const data = new URLSearchParams();
     // Departure Destination
-    data.append("departure_destination", departure_destination);
+    data.append("departure_destination", departure_destination2);
     // Arrival Destination
-    data.append("arrival_destination", arrival_destination);
+    data.append("arrival_destination", arrival_destination2);
     // Departure Date
-    data.append("departure_date", departure_date);
+    data.append("departure_date", departure_date2);
     // Arrival Date
-    data.append("arrival_date", arrival_date);
+    data.append("arrival_date", arrival_date2);
     // Cabin Class
-    data.append("cabin_class", cabin_class);
+    data.append("cabin_class", cabin_class2);
     // Duration
-    data.append("duration", duration);
+    data.append("duration", duration2);
     {
       /* // "price", */
     }
-    data.append("price", price);
+    data.append("price", price2);
     {
       /* // "airline", */
     }
-    data.append("airline", airline);
+    data.append("airline", airline2);
     {
       /* // "agent_name", */
     }
@@ -229,14 +269,17 @@ function FlightAddToCart() {
         setSriLankan("");
         setItalian("");
         alert("Data sent successfully");
+        window.location = "http://localhost:3000/travel/dashboard";
       })
       .catch((error) => {
         console.log(error);
+        alert("Unsuccessfull Atempt! Try again!");
       });
   };
   return (
     <>
       <HeaderAll />
+      {/* <p>{airline2}</p> */}
       <div class="display-5 fw-bold p-3 m-3">Summary of Details</div>
       <div class="container p-3 m-3 border rounded">
         <Form>
@@ -245,7 +288,8 @@ function FlightAddToCart() {
             <input
               name="departure_destination"
               onChange={(e) => setDepartureDestination(e.target.value)}
-              required
+              placeholder={departure_destination2}
+              readOnly
             />
           </Form.Field>
 
@@ -254,25 +298,27 @@ function FlightAddToCart() {
             <input
               name="arrival_destination"
               onChange={(e) => setArrivalDestination(e.target.value)}
-              required
+              placeholder={arrival_destination2}
+              readOnly
             />
           </Form.Field>
           <Form.Field className="form-field">
             <label>Departure Date</label>
             <input
-              type="date"
               name="departure_date"
               onChange={(e) => setDepartureDate(e.target.value)}
-              required
+              placeholder={departure_date2}
+              readOnly
             />
           </Form.Field>
           <Form.Field className="form-field">
             <label>Arrival Date</label>
             <input
-              type="date"
+              // type="date"
               name="arrival_date"
               onChange={(e) => setArrivalDate(e.target.value)}
-              required
+              placeholder={arrival_date2}
+              readOnly
             />
           </Form.Field>
           <Form.Field className="form-field">
@@ -280,7 +326,8 @@ function FlightAddToCart() {
             <input
               name="cabin_class"
               onChange={(e) => setCabinClass(e.target.value)}
-              required
+              readOnly
+              placeholder={cabin_class2}
             />
           </Form.Field>
           <Form.Field className="form-field">
@@ -288,7 +335,8 @@ function FlightAddToCart() {
             <input
               name="duration"
               onChange={(e) => setDuration(e.target.value)}
-              required
+              readOnly
+              placeholder={duration2}
             />
           </Form.Field>
           {/* // "price", */}
@@ -297,7 +345,8 @@ function FlightAddToCart() {
             <input
               name="price"
               onChange={(e) => setPrice(e.target.value)}
-              required
+              readOnly
+              placeholder={price2}
             />
           </Form.Field>
           {/* // "airline", */}
@@ -306,7 +355,8 @@ function FlightAddToCart() {
             <input
               name="airline"
               onChange={(e) => setAirline(e.target.value)}
-              required
+              readOnly
+              placeholder={airline2}
             />
           </Form.Field>
           {/* // "agent_name", */}
