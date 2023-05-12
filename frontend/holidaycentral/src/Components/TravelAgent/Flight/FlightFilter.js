@@ -3,16 +3,18 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import HeaderAll from "../../Headers/HeaderAll";
 import useFetch from "../../../hooks/useFetch";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
+
 
 const BookHotel = () => {
-  const [priceMin, setPriceMin] = useState("");
-  const [priceMax, setPriceMax] = useState("");
+  const [price, setPrice] = useState("");
   const [duration, setDuration] = useState("");
   const [airline, setAirline] = useState("");
 
   const queryParams = {
-    priceMin,
-    priceMax,
+    price,
     duration,
     airline,
   };
@@ -23,13 +25,13 @@ const BookHotel = () => {
   const { data, loading, error, reFetch } = useFetch(url);
 
   const handleSearch = (e) => {
-    e.preventDefault();
-    reFetch();
+    // e.preventDefault();
+    // reFetch();
+  cookies.set('priceFlight', price);
+  cookies.set('durationFlight', duration);
+  cookies.set('airlineFlight', airline);
   };
-  // function handleDropdownChange(e) {
-  //   const selectedValue = e.target.value;
-  //   setPriceMin(selectedValue);
-  // }
+
 
   return (
     <>
@@ -52,9 +54,9 @@ const BookHotel = () => {
                 onChange={(e) => setDuration(e.target.value)}
               >
                 <option selected>Choose...</option>
-                <option value="2-4 Hours">2-4 Hours</option>
-                <option value="3-6 Hours">3-6 Hours</option>
-                <option value="3-8 Hours">3-8 Hours</option>
+                <option value="4">2-4 Hours</option>
+                <option value="6">3-6 Hours</option>
+                <option value="8">3-8 Hours</option>
               </select>
             </div>
 
@@ -67,22 +69,11 @@ const BookHotel = () => {
                 class="form-control"
                 id="formGroupExampleInput"
                 placeholder="Min"
-                value={priceMin} // Added value attribute to sync state with the selected value
-                onChange={(e) => setPriceMin(e.target.value)}
+                value={price} // Added value attribute to sync state with the selected value
+                onChange={(e) => setPrice(e.target.value)}
               />
             </div>
 
-            <div class="col-md-2">
-              <label class="form-label">Maximum Price $</label>
-              <input
-                type="number"
-                class="form-control"
-                id="formGroupExampleInput"
-                placeholder="Max"
-                value={priceMax} // Added value attribute to sync state with the selected value
-                onChange={(e) => setPriceMax(e.target.value)}
-              />
-            </div>
 
             {/*Airline*/}
             <div class="col-md-2">
@@ -134,8 +125,12 @@ const BookHotel = () => {
                     <td>{flightReservation.price}</td>
                     <td>{flightReservation.duration}</td>
                     <td>{flightReservation.airline}</td>
-                    <Link to="/travel/dashboard/flight/checkout">
-                      <button class="btn btn-dark">Book</button>
+                    <Link
+                      to={{
+                        pathname: "/travel/dashboard/flight/checkout",
+                      }}
+                    >
+                      <button class="btn btn-dark" onClick={handleSearch}>Book</button>
                     </Link>
                   </tr>
                 ))}

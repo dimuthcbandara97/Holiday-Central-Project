@@ -1,5 +1,3 @@
-// let Userdb = require('../model/model')
-//let hotelCarttdb = require('../../model/checkoutmodel/hotelcheckoutmodel')
 let hotelCarttdb = require("../../model/cartmodel/hotelcartmodel");
 
 exports.create = (req, res) => {
@@ -16,13 +14,17 @@ exports.create = (req, res) => {
     "destination",
     "check_in_date",
     "check_out_date",
+    "star_rating",
+    "room_selection",
+    "board_basis",
+    "pricing",
+    "pool",
+    "kids_play_area",
+    "beach_access",
     "agent_name",
-    "user_name",
     "user_email",
     "checkout_date",
     "aditional_note",
-    "star_rating",
-    "pricing",
   ];
   const missingFields = requiredFields.filter((field) => !(field in req.body));
   if (missingFields.length) {
@@ -37,7 +39,7 @@ exports.create = (req, res) => {
   const checkOutDate = new Date(req.body.check_out_date);
   if (isNaN(checkInDate.getTime()) || isNaN(checkOutDate.getTime())) {
     res.status(400).send({
-      message: "Invalid date format. Use YYYY-MM-DD.",
+      message: "Invalid date format.",
     });
     return;
   }
@@ -50,7 +52,7 @@ exports.create = (req, res) => {
 
   // validate star rating
   const starRating = req.body.star_rating;
-  if (starRating !== undefined && (starRating < 1 || starRating > 5)) {
+  if (starRating !== undefined && (starRating < 0 || starRating > 5)) {
     res.status(400).send({
       message: "Star rating must be between 1 and 5.",
     });
@@ -67,28 +69,18 @@ exports.create = (req, res) => {
   }
 
   // new user
-  const user = new hotelCarttdb({
+  const reserveHotel = new hotelCarttdb({
     destination: req.body.destination,
     check_in_date: checkInDate,
     check_out_date: checkOutDate,
     star_rating: starRating,
     pricing: pricing,
-    room_selection: {
-      deluxe: req.body.deluxe,
-      super_deluxe: req.body.super_deluxe,
-      suite: req.body.suite,
-    },
-    board_basis: {
-      full_board: req.body.full_board,
-      bread: req.body.bread,
-      breakfast: req.body.breakfast,
-    },
-    facilities: req.body.facilities,
+    room_selection: req.body.room_selection,
+    board_basis: req.body.board_basis,
     agent_name: req.body.agent_name,
     user_email: req.body.user_email,
     checkout_date: req.body.checkout_date,
     aditional_note: req.body.aditional_note,
-    user_name: req.body.user_name,
     // Facilities
     facilities: {
       pool: req.body.pool,
@@ -98,8 +90,8 @@ exports.create = (req, res) => {
   });
 
   // save user in the database
-  user
-    .save(user)
+  reserveHotel
+    .save(reserveHotel)
     .then((data) => {
       res.send(`${data} added successfully`);
     })

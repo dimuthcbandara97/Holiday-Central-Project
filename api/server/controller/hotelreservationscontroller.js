@@ -108,7 +108,8 @@ exports.find = (req, res) => {
       });
   }
 };
-// Modify above code to suit a login form
+
+//filter
 exports.findBy = (req, res) => {
   const { price, star_rating, facilities } = req.query;
   const query = {};
@@ -141,7 +142,7 @@ exports.findBy = (req, res) => {
     });
 };
 
-// Find By Search Method
+//Search
 exports.findBySearch = (req, res) => {
   const { destination, check_in_date, check_out_date, star_rating } = req.query;
   const query = {};
@@ -283,3 +284,4 @@ exports.delete = (req, res) => {
       });
     });
 };
+

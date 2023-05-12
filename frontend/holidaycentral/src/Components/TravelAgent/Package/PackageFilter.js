@@ -3,6 +3,8 @@ import HeaderAll from "../../Headers/HeaderAll";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import useFetch from "../../../hooks/useFetch";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 const BookHotel = () => {
   // From
@@ -27,8 +29,10 @@ const BookHotel = () => {
   const { data, loading, error, reFetch } = useFetch(url);
 
   const handleSearch = (e) => {
-    e.preventDefault();
-    reFetch();
+    cookies.set("min_pricePackage", e.price);
+    cookies.set("max_pricePackage", e.price);
+    cookies.set("package_ratingPackage", e.package_rating);
+    cookies.set("destinationPackage", e.destination);
   };
   return (
     <>
@@ -103,16 +107,6 @@ const BookHotel = () => {
                 <option value="4">4 Weeks</option>
               </select>
             </div>
-
-            <div class="col-2 mt-4">
-              <button
-                type="submit"
-                class="btn btn-secondary"
-                onClick={handleSearch}
-              >
-                Filter
-              </button>
-            </div>
           </div>
         </form>
       </div>
@@ -143,14 +137,19 @@ const BookHotel = () => {
                     <td>
                       {" "}
                       <Link to="/travel/dashboard/package/checkout">
-                        <button class="btn btn-dark">Book</button>
+                        <button
+                          class="btn btn-dark"
+                          onClick={() => handleSearch(packageReservation)}
+                        >
+                          Book
+                        </button>
                       </Link>
                     </td>
                   </tr>
                 ))}
               </>
             ) : (
-              <p>No flight reservations matching the given criteria found.</p>
+              <p>No reservations matching the given criteria found.</p>
             )}
           </tbody>
         </table>
