@@ -3,8 +3,6 @@ import HeaderAll from "../../Headers/HeaderAll";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import useFetch from "../../../hooks/useFetch";
-import Cookies from "universal-cookie";
-const cookies = new Cookies();
 
 const BookHotel = () => {
   // From
@@ -29,38 +27,8 @@ const BookHotel = () => {
   const { data, loading, error, reFetch } = useFetch(url);
 
   const handleSearch = (e) => {
-    // e.preventDefault();
-    // reFetch();
-    cookies.set("min_priceHotel", e.pricing);
-    cookies.set("max_priceHotel", e.pricing);
-    // cookies.set("facilitiesHotel", facilities);
-
-    cookies.set("destinationHotel", e.destination);
-    cookies.set("ratingHotel", e.star_rating);
-
-    if (e.facilities.Pool == true) {
-      cookies.set("poolHotel", "Available");
-    } else {
-      cookies.set("poolHotel", "Not Available");
-    }
-    if (e.facilities.Play == true) {
-      cookies.set("playHotel", "Available");
-    } else {
-      cookies.set("playHotel", "Not Available");
-    }
-    if (e.facilities.Beach == true) {
-      cookies.set("beachHotel", "Available");
-    } else {
-      cookies.set("beachHotel", "Not Available");
-    }
-
-    //just true/false
-
-    cookies.set("poolHotelTF", e.facilities.Pool);
-    cookies.set("playHotelTF", e.facilities.Play);
-    cookies.set("beachHotelTF", e.facilities.Beach);
-
-
+    e.preventDefault();
+    reFetch();
   };
   return (
     <>
@@ -129,11 +97,16 @@ const BookHotel = () => {
                 onChange={(e) => setFacilities(e.target.value)}
               >
                 <option selected>Choose...</option>
-                <option value="Pool">Pool</option>
-                <option value="Play">Kids Play Area</option>
-                <option value="Beach">Beach Access</option>
+                <option value="pool">Pool</option>
+                <option value="kids_play_area">Kids Play Area</option>
+                <option value="beach_access">Beach Access</option>
               </select>
             </div>
+          </div>
+          <div class="col-2 mt-4">
+            <button type="submit" class="btn btn-secondary">
+              Filter
+            </button>
           </div>
         </form>
       </div>
@@ -150,9 +123,7 @@ const BookHotel = () => {
               <th scope="col">Destination</th>
               <th scope="col">Star Rating</th>
               <th scope="col">Price</th>
-              <th scope="col">Pool Area</th>
-              <th scope="col">Kids Play Area</th>
-              <th scope="col">Beach Access</th>
+              <th scope="col">Facilities</th>
               <th scope="col"></th>
             </tr>
           </thead>
@@ -164,30 +135,11 @@ const BookHotel = () => {
                     <td>{hotelReservation.destination}</td>
                     <td>{hotelReservation.star_rating}</td>
                     <td>{hotelReservation.pricing}</td>
-                    <td>
-                      {hotelReservation.facilities.Pool
-                        ? "Available"
-                        : "Not Available"}
-                    </td>
-                    <td>
-                      {hotelReservation.facilities.Play
-                        ? "Available"
-                        : "Not Available"}
-                    </td>
-                    <td>
-                      {hotelReservation.facilities.Beach
-                        ? "Available"
-                        : "Not Available"}
-                    </td>
+                    <td>{hotelReservation.facilities}</td>
 
                     <td>
                       <Link to="/travel/dashboard/hotel/checkout">
-                        <button
-                          class="btn btn-dark"
-                          onClick={() => handleSearch(hotelReservation)}
-                        >
-                          Book
-                        </button>
+                        <button class="btn btn-dark">Book</button>
                       </Link>
                     </td>
                   </tr>

@@ -97,12 +97,9 @@ route.post("/api/cart/flight", flightcart.create);
 route.post("/api/cart/hotel", hotelcart.create);
 route.post("/api/cart/package", packagecart.create);
 
-// API routes for cart display
+// API routes for checkout display
 route.get("/api/cart/flight", flightcart.find);
 route.get("/api/cart/hotel", hotelcart.find);
 route.get("/api/cart/package", packagecart.find);
-
-// Flight carts delete
-route.delete("/api/cart/flight", flightcart.delete);
 
 module.exports = route;

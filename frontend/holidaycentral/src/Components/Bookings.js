@@ -112,10 +112,12 @@ const Booking = () => {
                 <th scope="col">Bill Date</th>
                 <th scope="col">Star Rating</th>
                 <th scope="col">Price</th>
-
-                <th scope="col">Room Selection</th>
-                <th scope="col">Board Basis</th>
-
+                <th scope="col">Deluxe Room</th>
+                <th scope="col">Super Deluxe Room</th>
+                <th scope="col">Suite</th>
+                <th scope="col">Full Board</th>
+                <th scope="col">Bread</th>
+                <th scope="col">Breakfast</th>
                 <th scope="col">Pool</th>
                 <th scope="col">Kids Play Area</th>
                 <th scope="col">Beach Access</th>
@@ -132,22 +134,15 @@ const Booking = () => {
                   <td> {item.star_rating}</td>
                   <td> {item.pricing}</td>
 
-                  <td>{item.room_selection} </td>
-                  <td>{item.board_basis}</td>
-
-                  <td>
-                    {item.facilities.pool ? "Available" : "Not Available"}
-                  </td>
-                  <td>
-                    {item.facilities.kids_play_area
-                      ? "Available"
-                      : "Not Available"}
-                  </td>
-                  <td>
-                    {item.facilities.beach_access
-                      ? "Available"
-                      : "Not Available"}
-                  </td>
+                  <td>{item.room_selection.deluxe ? "Yes" : "No"} </td>
+                  <td>{item.room_selection.super_deluxe ? "Yes" : "No"}</td>
+                  <td>{item.room_selection.suite ? "Yes" : "No"} </td>
+                  <td>{item.board_basis.full_board ? "Yes" : "Not"}</td>
+                  <td> {item.bread ? "Yes" : "No"}</td>
+                  <td> {item.breakfast ? "Yes" : "No"}</td>
+                  <td>{item.facilities.pool ? "Yes" : "No"}</td>
+                  <td>{item.facilities.kids_play_area ? "Yes" : "No"}</td>
+                  <td>{item.facilities.beach_access ? "Yes" : "No"}</td>
                   <td> {item.aditional_note}</td>
                 </tr>
               ))}

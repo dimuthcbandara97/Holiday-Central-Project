@@ -9,13 +9,6 @@ import { useEffect, useState } from "react";
 import HeaderAll from "../../Headers/HeaderAll";
 import { Link } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
-
-
-
-
-
 
 const TravelAgentBookFlight = () => {
   // From
@@ -28,12 +21,6 @@ const TravelAgentBookFlight = () => {
   const [arrival_date, setArrivalDate] = useState("");
   // Class
   const [cabin_class, setCabinClass] = useState("");
-
-  // const [cookies_departure_destination, setCookieDepartureDestination] = useCookies(['departure_destination']);
-  // const [cookies_arrival_destination, setCookieArrivalDestination] = useCookies(['arrival_destination']);
-  // const [cookies_departure_date, setCookieDepartureDate] = useCookies(['departure_date']);
-  // const [cookies_arrival_date, setCookieArrivalDate] = useCookies(['arrival_date']);
-  // const [cookies_cabin_class, setCookieCabinClass] = useCookies(['cabin_class']);
 
   const queryParams = {
     departure_destination,
@@ -49,11 +36,8 @@ const TravelAgentBookFlight = () => {
   const { data, loading, error, reFetch } = useFetch(url);
 
   const handleSearch = (e) => {
-    cookies.set('departure_destinationFlight', departure_destination, { path: '/' });
-    cookies.set('arrival_destinationFlight', arrival_destination, { path: '/' });
-    cookies.set('departure_dateFlight', departure_date, { path: '/' });
-    cookies.set('arrival_dateFlight', arrival_date, { path: '/' });
-    cookies.set('cabin_classFlight', cabin_class, { path: '/' });
+    e.preventDefault();
+    reFetch();
   };
   return (
     <>
@@ -164,7 +148,7 @@ const TravelAgentBookFlight = () => {
 
           <div class="col-12">
             <Link to="/travel/dashboard/flight/select">
-              <button type="submit" class="btn btn-secondary" onClick={handleSearch} >
+              <button type="submit" class="btn btn-secondary">
                 Next
               </button>
             </Link>

@@ -3,13 +3,15 @@ import HeaderAll from "../../Headers/HeaderAll";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import useFetch from "../../../hooks/useFetch";
-import Cookies from "universal-cookie";
-const cookies = new Cookies();
 
 const BookHotel = () => {
+  // From
   const [destination, setDestination] = useState("");
+  // To
   const [check_in_date, setCheckInDate] = useState("");
+  // Departure
   const [check_out_date, setCheckoutDate] = useState("");
+  // Return
   const [star_rating, setStarRating] = useState("");
 
   const queryParams = {
@@ -25,12 +27,8 @@ const BookHotel = () => {
   const { data, loading, error, reFetch } = useFetch(url);
 
   const handleSearch = (e) => {
-    // e.preventDefault();
-    // reFetch();
-    //cookies.set("destinationHotel", destination);
-    cookies.set("check_in_dateHotel", check_in_date);
-    cookies.set("check_out_dateHotel", check_out_date);
-    //cookies.set("star_ratingHotel", star_rating);
+    e.preventDefault();
+    reFetch();
   };
   return (
     <>
@@ -102,11 +100,11 @@ const BookHotel = () => {
                 onChange={(e) => setStarRating(e.target.value)}
               >
                 <option selected>Choose...</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
               </select>
             </div>
           </div>
@@ -114,11 +112,7 @@ const BookHotel = () => {
           <div class="col-12"></div>
         </form>
         <Link to="/travel/dashboard/hotel/select">
-          <button
-            type="submit"
-            class="btn btn-secondary"
-            onClick={handleSearch}
-          >
+          <button type="submit" class="btn btn-secondary">
             Next
           </button>
         </Link>

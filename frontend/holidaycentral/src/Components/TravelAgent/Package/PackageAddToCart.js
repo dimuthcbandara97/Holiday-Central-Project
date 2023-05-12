@@ -2,33 +2,9 @@ import React, { useState } from "react";
 import { Form, Button } from "semantic-ui-react";
 import request from "superagent";
 import HeaderAll from "../../Headers/HeaderAll";
-import Cookies from "universal-cookie";
-const cookies = new Cookies();
 
 // This method will insert data into the backoffice
 function PackageAddToCart() {
-  const agentEmail2 = cookies.get("agentEmail");
-  const price2 = cookies.get("min_pricePackage");
-  const package_rating2 = cookies.get("package_ratingPackage");
-  const duration2 = cookies.get("durationPackage");
-  const destination2 = cookies.get("destinationPackage");
-  const number_of_travellers2 = cookies.get("number_of_travellersPackage");
-  const speciality2 = cookies.get("specialityPackage");
-
-  console.log(
-    price2 +
-      " " +
-      package_rating2 +
-      " " +
-      duration2 +
-      " " +
-      destination2 +
-      " " +
-      number_of_travellers2 +
-      " " +
-      speciality2
-  );
-
   // destination
   const [destination, setDestination] = useState("");
   // speciality
@@ -42,9 +18,9 @@ function PackageAddToCart() {
   // package_rating
   const [package_rating, setPackageRating] = useState("");
   // agent_name
-  const [agent_name, setAgentName] = useState(agentEmail2);
+  const [agent_name, setAgentName] = useState("");
   // user_name
-  const [user_name, setUserName] = useState(agentEmail2);
+  const [user_name, setUserName] = useState("");
   // user_email
   const [user_email, setUserEmail] = useState("");
   // checkout_date
@@ -52,29 +28,29 @@ function PackageAddToCart() {
   // aditional_note
   const [aditional_note, setAdditionalNotice] = useState("");
   // family_holiday
-  const [family_holiday, setFamilyHoliday] = useState("false");
+  const [family_holiday, setFamilyHoliday] = useState("");
   // wildlife_excursion
-  const [wildlife_excursion, setWildlifeExcursion] = useState("false");
+  const [wildlife_excursion, setWildlifeExcursion] = useState("");
   // beach_holiday
-  const [beach_holiday, setBeachHoliday] = useState("false");
+  const [beach_holiday, setBeachHoliday] = useState("");
   // honeymoon
-  const [honeymoon, setHoneymoon] = useState("false");
+  const [honeymoon, setHoneymoon] = useState("");
 
-  const sendDataToBooking = () => {
+  const sendDataToAPI = () => {
     const data = new URLSearchParams();
 
     // destination
-    data.append("destination", destination2);
+    data.append("destination", destination);
     // speciality
-    data.append("speciality", speciality2);
+    data.append("speciality", speciality);
     // duration
-    data.append("duration", duration2);
+    data.append("duration", duration);
     // number_of_travellers
-    data.append("number_of_travellers", number_of_travellers2);
+    data.append("number_of_travellers", number_of_travellers);
     // price
-    data.append("price", price2);
+    data.append("price", price);
     // package_rating
-    data.append("package_rating", package_rating2);
+    data.append("package_rating", package_rating);
     // agent_name
     data.append("agent_name", agent_name);
     // user_name
@@ -133,11 +109,9 @@ function PackageAddToCart() {
         // honeymoon
         setHoneymoon("");
         alert("Data sent successfully");
-        window.location = "http://localhost:3000/travel/dashboard";
       })
       .catch((error) => {
         console.log(error);
-        alert("Unsuccessfull Atempt! Try again!");
       });
   };
 
@@ -145,17 +119,17 @@ function PackageAddToCart() {
     const data = new URLSearchParams();
 
     // destination
-    data.append("destination", destination2);
+    data.append("destination", destination);
     // speciality
-    data.append("speciality", speciality2);
+    data.append("speciality", speciality);
     // duration
-    data.append("duration", duration2);
+    data.append("duration", duration);
     // number_of_travellers
-    data.append("number_of_travellers", number_of_travellers2);
+    data.append("number_of_travellers", number_of_travellers);
     // price
-    data.append("price", price2);
+    data.append("price", price);
     // package_rating
-    data.append("package_rating", package_rating2);
+    data.append("package_rating", package_rating);
     // agent_name
     data.append("agent_name", agent_name);
     // user_name
@@ -214,11 +188,9 @@ function PackageAddToCart() {
         // honeymoon
         setHoneymoon("");
         alert("Data sent successfully");
-        window.location = "http://localhost:3000/travel/dashboard";
       })
       .catch((error) => {
         console.log(error);
-        alert("Unsuccessfull Atempt! Try again!");
       });
   };
   return (
@@ -234,8 +206,7 @@ function PackageAddToCart() {
             <input
               name="destination"
               onChange={(e) => setDestination(e.target.value)}
-              placeholder={destination2}
-              readOnly
+              required
             />
           </Form.Field>
 
@@ -245,8 +216,7 @@ function PackageAddToCart() {
             <input
               name="speciality"
               onChange={(e) => setSpeciality(e.target.value)}
-              placeholder={speciality2}
-              readOnly
+              required
             />
           </Form.Field>
 
@@ -256,8 +226,7 @@ function PackageAddToCart() {
             <input
               name="duration"
               onChange={(e) => setDurattion(e.target.value)}
-              placeholder={duration2}
-              readOnly
+              required
             />
           </Form.Field>
 
@@ -267,19 +236,15 @@ function PackageAddToCart() {
             <input
               name="number_of_travellers"
               onChange={(e) => setNumberOfTravellers(e.target.value)}
-              placeholder={number_of_travellers2}
-              readOnly
+              required
             />
           </Form.Field>
 
           {/* price */}
           <Form.Field className="form-field">
             <label>Price</label>
-            <input
-              name="price"
-              onChange={(e) => setPrice(e.target.value)}
-              placeholder={price2}
-              readOnly
+            <input name="price" onChange={(e) => setPrice(e.target.value)}
+              required
             />
           </Form.Field>
 
@@ -287,21 +252,38 @@ function PackageAddToCart() {
           <Form.Field className="form-field">
             <label>Package Rating</label>
             <input
-              placeholder={package_rating2}
-              readOnly
+              required
               name="package_rating"
               onChange={(e) => setPackageRating(e.target.value)}
             />
           </Form.Field>
 
+          {/* agent_name */}
+          <Form.Field className="form-field">
+            <label>Agent Name</label>
+            <input
+              required
+              name="agent_name"
+              onChange={(e) => setAgentName(e.target.value)}
+            />
+          </Form.Field>
+
+          {/* user_name */}
+          <Form.Field className="form-field">
+            <label>User Name</label>
+            <input
+              required
+              name="user_name"
+              onChange={(e) => setUserName(e.target.value)}
+            />
+          </Form.Field>
+
           {/* user_email */}
           <Form.Field className="form-field">
-            <label>Agent Email</label>
+            <label>User Email</label>
             <input
-              //placeholder={agentEmail2}
               required
               name="user_email"
-              // value={agentEmail2}
               onChange={(e) => setUserEmail(e.target.value)}
             />
           </Form.Field>
@@ -311,7 +293,6 @@ function PackageAddToCart() {
             <label>Checkout Date</label>
             <input
               required
-              type="date"
               name="checkout_date"
               onChange={(e) => setCheckoutDate(e.target.value)}
             />
@@ -327,12 +308,52 @@ function PackageAddToCart() {
             />
           </Form.Field>
 
+          {/* family_holiday */}
+          <Form.Field className="form-field">
+            <label>Family Holiday</label>
+            <input
+              required
+              name="family_holiday"
+              onChange={(e) => setFamilyHoliday(e.target.value)}
+            />
+          </Form.Field>
+
+          {/* wildlife_excursion */}
+          <Form.Field className="form-field">
+            <label>Wildlife Excursion</label>
+            <input
+              required
+              name="wildlife_excursion"
+              onChange={(e) => setWildlifeExcursion(e.target.value)}
+            />
+          </Form.Field>
+
+          {/* beach_holiday */}
+          <Form.Field className="form-field">
+            <label>Beach Holiday</label>
+            <input
+              required
+              name="beach_holiday"
+              onChange={(e) => setBeachHoliday(e.target.value)}
+            />
+          </Form.Field>
+
+          {/* honeymoon */}
+          <Form.Field className="form-field">
+            <label>Honeymoon</label>
+            <input
+              required
+              name="honeymoon"
+              onChange={(e) => setHoneymoon(e.target.value)}
+            />
+          </Form.Field>
+
           <Form.Field className="form-submit">
             <Button type="submit" class="btn me-5" onClick={sendDataToCart}>
               Add To Cart
               {/* <span className="search-icon"> &#x1F50D;</span> */}
             </Button>
-            <Button type="submit" onClick={sendDataToBooking} class="btn ms-5">
+            <Button type="submit" onClick={sendDataToAPI} class="btn ms-5">
               Checkout
               {/* <span className="search-icon"> &#x1F50D;</span> */}
             </Button>

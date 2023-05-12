@@ -75,7 +75,7 @@ exports.create = (req, res) => {
   }
 
   // validate field values for airlines
-  const allowedAirlines = ["Sri Lankan", "Emirates", "Philipines","Air France"];
+  const allowedAirlines = ["Sri Lankan", "Emirates", "Philipines"];
   if (!allowedAirlines.includes(req.body.airline)) {
     res.status(400).send({
       message: `Invalid Airline. Allowed values: ${allowedAirlines.join(

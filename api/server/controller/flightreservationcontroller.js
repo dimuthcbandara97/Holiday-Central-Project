@@ -72,7 +72,7 @@ exports.create = (req, res) => {
   }
 
   // validate field values for airlines
-  const allowedAirlines = ["Sri Lankan", "Emirates", "Philipines","Air France"];
+  const allowedAirlines = ["Sri Lankan", "Emirates", "Philipines"];
   if (!allowedAirlines.includes(req.body.airline)) {
     res.status(400).send({
       message: `Invalid Airline. Allowed values: ${allowedAirlines.join(
@@ -158,43 +158,12 @@ exports.find = (req, res) => {
 }
 
 // Find by credentials
-exports.findBy = (req, res) => {
-  const { price, duration, airline } = req.query;
-  const query = {};
-
-  if (price) {
-    query.price = price;
-  }
-  if (duration) {
-    query.duration = duration;
-  }
-  if (airline) {
-    query.airline = airline;
-  }
-
-  FlightReservationDb.find(query)
-    .then(flightReservations => {
-      if (flightReservations.length === 0) {
-        return res.status(404).send({
-          message: "No flight reservations matching the given criteria found."
-        });
-      }
-      res.send(flightReservations);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving flight reservations."
-      });
-    });
-};
-
 // exports.findBy = (req, res) => {
-//   const { priceMin, priceMax, duration, airline } = req.query;
+//   const { price, duration, airline } = req.query;
 //   const query = {};
 
-//   if (priceMin && priceMax) {
-//     query.price = { $gte: priceMin, $lte: priceMax };
+//   if (price) {
+//     query.price = price;
 //   }
 //   if (duration) {
 //     query.duration = duration;
@@ -206,7 +175,7 @@ exports.findBy = (req, res) => {
 //   FlightReservationDb.find(query)
 //     .then(flightReservations => {
 //       if (flightReservations.length === 0) {
-//         return res.send({
+//         return res.status(404).send({
 //           message: "No flight reservations matching the given criteria found."
 //         });
 //       }
@@ -219,6 +188,37 @@ exports.findBy = (req, res) => {
 //       });
 //     });
 // };
+
+exports.findBy = (req, res) => {
+  const { priceMin, priceMax, duration, airline } = req.query;
+  const query = {};
+
+  if (priceMin && priceMax) {
+    query.price = { $gte: priceMin, $lte: priceMax };
+  }
+  if (duration) {
+    query.duration = duration;
+  }
+  if (airline) {
+    query.airline = airline;
+  }
+
+  FlightReservationDb.find(query)
+    .then(flightReservations => {
+      if (flightReservations.length === 0) {
+        return res.send({
+          message: "No flight reservations matching the given criteria found."
+        });
+      }
+      res.send(flightReservations);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving flight reservations."
+      });
+    });
+};
 
 exports.findBySearch = (req, res) => {
   const { departure_destination,
