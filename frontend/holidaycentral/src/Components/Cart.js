@@ -3,6 +3,7 @@ import HeaderAll from "./Headers/HeaderAll";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import qs from "qs";
+import request from "superagent";
 
 const Cart = () => {
   const [dataFlight, setDataFlight] = useState([]);
@@ -59,15 +60,79 @@ const Cart = () => {
   };
 
   //checkout the carted hotels
-  const checkoutHotel = (e) =>{
+  const checkoutHotel = (e) => {
     //get data
-
-    
+    const id = e._id;
+    const destination = e.destination;
+    const check_in_date = e.check_in_date;
+    const check_out_date = e.check_out_date;
+    const star_rating = e.star_rating;
+    const room_selection = e.room_selection;
+    const board_basis = e.board_basis;
+    const pricing = e.pricing;
+    const pool = e.facilities.pool;
+    const kids_play_area = e.facilities.kids_play_area;
+    const beach_access = e.facilities.beach_access;
+    const agent_name = e.agent_name;
+    const user_email = e.user_email;
+    const checkout_date = e.checkout_date;
+    const aditional_note = e.additional_note;
 
     //append data
+    const data = new URLSearchParams();
+
+    // destination
+    data.append("destination", destination);
+    // check_in_date
+    data.append("check_in_date", check_in_date);
+    // check_out_date
+    data.append("check_out_date", check_out_date);
+    // bill checkout_date
+    data.append("checkout_date", checkout_date);
+    // star_rating
+    data.append("star_rating", star_rating);
+    // room_selection
+    data.append("room_selection", room_selection);
+    // board_basis
+    data.append("board_basis", board_basis);
+    // pricing
+    data.append("pricing", pricing);
+    // pool
+    data.append("pool", pool);
+    // kids_play_area
+    data.append("kids_play_area", kids_play_area);
+    // beach_access
+    data.append("beach_access", beach_access);
+    // agent_name
+    data.append("agent_name", agent_name);
+    // user_email
+    data.append("user_email", user_email);
+    // aditional_note
+    data.append("aditional_note", aditional_note);
+
+    console.log(data);
 
     //send data as "booked"
 
+    request
+      .post("http://localhost:4000/api/checkout/hotel")
+      .set("Content-Type", "application/x-www-form-urlencoded")
+      .set("Access-Control-Allow-Origin", "*")
+      .send(data)
+      .then((response) => {
+        console.log(response.body);
+
+        alert("Data sent successfully");
+        window.location = "http://localhost:3000/travel/dashboard";
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Unsuccessfull Atempt! Try again!" + error);
+      });
+
+    //delete data from cart
+
+   
   };
 
   return (
@@ -194,9 +259,14 @@ const Cart = () => {
                       : "Not Available"}
                   </td>
                   <td> {hotelItem.aditional_note}</td>
-                  
-                    <button class="btn btn-dark" onClick={() => checkoutHotel(hotelItem)}>Book</button>
-                  
+                  <td>
+                    <button
+                      class="btn btn-dark"
+                      onClick={() => checkoutHotel(hotelItem)}
+                    >
+                      Book
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

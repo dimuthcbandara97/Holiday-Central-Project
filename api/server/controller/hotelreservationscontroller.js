@@ -260,12 +260,12 @@ exports.update = (req, res) => {
     });
 };
 
-// delete a user by user id
+// delete a reservation
 exports.delete = (req, res) => {
   if (!req.body) {
     return res
       .status(404)
-      .send({ message: "Data to update can not be empty." });
+      .send({ message: "Data to delete can not be empty." });
   }
 
   const id = req.params.id;

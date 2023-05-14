@@ -104,5 +104,7 @@ route.get("/api/cart/package", packagecart.find);
 
 // Flight carts delete
 route.delete("/api/cart/flight", flightcart.delete);
+route.delete("/api/cart/hotel", hotelcart.delete);
+route.delete("/api/cart/package", packagecart.delete);
 
 module.exports = route;
